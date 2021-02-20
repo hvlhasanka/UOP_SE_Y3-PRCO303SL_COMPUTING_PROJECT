@@ -1,22 +1,22 @@
 -- Database Name: ghds_db
--- Database Name Abbreviation Long Form: Goverment Health Department System (GHDS) Database (DB)
+-- Database Name Abbreviation Long Form: Goverment Health Department Management System (GHDS) Database (DB)
 
--- Deletes if a database named ghds_db already exists
-  DROP DATABASE IF EXISTS ghds_db;
+-- Deletes if a database named ghdms_db already exists
+  DROP DATABASE IF EXISTS ghdms_db;
 
 -- Creating database
-  CREATE DATABASE ghds_db;
+  CREATE DATABASE ghdms_db;
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- Accessing newly created database
-  USE ghds_db;
+  USE ghdms_db;
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 1 - NamePrefixes
   CREATE TABLE NamePrefixes(
-    NamePrefixID INT(3) NOT NULL AUTO_INCREMENT,
+    NamePrefixID TINYINT NOT NULL AUTO_INCREMENT,
     NamePrefix VARCHAR(8) NOT NULL,
     CONSTRAINT PK_NamePrefix PRIMARY KEY (NamePrefixID)
   )ENGINE=INNODB;
@@ -38,7 +38,7 @@
 
 -- CREATING TABLE: TABLE 2 - AccountTypes
   CREATE TABLE AccountTypes(
-    AccountTypeID INT(3) NOT NULL AUTO_INCREMENT,
+    AccountTypeID TINYINT NOT NULL AUTO_INCREMENT,
     AccountType VARCHAR(30) NOT NULL,
     CONSTRAINT PK_AccountType PRIMARY KEY (AccountTypeID)
   )ENGINE=INNODB;
@@ -49,21 +49,21 @@
 -- INSERTING RECORDS: TABLE 2 - AccountTypes
   INSERT INTO AccountTypes(AccountTypes)
   VALUES 
-  ('Unregistered Public User'),
-  ('Registered Public User'),
+  ('Administrator'),
   ('Operator'),
-  ('Administrator');
+  ('Registered Public User'),
+  ('Unregistered Public User');
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 3 - Accounts
   CREATE TABLE Accounts(
-    AccountID INT(10) NOT NULL AUTO_INCREMENT,
-    npNamePrefixID INT(3) NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    MiddleName VARCHAR(50),
-    LastName VARCHAR(100) NOT NULL,
-    atAccountTypeID INT(7) NOT NULL,
+    AccountID INT NOT NULL AUTO_INCREMENT,
+    npNamePrefixID TINYINT NOT NULL,
+    FirstName VARCHAR(90) NOT NULL,
+    MiddleName VARCHAR(90),
+    LastName VARCHAR(150) NOT NULL,
+    atAccountTypeID TINYINT NOT NULL,
     LastEditDateTime DATETIME ON UPDATE convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
     CreateDateTime DATETIME NOT NULL DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
     CONSTRAINT PK_Account PRIMARY KEY (AccountID),
@@ -76,14 +76,17 @@
 -- INSERTING RECORDS: TABLE 3 - Accounts
   INSERT INTO Accounts(npNamePrefixID, FirstName, MiddleName, LastName, atAccountTypeID)
   VALUES 
-  ();
+  (001, 'Lucas', 'Andy', 'Anderson', 001),
+  (002, 'Andrew', '', 'Wilson', 002),
+  (003, 'Jack', 'Sammy', 'Cooper', 003),
+  (004, 'Sarah', 'Sam', 'Wellington', 004);
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 4 - AccountPhoneNumbers
   CREATE TABLE AccountPhoneNumbers(
-    aAccountID INT(10) NOT NULL,
-    PhoneNumber CHAR(10) NOT NULL,
+    aAccountID INT NOT NULL,
+    PhoneNumber CHAR(12) NOT NULL,
     CONSTRAINT PK_AccountPhoneNumber PRIMARY KEY (aAccountID, PhoneNumber),
     CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Account(AccountID)
   )ENGINE=INNODB;
@@ -91,48 +94,61 @@
 -- INSERTING RECORDS: TABLE 4 - AccountPhoneNumbers
   INSERT INTO AccountPhoneNumbers(aAccountID, PhoneNumber)
   VALUES 
-  ();
+  (0000000001, '074 4125662'),
+  (0000000001, '074 2464245'),
+  (0000000002, '072 4322353'),
+  (0000000002, '076 2422343'),
+  (0000000003, '071 5434235'),
+  (0000000003, '072 4648642'),
+  (0000000004, '076 4235475'),
+  (0000000004, '076 4362433');
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 5 - Cities
   CREATE TABLE Cities(
-    CityID INT(7) NOT NULL AUTO_INCREMENT,
-    City VARCHAR(100) NOT NULL,
+    CityID INT NOT NULL AUTO_INCREMENT,
+    City VARCHAR(200) NOT NULL,
     CONSTRAINT PK_City PRIMARY KEY (CityID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 5 - Cities
-  ALTER TABLE Cities AUTO_INCREMENT = 0000001;
+  ALTER TABLE Cities AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 5 - Cities
   INSERT INTO Cities(City) 
   VALUES 
-  ();
+  ('Pettah'),
+  ('FORT'),
+  ('Borrella'),
+  ('Kollupitiya');
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 6 - PostalCodes
   CREATE TABLE PostalCodes(
-    PostalCodeID INT(7) NOT NULL AUTO_INCREMENT,
+    PostalCodeID INT NOT NULL AUTO_INCREMENT,
     PostalCode VARCHAR(10) NOT NULL,
     CONSTRAINT PK_PostalCode PRIMARY KEY (PostalCodeID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 6 - PostalCodes
-  ALTER TABLE PostalCodes AUTO_INCREMENT = 0000001;
+  ALTER TABLE PostalCodes AUTO_INCREMENT = 0000000001;
 
 -- INSERT RECORDS: TABLE 6 - PostalCodes
   INSERT INTO PostalCodes(PostalCodes) 
   VALUES 
-  ();
+  ('34115'),
+  ('45563'),
+  ('43886'),
+  ('86433');
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 7 - Districts
   CREATE TABLE Districts(
-    DistrictID INT(3) NOT NULL AUTO_INCREMENT,
-    District VARCHAR(60) NOT NULL, 
+    DistrictID TINYINT NOT NULL AUTO_INCREMENT,
+    District VARCHAR(100) NOT NULL, 
     CONSTRAINT PK_District PRIMARY KEY (DistrictID)
   )ENGINE=INNODB;
 
@@ -142,14 +158,14 @@
 -- INSERT RECORDS: TABLE 7 - Districts
   INSERT INTO Districts(District) 
   VALUES 
-  ();
+  ('Colombo');
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 8 - AgeGroups
   CREATE TABLE AgeGroups(
-    AgeGroupID INT(3) NOT NULL AUTO_INCREMENT,
-    AgeGroup VARCHAR(10) NOT NULL,
+    AgeGroupID TINYINT NOT NULL AUTO_INCREMENT,
+    AgeGroup VARCHAR(20) NOT NULL,
     CONSTRAINT PK_AgeGroup PRIMARY KEY (AgeGroupID)
   )ENGINE=INNODB;
 
@@ -157,16 +173,32 @@
   ALTER TABLE AgeGroupID AUTO_INCREMENT = 001;
 
 -- INSERT RECORDS: TABLE 8 - AgeGroups
-  INSERT INTO AgeGroups() 
+  INSERT INTO AgeGroups(AgeGroup) 
   VALUES 
-  ();
-
+  ('Below 18'),
+  ('19 to 23'),
+  ('24 to 28'),
+  ('28 to 32'),
+  ('32 to 36'),
+  ('37 to 41'),
+  ('42 to 46'),
+  ('47 to 51'),
+  ('52 to 56'),
+  ('57 to 61'),
+  ('62 to 66'),
+  ('67 to 71'),
+  ('72 to 76'),
+  ('77 to 81'),
+  ('82 to 86'),
+  ('87 to 92'),
+  ('Above 93');
+  
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 9 - Genders
   CREATE TABLE Genders(
-    GenderID INT(3) NOT NULL AUTO_INCREMENT,
-    Gender VARCHAR(8) NOT NULL,
+    GenderID TINYINT NOT NULL AUTO_INCREMENT,
+    Gender VARCHAR(20) NOT NULL,
     CONSTRAINT PK_Gender PRIMARY KEY (GenderID)
   )ENGINE=INNODB;
 
@@ -185,16 +217,16 @@
 
 -- CREATING TABLE: TABLE 10 - UnregisteredPublicUsers
   CREATE TABLE UnregisteredPublicUsers(
-    UnregisteredUserID INT(10) NOT NULL AUTO_INCREMENT,
-    aAccountID INT(10) NOT NULL,
+    UnregisteredUserID INT NOT NULL AUTO_INCREMENT,
+    aAccountID INT NOT NULL,
     NIC VARCHAR(12) NOT NULL,
     PassportNo VARCHAR(15) NOT NULL,
     StreetAddress VARCHAR(120),
-    cCityID INT(3) NOT NULL,
-    pcPostalCodeID INT(3),
-    dDistrictID INT(3) NOT NULL,
-    agAgeGroupID INT(3),
-    gGenderID INT(3),
+    cCityID INT NOT NULL,
+    pcPostalCodeID INT,
+    dDistrictID TINYINT NOT NULL,
+    agAgeGroupID TINYINT,
+    gGenderID TINYINT,
     CONSTRAINT PK_UnregisteredPublicUser PRIMARY KEY (UnregisteredUserID, aAccountID), 
     CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID),
     CONSTRAINT FK_C_CityID FOREIGN KEY (cCityID) REFERENCES Cities(CityID),
@@ -216,8 +248,8 @@
 
 -- CREATING TABLE: TABLE 11 - RegisteredPublicUsers
   CREATE TABLE RegisteredPublicUsers(
-    RegisteredUserID INT(10) NOT NULL AUTO_INCREMENT,
-    aAccountID INT(10) NOT NULL,
+    RegisteredUserID INT NOT NULL AUTO_INCREMENT,
+    aAccountID INT NOT NULL,
     NIC VARCHAR(12) NOT NULL,
     PassportNo VARCHAR(15) NOT NULL,
     StreetAddress VARCHAR(120),
@@ -248,8 +280,8 @@
 -- CREATING TABLE: TABLE 12 - Operators
   CREATE TABLE Operators(
     OperatorID INT(3) NOT NULL AUTO_INCREMENT,
-    aAccountID INT(10) NOT NULL,
-    CONSTRAINT PK_Operator PRIMARY KEY (OperatorID, aAccountID)
+    aAccountID INT NOT NULL,
+    CONSTRAINT PK_Operator PRIMARY KEY (OperatorID, aAccountID),
     CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
   )ENGINE=INNODB;
 
@@ -266,7 +298,7 @@
 -- CREATING TABLE: TABLE 13 - Administrators
   CREATE TABLE Administrators(
     AdminID INT(3) NOT NULL AUTO_INCREMENT,
-    aAccountID INT(10) NOT NULL,
+    aAccountID INT NOT NULL,
     aRegisteredByAdminID INT(3) NOT NULL,
     CONSTRAINT PK_City PRIMARY KEY (CityID),
     CONSTRAINT FK_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
@@ -302,7 +334,7 @@
 
 -- CREATING TABLE: TABLE 15 - Logins
   CREATE TABLE Logins(
-    LoginID INT(10) NOT NULL AUTO_INCREMENT,
+    LoginID INT NOT NULL AUTO_INCREMENT,
     EmailAddress VARCHAR(150) NOT NULL UNIQUE,
     PasswordHash VARCHAR(150) NOT NULL,
     asAccountStatusID INT(7) NOT NULL,
@@ -341,11 +373,11 @@
 
 -- CREATING TABLE: TABLE 17 - LoginActivities
   CREATE TABLE LoginActivities(
-    LoginActivityID INT(10) NOT NULL AUTO_INCREMENT,
+    LoginActivityID INT NOT NULL AUTO_INCREMENT,
     LoginDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
     LogoutDateTime DATETIME,
     asAccountActivityID INT(3) NOT NULL,
-    lLoginID INT(10) NOT NULL,
+    lLoginID INT NOT NULL,
     CONSTRAINT PK_LoginActivity PRIMARY KEY (LoginActivityID),
     CONSTRAINT FK_AA_AccountActivityID FOREIGN KEY (asAccountActivityID) REFERENCES AccountActivities(AccountActivityID),
     CONSTRAINT FK_L_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID)
@@ -363,10 +395,10 @@
 
 -- CREATING TABLE: TABLE 18 - ForgotPasswords
   CREATE TABLE ForgotPasswords(
-    RecoveryID INT(10) NOT NULL AUTO_INCREMENT,
+    RecoveryID INT NOT NULL AUTO_INCREMENT,
     PinCode INT(6) NOT NULL,
     CreatedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
-    lLoginID INT(10) NOT NULL,
+    lLoginID INT NOT NULL,
     CONSTRAINT PK_City PRIMARY KEY (CityID),
     CONSTRAINT FK_L_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID) 
   )ENGINE=INNODB;
@@ -401,17 +433,17 @@
 
 -- CREATING TABLE: TABLE 20 - FeedbackReports
   CREATE TABLE FeedbackReports(
-    ReportID INT(10) NOT NULL AUTO_INCREMENT, 
+    ReportID INT NOT NULL AUTO_INCREMENT, 
     Subject VARCHAR(150) NOT NULL, 
     Feedback VARCHAR(250) NOT NULL, 
     rsReviewStatusID INT(3) DEFAULT 001, 
     SubmittedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
     oForwardedByOperatorID INT(3), 
-    oForwardedByAccountID INT(10), 
+    oForwardedByAccountID INT, 
     oReviewedByOperatorID INT(3), 
-    oReviewedByAccountID INT(10), 
+    oReviewedByAccountID INT, 
     aReviewedByAdminID INT(3), 
-    aReviewedByAccountID INT(10), 
+    aReviewedByAccountID INT, 
     CONSTRAINT PK_City PRIMARY KEY (CityID), 
     CONSTRAINT FK_RS_ReviewStatusID FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatuses(ReviewStatusID), 
     CONSTRAINT FK_O_ForwardedByOpertorID FOREIGN KEY (oForwardedByOperatorID) REFERENCES Operators(OperatorID), 
@@ -451,13 +483,13 @@
 
 -- CREATING TABLE: TABLE 22 - InternalFeedbackReports
   CREATE TABLE InternalFeedbackReports(
-    InternalReportID INT(10) NOT NULL AUTO_INCREMENT,
-    frReportID INT(10) NOT NULL,
+    InternalReportID INT NOT NULL AUTO_INCREMENT,
+    frReportID INT NOT NULL,
     sutUserTypeID INT(3) NOT NULL,
     rpuPublishedRegisteredUserID INT (10),
-    rpuPublishedAccountID INT(10),
+    rpuPublishedAccountID INT,
     oPublishedOperatorID INT(3),
-    oPublishedAccountID INT(10),
+    oPublishedAccountID INT,
     CONSTRAINT PK_InternalReportID PRIMARY KEY (InternalReportID),
     CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID), 
     CONSTRAINT FK_SUT_UserTypeID FOREIGN KEY (sutUserTypeID) REFERENCES SubmittedUserTypes(UserTypeID), 
@@ -479,11 +511,11 @@
 
 -- CREATING TABLE: TABLE 23 - ExternalFeedbackReports
   CREATE TABLE ExternalFeedbackReports(
-    ExternalReportID INT(10) NOT NULL AUTO_INCREMENT,
-    frReportID INT(10) NOT NULL,
+    ExternalReportID INT NOT NULL AUTO_INCREMENT,
+    frReportID INT NOT NULL,
     AuthorReachableEmailAddress VARCHAR(150) NOT NULL,
-    upuPublishedUnregisteredUserID INT(10) NOT NULL,
-    upuPublishedAccountID INT(10) NOT NULL,
+    upuPublishedUnregisteredUserID INT NOT NULL,
+    upuPublishedAccountID INT NOT NULL,
     CONSTRAINT PK_ExternalFeedbackReport PRIMARY KEY (ExternalReportID),
     CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID),  
     CONSTRAINT FK_UPU_PublishedUnregisteredUserID FOREIGN KEY (upuPublishedUnregisteredUserID) REFERENCES UnregisteredPublicUsers(UnregisteredUserID), 
@@ -519,17 +551,17 @@
 
 -- CREATING TABLE: TABLE 25 - HealthStatusReports
   CREATE TABLE HealthStatusReports(
-    ReportID INT(10) NOT NULL AUTO_INCREMENT,
+    ReportID INT NOT NULL AUTO_INCREMENT,
     sSymptomID INT(3) NOT NULL,
     Message VARCHAR(150) NOT NULL,
     rsReviewStatusID INT(3) NOT NULL,
     SubmittedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
     ProofOfTCRTest BLOB,
-    upuPublishedUnregisteredUserID INT(10),
-    upuPublishedAccountID INT(10),
-    rpuPublishedRegisteredUserID INT(10),
-    rpuPublishedAccountID INT(10), 
-    oReviewedByOperatorID INT(10),
+    upuPublishedUnregisteredUserID INT,
+    upuPublishedAccountID INT,
+    rpuPublishedRegisteredUserID INT,
+    rpuPublishedAccountID INT, 
+    oReviewedByOperatorID INT,
     oReviewedByAccountID INT (10),
     CONSTRAINT PK_ExternalFeedbackReport PRIMARY KEY (ReportID),
     CONSTRAINT FK_S_SymptomID FOREIGN KEY (sSymptomID) REFERENCES Symptoms(SymptomID),
