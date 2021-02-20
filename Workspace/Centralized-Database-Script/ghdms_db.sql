@@ -44,7 +44,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 2 - AccountTypes
-  ALTER TABLE NamePrefixes AUTO_INCREMENT = 001;
+  ALTER TABLE AccountTypes AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 2 - AccountTypes
   INSERT INTO AccountTypes(AccountTypes)
@@ -153,7 +153,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 7 - Districts
-  ALTER TABLE PostalCodes AUTO_INCREMENT = 001;
+  ALTER TABLE Districts AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 7 - Districts
   INSERT INTO Districts(District) 
@@ -170,7 +170,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 8 - AgeGroups
-  ALTER TABLE AgeGroupID AUTO_INCREMENT = 001;
+  ALTER TABLE AgeGroups AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 8 - AgeGroups
   INSERT INTO AgeGroups(AgeGroup) 
@@ -203,7 +203,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 9 - Genders
-  ALTER TABLE GenderID AUTO_INCREMENT = 001;
+  ALTER TABLE Genders AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 9 - Genders
   INSERT INTO Genders(Gender) 
@@ -237,7 +237,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 10 - UnregisteredPublicUsers
-  ALTER TABLE UnregisteredUserID AUTO_INCREMENT = 0000000001;
+  ALTER TABLE UnregisteredPublicUsers AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 10 - RegisteredPublicUsers
   INSERT INTO RegisteredPublicUsers(aAccountID, NIC, PassportNo, StreetAddress, cCityID, pcPostalCodeID, dDistrictID, agAgeGroupID, gGenderID) 
@@ -268,7 +268,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 11 - RegisteredPublicUsers
-  ALTER TABLE UnregisteredUserID AUTO_INCREMENT = 0000000001;
+  ALTER TABLE RegisteredPublicUsers AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 11 - RegisteredPublicUsers
   INSERT INTO RegisteredPublicUsers(aAccountID, NIC, PassportNo, StreetAddress, cCityID, pcPostalCodeID, dDistrictID, agAgeGroupID, gGenderID) 
@@ -287,7 +287,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 12 - Administrators
-  ALTER TABLE AdminID AUTO_INCREMENT = 001;
+  ALTER TABLE Administrators AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 12 - Administrators
   INSERT INTO Administrators(aAccountID) 
@@ -308,7 +308,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 13 - Operators
-  ALTER TABLE OperatorID AUTO_INCREMENT = 001; -- TODO : Checking highest value of mediumint
+  ALTER TABLE Operators AUTO_INCREMENT = 001; -- TODO : Checking highest value of mediumint
 
 -- INSERTING RECORDS: TABLE 13 - Operators
   INSERT INTO Operators(aAccount) 
@@ -325,7 +325,7 @@
   )ENGINE=INNODB;
   
 -- AUTO INCREMENT STARTING POINT: TABLE 14 - SituationStatuses
-  ALTER TABLE SituationStatusID AUTO_INCREMENT = 001;
+  ALTER TABLE SituationStatuses AUTO_INCREMENT = 001;
   
 -- INSERTING RECORDS: TABLE 14 - SituationStatuses
   INSERT INTO SituationStatuses(SituationStatus) 
@@ -343,7 +343,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 15 - ColourCodes
-  ALTER TABLE ColourCodeID AUTO_INCREMENT = 0000000001;
+  ALTER TABLE ColourCodes AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 15 - ColourCodes
   INSERT INTO ColourCodes(ColourCode) 
@@ -408,7 +408,7 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 18 - AccountStatuses
-  ALTER TABLE AccountStatusID AUTO_INCREMENT = 001;
+  ALTER TABLE AccountStatuses AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 18 - AccountStatuses
   INSERT INTO AccountStatuses(AccountStatus) 
@@ -421,65 +421,68 @@
 -- CREATING TABLE: TABLE 19 - Logins
   CREATE TABLE Logins(
     LoginID INT NOT NULL AUTO_INCREMENT,
-    EmailAddress VARCHAR(150) NOT NULL UNIQUE,
+    EmailAddress VARCHAR(250) NOT NULL UNIQUE,
     PasswordHash VARCHAR(150) NOT NULL,
-    asAccountStatusID INT(7) NOT NULL,
-    aAccountID INT(7) NOT NULL,
+    asAccountStatusID TINYINT NOT NULL,
+    aAccountID INT NOT NULL,
     CONSTRAINT PK_Login PRIMARY KEY (LoginID),
-    CONSTRAINT FK_AS_AccountStatusID FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatuses(AccountStatusID)
+    CONSTRAINT FK_AS_AccountStatusID FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatuses(AccountStatusID),
+    CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 19 - Logins
-  ALTER TABLE LoginID AUTO_INCREMENT = 0000000001;
+  ALTER TABLE Logins AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 19 - Logins
-  INSERT INTO Logins() 
+  INSERT INTO Logins(EmailAddress, PasswordHash, asAccountStatusID, aAccountID) 
   VALUES 
-  ();
+  ('lucasanderson.ghd@gmail.com', '', 001, 0000000001), -- User Type: Administrator   |   Password:   
+  ('andrewwilcom.ghd@gmail.com', '', 001, 0000000002), -- User Type: Operator   |   Password:           
+  ('jackcooper24@gmail.com', '', 001, 0000000003); -- User Type: Registered Public User   |   Password:      
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 16 - AcountActivities
-  CREATE TABLE AcountActivities(
-    AccountActivityID INT(3) NOT NULL AUTO_INCREMENT,
+-- CREATING TABLE: TABLE 20 - AccountActivities
+  CREATE TABLE AccountActivities(
+    AccountActivityID TINYINT NOT NULL AUTO_INCREMENT,
     AccountActivity VARCHAR(10) NOT NULL,
     CONSTRAINT PK_AccountActivity PRIMARY KEY (AccountActivityID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 16 - AcountActivities
-  ALTER TABLE AccountActivityID AUTO_INCREMENT = 001;
+-- AUTO INCREMENT STARTING POINT: TABLE 20 - AccountActivities
+  ALTER TABLE AccountActivities AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 16 - AcountActivities
-  INSERT INTO AcountActivities(AccountActivity) 
+-- INSERTING RECORDS: TABLE 20 - AccountActivities
+  INSERT INTO AccountActivities(AccountActivity) 
   VALUES 
   ('ONLINE'),
   ('OFFLINE');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 17 - LoginActivities
+-- CREATING TABLE: TABLE 21 - LoginActivities
   CREATE TABLE LoginActivities(
     LoginActivityID INT NOT NULL AUTO_INCREMENT,
     LoginDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
     LogoutDateTime DATETIME,
-    asAccountActivityID INT(3) NOT NULL,
+    asAccountActivityID TINYINT NOT NULL,
     lLoginID INT NOT NULL,
     CONSTRAINT PK_LoginActivity PRIMARY KEY (LoginActivityID),
     CONSTRAINT FK_AA_AccountActivityID FOREIGN KEY (asAccountActivityID) REFERENCES AccountActivities(AccountActivityID),
     CONSTRAINT FK_L_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 17 - LoginActivities
-  ALTER TABLE LoginActivityID AUTO_INCREMENT = 0000000001;
+-- AUTO INCREMENT STARTING POINT: TABLE 21 - LoginActivities
+  ALTER TABLE LoginActivities AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 17 - LoginActivities
-  INSERT INTO PostalCodes() 
-  VALUES 
-  ();
+-- INSERTING RECORDS: TABLE 21 - LoginActivities
+--   INSERT INTO LoginActivityID(asAccountActivityID, lLoginID) 
+--   VALUES 
+--   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 18 - ForgotPasswords
+-- CREATING TABLE: TABLE 22 - ForgotPasswords
   CREATE TABLE ForgotPasswords(
     RecoveryID INT NOT NULL AUTO_INCREMENT,
     PinCode INT(6) NOT NULL,
@@ -489,27 +492,27 @@
     CONSTRAINT FK_L_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID) 
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 18 - ForgotPasswords
-  ALTER TABLE RecoveryID AUTO_INCREMENT = 0000000001;
+-- AUTO INCREMENT STARTING POINT: TABLE 22 - ForgotPasswords
+  ALTER TABLE ForgotPasswords AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 18 - ForgotPasswords
-  INSERT INTO ForgotPasswords() 
-  VALUES 
-  ();
+-- INSERTING RECORDS: TABLE 22 - ForgotPasswords
+--   INSERT INTO ForgotPasswords() 
+--   VALUES 
+--   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 19 - ReviewStatuses
+-- CREATING TABLE: TABLE 23 - ReviewStatuses
   CREATE TABLE ReviewStatuses(
-    ReviewStatusID INT(3) NOT NULL AUTO_INCREMENT,
+    ReviewStatusID TINYINT NOT NULL AUTO_INCREMENT,
     ReviewStatus VARCHAR(10) NOT NULL,
     CONSTRAINT PK_ReviewStatus PRIMARY KEY (ReviewStatusID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 19 - ReviewStatuses
-  ALTER TABLE ReviewStatusID AUTO_INCREMENT = 001;
+-- AUTO INCREMENT STARTING POINT: TABLE 23 - ReviewStatuses
+  ALTER TABLE ReviewStatuses AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 19 - ReviewStatuses
+-- INSERTING RECORDS: TABLE 23 - ReviewStatuses
   INSERT INTO ReviewStatuses(ReviewStatus) 
   VALUES 
   ('PENDING'),
@@ -517,18 +520,18 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 20 - FeedbackReports
+-- CREATING TABLE: TABLE 24 - FeedbackReports
   CREATE TABLE FeedbackReports(
     ReportID INT NOT NULL AUTO_INCREMENT, 
-    Subject VARCHAR(150) NOT NULL, 
-    Feedback VARCHAR(250) NOT NULL, 
-    rsReviewStatusID INT(3) DEFAULT 001, 
+    ReportSubject VARCHAR(150) NOT NULL, 
+    Feedback VARCHAR(300) NOT NULL, 
+    rsReviewStatusID TINYINT DEFAULT 001, 
     SubmittedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
-    oForwardedByOperatorID INT(3), 
+    oForwardedByOperatorID MEDIUMINT, 
     oForwardedByAccountID INT, 
-    oReviewedByOperatorID INT(3), 
+    oReviewedByOperatorID MEDIUMINT, 
     oReviewedByAccountID INT, 
-    aReviewedByAdminID INT(3), 
+    aReviewedByAdminID TINYINT, 
     aReviewedByAccountID INT, 
     CONSTRAINT PK_City PRIMARY KEY (CityID), 
     CONSTRAINT FK_RS_ReviewStatusID FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatuses(ReviewStatusID), 
@@ -540,41 +543,43 @@
     CONSTRAINT FK_A_ReviewedByAccountID FOREIGN KEY (aReviewedByAccountID) REFERENCES Operators(aAccountID), 
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 20 - FeedbackReports
-  ALTER TABLE ReportID AUTO_INCREMENT = 0000000001;
+-- AUTO INCREMENT STARTING POINT: TABLE 24 - FeedbackReports
+  ALTER TABLE FeedbackReports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 20 - FeedbackReports
-  INSERT INTO FeedbackReports() 
-  VALUES 
-  ();
+-- INSERTING RECORDS: TABLE 24 - FeedbackReports
+--   INSERT INTO FeedbackReports() 
+--   VALUES 
+--   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 21 - SubmittedUserTypes
+-- CREATING TABLE: TABLE 25 - SubmittedUserTypes
   CREATE TABLE SubmittedUserTypes(
-    UserTypeID INT(3) NOT NULL AUTO_INCREMENT,
-    UserType VARCHAR() NOT NULL,
+    UserTypeID TINYINT NOT NULL AUTO_INCREMENT,
+    UserType VARCHAR(100) NOT NULL,
     CONSTRAINT PK_UserTypeID PRIMARY KEY (UserTypeID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 21 - SubmittedUserTypes
-  ALTER TABLE UserTypeID AUTO_INCREMENT = 001;
+-- AUTO INCREMENT STARTING POINT: TABLE 25 - SubmittedUserTypes
+  ALTER TABLE SubmittedUserTypes AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 21 - SubmittedUserTypes
+-- INSERTING RECORDS: TABLE 25 - SubmittedUserTypes
   INSERT INTO SubmittedUserTypes() 
   VALUES 
-  ();
+  ('Operator'),
+  ('Registered Public User'),
+  ('Operator Forwarded Registered Public User');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 22 - InternalFeedbackReports
+-- CREATING TABLE: TABLE 26 - InternalFeedbackReports
   CREATE TABLE InternalFeedbackReports(
     InternalReportID INT NOT NULL AUTO_INCREMENT,
     frReportID INT NOT NULL,
-    sutUserTypeID INT(3) NOT NULL,
-    rpuPublishedRegisteredUserID INT (10),
+    sutUserTypeID TINYINT NOT NULL,
+    rpuPublishedRegisteredUserID INT,
     rpuPublishedAccountID INT,
-    oPublishedOperatorID INT(3),
+    oPublishedOperatorID MEDIUMINT,
     oPublishedAccountID INT,
     CONSTRAINT PK_InternalReportID PRIMARY KEY (InternalReportID),
     CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID), 
@@ -582,20 +587,20 @@
     CONSTRAINT FK_RPU_PublishedRegisteredUserID FOREIGN KEY (rpuPublishedRegisteredUserID) REFERENCES UnregisteredPublicUsers(RegisteredUserID), 
     CONSTRAINT FK_RPU_PublishedAccountID FOREIGN KEY (rpuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID), 
     CONSTRAINT FK_O_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID), 
-    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(aAccountID), 
+    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(aAccountID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 22 - InternalFeedbackReports
-  ALTER TABLE InternalReportID AUTO_INCREMENT = 0000000001;
+-- AUTO INCREMENT STARTING POINT: TABLE 26 - InternalFeedbackReports
+  ALTER TABLE InternalFeedbackReports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 22 - InternalFeedbackReports
-  INSERT INTO InternalFeedbackReports() 
-  VALUES 
-  ();
+-- INSERTING RECORDS: TABLE 26 - InternalFeedbackReports
+--   INSERT INTO InternalFeedbackReports() 
+--   VALUES 
+--   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 23 - ExternalFeedbackReports
+-- CREATING TABLE: TABLE 27 - ExternalFeedbackReports
   CREATE TABLE ExternalFeedbackReports(
     ExternalReportID INT NOT NULL AUTO_INCREMENT,
     frReportID INT NOT NULL,
@@ -608,38 +613,20 @@
     CONSTRAINT FK_UPU_PublishedAccountID FOREIGN KEY (upuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 23 - ExternalFeedbackReports
-  ALTER TABLE ExternalReportID AUTO_INCREMENT = 0000000001;
+-- AUTO INCREMENT STARTING POINT: TABLE 27 - ExternalFeedbackReports
+  ALTER TABLE ExternalFeedbackReports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 23 - ExternalFeedbackReports
-  INSERT INTO ExternalFeedbackReports() 
-  VALUES 
-  ();
-
--- |------------------------------------------------------------------------------------------------|
-
--- CREATING TABLE: TABLE 24 - Symptoms
-  CREATE TABLE Symptoms(
-    SymptomsID INT(3) NOT NULL AUTO_INCREMENT,
-    Symptoms VARCHAR(150) NOT NULL,
-    CONSTRAINT PK_Symptom PRIMARY KEY (SymptomsID)
-  )ENGINE=INNODB;
-
--- AUTO INCREMENT STARTING POINT: TABLE 24 - Symptoms
-  ALTER TABLE SymptomsID AUTO_INCREMENT = 001;
-
--- INSERTING RECORDS: TABLE 24 - Symptoms
-  INSERT INTO Symptoms() 
-  VALUES 
-  ();
+-- INSERTING RECORDS: TABLE 27 - ExternalFeedbackReports
+--   INSERT INTO ExternalFeedbackReports() 
+--   VALUES 
+--   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 25 - HealthStatusReports
   CREATE TABLE HealthStatusReports(
     ReportID INT NOT NULL AUTO_INCREMENT,
-    sSymptomID INT(3) NOT NULL,
-    Message VARCHAR(150) NOT NULL,
+    ReportDescription VARCHAR(150) NOT NULL,
     rsReviewStatusID INT(3) NOT NULL,
     SubmittedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
     ProofOfTCRTest BLOB,
@@ -661,12 +648,115 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 25 - HealthStatusReports
-  ALTER TABLE ReportID AUTO_INCREMENT = 0000000001;
+  ALTER TABLE HealthStatusReports AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 25 - HealthStatusReports
   INSERT INTO HealthStatusReports() 
   VALUES 
   ();
 
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 29 - Symptoms
+  CREATE TABLE Symptoms(
+    SymptomsID MEDIUMINT NOT NULL AUTO_INCREMENT,
+    Symptom VARCHAR(150) NOT NULL,
+    SymptomCategory VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Symptom PRIMARY KEY (SymptomsID)
+  )ENGINE=INNODB;
+
+-- AUTO INCREMENT STARTING POINT: TABLE 29 - Symptoms
+  ALTER TABLE Symptoms AUTO_INCREMENT = 001;
+
+-- INSERTING RECORDS: TABLE 29 - Symptoms
+  INSERT INTO Symptoms(Symtom, SymptomCategory) 
+  VALUES 
+  ('Fewer', 'Common Symptom'),
+  ('Dry cough', 'Common Symptom'),
+  ('Tiredness', 'Common Symptom'),
+  ('Headache', 'Rare Symptom'),
+  ('Aches and pains', 'Rare Symptom'),
+  ('Sore throat', 'Rare Symptom'),
+  ('Diarrhoea', 'Rare Symptom'),
+  ('Conjunctivitis', 'Rare Symptom'),
+  ('Loss of taste and smell', 'Rare Symptom'),
+  ('A rash on skin (Discolouration of fingers and toes)', 'Rare Symptom'),
+  ('Chest pain (Or pressure)', 'Severe Symptom'),
+  ('Loss of speech and movement', 'Severe Symptom'),
+  ('Difficulty breathing or short of breath', 'Severe Symptom');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 30 - HealthStatusReportSymptoms
+  CREATE TABLE HealthStatusReportSymptoms(
+    hsrReportID INT NOT NULL,
+    sSymptomID MEDIUMINT NOT NULL,
+    CONSTRAINT PK_HealthStatusReportSymptom PRIMARY KEY (hsrReportID, sSymptomID),
+    CONSTRAINT FK_HS_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID),
+    CONSTRAINT FK_S_SymptomID FOREIGN KEY (sSymptomID) REFERENCES Symptoms(SymptomID)
+  )ENGINE=INNODB;
+
+-- INSERTING RECORDS: TABLE 30 - HealthStatusReportSymptoms
+--   INSERT INTO HealthStatusReportSymptoms(hsrReportID, sSymptomID) 
+--   VALUES 
+--   ();
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 31 - StandardHealthStatusReports
+  CREATE TABLE StandardHealthStatusReports(
+	StandardReportID INT NOT NULL AUTO_INCREMENT,
+    hsrReportID INT NOT NULL,
+    CONSTRAINT PK_StandardHealthStatusReport PRIMARY KEY (StandardReportID, hsrReportID),
+    CONSTRAINT FK_HSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 31 - StandardHealthStatusReports
+  ALTER TABLE StandardHealthStatusReports AUTO_INCREMENT = 0000000001;
+
+-- INSERTING RECORDS: TABLE 31 - StandardHealthStatusReports
+--   INSERT INTO StandardHealthStatusReports(StandardReportID, hsrReportID) 
+--   VALUES 
+--   ();
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 32 - ReportTypes
+  CREATE TABLE ReportTypes(
+	ReportTypeID TINYINT NOT NULL AUTO_INCREMENT,
+    ReportType VARCHAR(100) NOT NULL,
+    CONSTRAINT PK_ReportType PRIMARY KEY (ReportTypeID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 32 - ReportTypes
+  ALTER TABLE ReportTypes AUTO_INCREMENT = 001;
+
+-- INSERTING RECORDS: TABLE 32 - ReportTypes
+  INSERT INTO ReportTypes(ReportType) 
+  VALUES 
+  ('Enduring Severe Symptoms'),
+  ('PCR Test Disease Positive');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 33 - EmergencyHealthStatusReports
+  CREATE TABLE EmergencyHealthStatusReports(
+	EmergencyReportID INT NOT NULL AUTO_INCREMENT,
+    hsrReportID INT NOT NULL,
+    rtReportTypeID TINYINT NOT NULL,
+    sSeverityID TINYINT NOT NULL,
+    CONSTRAINT PK_EmergencyHealthStatusReport PRIMARY KEY (EmergencyReportID),
+    CONSTRAINT FK_HSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID),
+    CONSTRAINT FK_RT_ReportTypeID FOREIGN KEY (rtReportTypeID) REFERENCES ReportTypes(ReportTypeID),
+    CONSTRAINT FK_S_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID)
+  )ENGINE=INNODB;
+
+-- AUTO INCREMENT STARTING POINT: TABLE 33 - EmergencyHealthStatusReports
+  ALTER TABLE EmergencyHealthStatusReports AUTO_INCREMENT = 001;
+
+-- INSERTING RECORDS: TABLE 33 - EmergencyHealthStatusReports
+--   INSERT INTO EmergencyHealthStatusReport(hsrReportID, rtReportTypeID, sSeverityID) 
+--   VALUES 
+--   ();
 
 
