@@ -1,6 +1,8 @@
 -- Database Name: ghds_db
 -- Database Name Abbreviation Long Form: Goverment Health Department Management System (GHDS) Database (DB)
 
+-- All timestamps should be queried using, convert_tz(UTC_TIMESTAMP,'+00:00','+05:30') timezone
+
 -- Deletes if a database named ghdms_db already exists
   DROP DATABASE IF EXISTS ghdms_db;
 
@@ -47,7 +49,7 @@
   ALTER TABLE AccountTypes AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 2 - AccountTypes
-  INSERT INTO AccountTypes(AccountTypes)
+  INSERT INTO AccountTypes(AccountType)
   VALUES 
   ('Administrator'),
   ('Operator'),
@@ -64,10 +66,10 @@
     MiddleName VARCHAR(90),
     LastName VARCHAR(150) NOT NULL,
     atAccountTypeID TINYINT NOT NULL,
-    LastEditDateTime DATETIME ON UPDATE convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
-    CreateDateTime DATETIME NOT NULL DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
+    LastEditDateTime DATETIME ON UPDATE CURRENT_TIMESTAMP,
+    CreateDateTime DATETIME DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT PK_Account PRIMARY KEY (AccountID),
-    CONSTRAINT FK_AT_AccountTypeID FOREIGN KEY (atAccountTypeID) REFERENCES AccountTypes(AccountTypeID)
+    CONSTRAINT FK_AT_A_AccountTypeID FOREIGN KEY (atAccountTypeID) REFERENCES AccountTypes(AccountTypeID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 3 - Accounts
@@ -88,7 +90,7 @@
     aAccountID INT NOT NULL,
     PhoneNumber CHAR(12) NOT NULL,
     CONSTRAINT PK_AccountPhoneNumber PRIMARY KEY (aAccountID, PhoneNumber),
-    CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Account(AccountID)
+    CONSTRAINT FK_A_APN_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
   )ENGINE=INNODB;
 
 -- INSERTING RECORDS: TABLE 4 - AccountPhoneNumbers
@@ -136,7 +138,7 @@
   ALTER TABLE PostalCodes AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 6 - PostalCodes
-  INSERT INTO PostalCodes(PostalCodes) 
+  INSERT INTO PostalCodes(PostalCode) 
   VALUES 
   ('34115'),
   ('45563'),
@@ -222,25 +224,25 @@
     NIC VARCHAR(12) NOT NULL,
     PassportNo VARCHAR(15) NOT NULL,
     StreetAddress VARCHAR(120),
-    cCityID MEDIUMINT NOT NULL,
-    pcPostalCodeID MEDIUMINT,
+    cCityID INT NOT NULL,
+    pcPostalCodeID INT,
     dDistrictID TINYINT NOT NULL,
     agAgeGroupID TINYINT,
     gGenderID TINYINT,
     CONSTRAINT PK_UnregisteredPublicUser PRIMARY KEY (UnregisteredUserID, aAccountID), 
-    CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID),
-    CONSTRAINT FK_C_CityID FOREIGN KEY (cCityID) REFERENCES Cities(CityID),
-    CONSTRAINT FK_PC_PostalCodeID FOREIGN KEY (psPostalCodeID) REFERENCES PostalCodes(PostalCodeID),
-    CONSTRAINT FK_D_DistrictID FOREIGN KEY (dDistrictID) REFERENCES Districts(DistrictID),
-    CONSTRAINT FK_AG_AgeGroupID FOREIGN KEY (agAgeGroupID) REFERENCES AgeGroups(AgeGroupID),
-    CONSTRAINT FK_G_GenderID FOREIGN KEY (gGenderID) REFERENCES Genders(GenderID)
+    CONSTRAINT FK_A_UPU_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID),
+    CONSTRAINT FK_C_UPU_CityID FOREIGN KEY (cCityID) REFERENCES Cities(CityID),
+    CONSTRAINT FK_PC_UPU_PostalCodeID FOREIGN KEY (pcPostalCodeID) REFERENCES PostalCodes(PostalCodeID),
+    CONSTRAINT FK_D_UPU_DistrictID FOREIGN KEY (dDistrictID) REFERENCES Districts(DistrictID),
+    CONSTRAINT FK_AG_UPU_AgeGroupID FOREIGN KEY (agAgeGroupID) REFERENCES AgeGroups(AgeGroupID),
+    CONSTRAINT FK_G_UPU_GenderID FOREIGN KEY (gGenderID) REFERENCES Genders(GenderID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 10 - UnregisteredPublicUsers
   ALTER TABLE UnregisteredPublicUsers AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 10 - RegisteredPublicUsers
-  INSERT INTO RegisteredPublicUsers(aAccountID, NIC, PassportNo, StreetAddress, cCityID, pcPostalCodeID, dDistrictID, agAgeGroupID, gGenderID) 
+-- INSERTING RECORDS: TABLE 10 - UnregisteredPublicUsers
+  INSERT INTO UnregisteredPublicUsers(aAccountID, NIC, PassportNo, StreetAddress, cCityID, pcPostalCodeID, dDistrictID, agAgeGroupID, gGenderID) 
   VALUES 
   (0000000004, '437523543215', '352465342365346', 'No. 332, Castle Side Street', 0000000001, 0000000002, 001, 005, 001);
 
@@ -253,18 +255,18 @@
     NIC VARCHAR(12) NOT NULL,
     PassportNo VARCHAR(15) NOT NULL,
     StreetAddress VARCHAR(120),
-    cCityID MEDIUMINT NOT NULL,
-    pcPostalCodeID MEDIUMINT,
+    cCityID INT NOT NULL,
+    pcPostalCodeID INT,
     dDistrictID TINYINT NOT NULL,
     agAgeGroupID TINYINT,
     gGenderID TINYINT,
     CONSTRAINT PK_RegisteredPublicUser PRIMARY KEY (RegisteredUserID, aAccountID), 
-    CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID),
-    CONSTRAINT FK_C_CityID FOREIGN KEY (cCityID) REFERENCES Cities(CityID),
-    CONSTRAINT FK_PC_PostalCodeID FOREIGN KEY (psPostalCodeID) REFERENCES PostalCodes(PostalCodeID),
-    CONSTRAINT FK_D_DistrictID FOREIGN KEY (dDistrictID) REFERENCES Districts(DistrictID),
-    CONSTRAINT FK_AG_AgeGroupID FOREIGN KEY (agAgeGroupID) REFERENCES AgeGroups(AgeGroupID),
-    CONSTRAINT FK_G_GenderID FOREIGN KEY (gGenderID) REFERENCES Genders(GenderID)
+    CONSTRAINT FK_A_RPU_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID),
+    CONSTRAINT FK_C_RPU_CityID FOREIGN KEY (cCityID) REFERENCES Cities(CityID),
+    CONSTRAINT FK_PC_RPU_PostalCodeID FOREIGN KEY (pcPostalCodeID) REFERENCES PostalCodes(PostalCodeID),
+    CONSTRAINT FK_D_RPU_DistrictID FOREIGN KEY (dDistrictID) REFERENCES Districts(DistrictID),
+    CONSTRAINT FK_AG_RPU_AgeGroupID FOREIGN KEY (agAgeGroupID) REFERENCES AgeGroups(AgeGroupID),
+    CONSTRAINT FK_G_RPU_GenderID FOREIGN KEY (gGenderID) REFERENCES Genders(GenderID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 11 - RegisteredPublicUsers
@@ -281,9 +283,9 @@
   CREATE TABLE Administrators(
     AdminID TINYINT NOT NULL AUTO_INCREMENT,
     aAccountID INT NOT NULL,
-    aRegisteredByAdminID TINYINT NOT NULL,
-    CONSTRAINT PK_City PRIMARY KEY (CityID),
-    CONSTRAINT FK_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
+    aRegisteredByAdminID TINYINT,
+    CONSTRAINT PK_Administrator PRIMARY KEY (AdminID),
+    CONSTRAINT FK_A_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 12 - Administrators
@@ -304,14 +306,14 @@
     OperatorID MEDIUMINT NOT NULL AUTO_INCREMENT,
     aAccountID INT NOT NULL,
     CONSTRAINT PK_Operator PRIMARY KEY (OperatorID, aAccountID),
-    CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
+    CONSTRAINT FK_A_O_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 13 - Operators
-  ALTER TABLE Operators AUTO_INCREMENT = 001; -- TODO : Checking highest value of mediumint
+  ALTER TABLE Operators AUTO_INCREMENT = 0000001;
 
 -- INSERTING RECORDS: TABLE 13 - Operators
-  INSERT INTO Operators(aAccount) 
+  INSERT INTO Operators(aAccountID) 
   VALUES 
   (0000000002);
 
@@ -319,13 +321,13 @@
 
 -- CREATING TABLE: TABLE 14 - SituationStatuses
   CREATE TABLE SituationStatuses(
-	SituationStatusID TINYINT NOT NULL AUTO_INCREMENT,
+	SituationStatusID MEDIUMINT NOT NULL AUTO_INCREMENT,
     SituationStatus VARCHAR(150) NOT NULL,
     CONSTRAINT PK_SituationStatuses PRIMARY KEY (SituationStatusID)
   )ENGINE=INNODB;
   
 -- AUTO INCREMENT STARTING POINT: TABLE 14 - SituationStatuses
-  ALTER TABLE SituationStatuses AUTO_INCREMENT = 001;
+  ALTER TABLE SituationStatuses AUTO_INCREMENT = 0000001;
   
 -- INSERTING RECORDS: TABLE 14 - SituationStatuses
   INSERT INTO SituationStatuses(SituationStatus) 
@@ -379,21 +381,21 @@
 -- CREATING TABLE: TABLE 17 - CountryStatuses
   CREATE TABLE CountryStatuses(
     CountryStatusID INT NOT NULL AUTO_INCREMENT,
-    ssSituationStatusID INT NOT NULL,
-    sSeverityID INT NOT NULL,
+    ssSituationStatusID MEDIUMINT NOT NULL,
+    sSeverityID TINYINT NOT NULL,
     ccColourCodeID INT NOT NULL,
     CurrentCountryStatus BOOLEAN NOT NULL,
     CONSTRAINT PK_CountryStatusID PRIMARY KEY (CountryStatusID),
-    CONSTRAINT FK_SS_SitationStatusID FOREIGN KEY (ssSituationStatusID) REFERENCES SituationStatuses(SituationStatusID),
-    CONSTRAINT FK_S_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID),
-    CONSTRAINT FK_CC_ColourCodeID FOREIGN KEY (ccColourCodeID) REFERENCES ColourCodes(ColourCodeID)
+    CONSTRAINT FK_SS_CS_SitationStatusID FOREIGN KEY (ssSituationStatusID) REFERENCES SituationStatuses(SituationStatusID),
+    CONSTRAINT FK_S_CS_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID),
+    CONSTRAINT FK_CC_CS_ColourCodeID FOREIGN KEY (ccColourCodeID) REFERENCES ColourCodes(ColourCodeID)
   )ENGINE=INNODB;
   
 -- AUTO INCREMENT STARTING POINT: TABLE 17 - CountryStatuses
   ALTER TABLE CountryStatuses AUTO_INCREMENT = 0000000001;
   
 -- INSERTING RECORDS: TABLE 17 - CountryStatuses
-  INSERT INTO CountryStatuses(sSituationStatusID, sSeverityID, ccColourCodeID, CurrentCountryStatus)
+  INSERT INTO CountryStatuses(ssSituationStatusID, sSeverityID, ccColourCodeID, CurrentCountryStatus)
   VALUES 
   (001, 001, 0000000001, 0),
   (002, 002, 0000000002, 1);
@@ -426,8 +428,8 @@
     asAccountStatusID TINYINT NOT NULL,
     aAccountID INT NOT NULL,
     CONSTRAINT PK_Login PRIMARY KEY (LoginID),
-    CONSTRAINT FK_AS_AccountStatusID FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatuses(AccountStatusID),
-    CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
+    CONSTRAINT FK_AS_L_AccountStatusID FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatuses(AccountStatusID),
+    CONSTRAINT FK_A_L_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 19 - Logins
@@ -463,13 +465,13 @@
 -- CREATING TABLE: TABLE 21 - LoginActivities
   CREATE TABLE LoginActivities(
     LoginActivityID INT NOT NULL AUTO_INCREMENT,
-    LoginDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
+    LoginDateTime DATETIME DEFAULT current_timestamp,
     LogoutDateTime DATETIME,
     asAccountActivityID TINYINT NOT NULL,
     lLoginID INT NOT NULL,
     CONSTRAINT PK_LoginActivity PRIMARY KEY (LoginActivityID),
-    CONSTRAINT FK_AA_AccountActivityID FOREIGN KEY (asAccountActivityID) REFERENCES AccountActivities(AccountActivityID),
-    CONSTRAINT FK_L_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID)
+    CONSTRAINT FK_AA_LA_AccountActivityID FOREIGN KEY (asAccountActivityID) REFERENCES AccountActivities(AccountActivityID),
+    CONSTRAINT FK_L_LA_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 21 - LoginActivities
@@ -485,11 +487,11 @@
 -- CREATING TABLE: TABLE 22 - ForgotPasswords
   CREATE TABLE ForgotPasswords(
     RecoveryID INT NOT NULL AUTO_INCREMENT,
-    PinCode INT(6) NOT NULL,
-    CreatedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
+    PinCode MEDIUMINT NOT NULL,
+    CreatedDateTime DATETIME DEFAULT current_timestamp,
     lLoginID INT NOT NULL,
-    CONSTRAINT PK_City PRIMARY KEY (CityID),
-    CONSTRAINT FK_L_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID) 
+    CONSTRAINT PK_ForgotPassword PRIMARY KEY (RecoveryID),
+    CONSTRAINT FK_L_LP_LoginID FOREIGN KEY (lLoginID) REFERENCES Logins(LoginID) 
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 22 - ForgotPasswords
@@ -526,21 +528,21 @@
     ReportSubject VARCHAR(150) NOT NULL, 
     Feedback VARCHAR(300) NOT NULL, 
     rsReviewStatusID TINYINT DEFAULT 001, 
-    SubmittedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
+    SubmittedDateTime DATETIME DEFAULT current_timestamp, 
     oForwardedByOperatorID MEDIUMINT, 
     oForwardedByAccountID INT, 
     oReviewedByOperatorID MEDIUMINT, 
     oReviewedByAccountID INT, 
     aReviewedByAdminID TINYINT, 
     aReviewedByAccountID INT, 
-    CONSTRAINT PK_City PRIMARY KEY (CityID), 
-    CONSTRAINT FK_RS_ReviewStatusID FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatuses(ReviewStatusID), 
-    CONSTRAINT FK_O_ForwardedByOpertorID FOREIGN KEY (oForwardedByOperatorID) REFERENCES Operators(OperatorID), 
-    CONSTRAINT FK_O_ForwardedByAccountID FOREIGN KEY (oForwardedByAccountID) REFERENCES Operators(aAccountID), 
-    CONSTRAINT FK_O_ReviewedByOperatorID FOREIGN KEY (oReviewedByOperatorID) REFERENCES Operators(OperatorID), 
-    CONSTRAINT FK_O_ReviewedByAccountID FOREIGN KEY (oReviewedByAccountID) REFERENCES Operators(aAccountID), 
-    CONSTRAINT FK_A_ReviewedByAdminID FOREIGN KEY (aReviewedByAdminID) REFERENCES Administrators(AdminID), 
-    CONSTRAINT FK_A_ReviewedByAccountID FOREIGN KEY (aReviewedByAccountID) REFERENCES Operators(aAccountID), 
+    CONSTRAINT PK_FeedbackReport PRIMARY KEY (ReportID), 
+    CONSTRAINT FK_RS_FR_ReviewStatusID FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatuses(ReviewStatusID), 
+    CONSTRAINT FK_O_FR_ForwardedByOpertorID FOREIGN KEY (oForwardedByOperatorID) REFERENCES Operators(OperatorID), 
+    CONSTRAINT FK_O_FR_ForwardedByAccountID FOREIGN KEY (oForwardedByAccountID) REFERENCES Operators(aAccountID), 
+    CONSTRAINT FK_O_FR_ReviewedByOperatorID FOREIGN KEY (oReviewedByOperatorID) REFERENCES Operators(OperatorID), 
+    CONSTRAINT FK_O_FR_ReviewedByAccountID FOREIGN KEY (oReviewedByAccountID) REFERENCES Operators(aAccountID), 
+    CONSTRAINT FK_A_FR_ReviewedByAdminID FOREIGN KEY (aReviewedByAdminID) REFERENCES Administrators(AdminID), 
+    CONSTRAINT FK_A_FR_ReviewedByAccountID FOREIGN KEY (aReviewedByAccountID) REFERENCES Operators(aAccountID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 24 - FeedbackReports
@@ -564,7 +566,7 @@
   ALTER TABLE SubmittedUserTypes AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 25 - SubmittedUserTypes
-  INSERT INTO SubmittedUserTypes() 
+  INSERT INTO SubmittedUserTypes(UserType) 
   VALUES 
   ('Operator'),
   ('Registered Public User'),
@@ -582,12 +584,12 @@
     oPublishedOperatorID MEDIUMINT,
     oPublishedAccountID INT,
     CONSTRAINT PK_InternalReportID PRIMARY KEY (InternalReportID),
-    CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID), 
-    CONSTRAINT FK_SUT_UserTypeID FOREIGN KEY (sutUserTypeID) REFERENCES SubmittedUserTypes(UserTypeID), 
-    CONSTRAINT FK_RPU_PublishedRegisteredUserID FOREIGN KEY (rpuPublishedRegisteredUserID) REFERENCES UnregisteredPublicUsers(RegisteredUserID), 
-    CONSTRAINT FK_RPU_PublishedAccountID FOREIGN KEY (rpuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID), 
-    CONSTRAINT FK_O_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID), 
-    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(aAccountID)
+    CONSTRAINT FK_FR_IFR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID), 
+    CONSTRAINT FK_SUT_IFR_UserTypeID FOREIGN KEY (sutUserTypeID) REFERENCES SubmittedUserTypes(UserTypeID), 
+    CONSTRAINT FK_RPU_IFR_PublishedRegisteredUserID FOREIGN KEY (rpuPublishedRegisteredUserID) REFERENCES RegisteredPublicUsers(RegisteredUserID), 
+    CONSTRAINT FK_RPU_IFR_PublishedAccountID FOREIGN KEY (rpuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID), 
+    CONSTRAINT FK_O_IFR_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID), 
+    CONSTRAINT FK_O_IFR_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(aAccountID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 26 - InternalFeedbackReports
@@ -604,13 +606,13 @@
   CREATE TABLE ExternalFeedbackReports(
     ExternalReportID INT NOT NULL AUTO_INCREMENT,
     frReportID INT NOT NULL,
-    AuthorReachableEmailAddress VARCHAR(150) NOT NULL,
+    AuthorReachableEmailAddress VARCHAR(250) NOT NULL,
     upuPublishedUnregisteredUserID INT NOT NULL,
     upuPublishedAccountID INT NOT NULL,
     CONSTRAINT PK_ExternalFeedbackReport PRIMARY KEY (ExternalReportID),
-    CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID),  
-    CONSTRAINT FK_UPU_PublishedUnregisteredUserID FOREIGN KEY (upuPublishedUnregisteredUserID) REFERENCES UnregisteredPublicUsers(UnregisteredUserID), 
-    CONSTRAINT FK_UPU_PublishedAccountID FOREIGN KEY (upuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID)
+    CONSTRAINT FK_FR_EFR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID),  
+    CONSTRAINT FK_UPU_EFR_PublishedUnregisteredUserID FOREIGN KEY (upuPublishedUnregisteredUserID) REFERENCES UnregisteredPublicUsers(UnregisteredUserID), 
+    CONSTRAINT FK_UPU_EFR_PublishedAccountID FOREIGN KEY (upuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 27 - ExternalFeedbackReports
@@ -623,53 +625,52 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 25 - HealthStatusReports
+-- CREATING TABLE: TABLE 28 - HealthStatusReports
   CREATE TABLE HealthStatusReports(
     ReportID INT NOT NULL AUTO_INCREMENT,
     ReportDescription VARCHAR(150) NOT NULL,
-    rsReviewStatusID INT(3) NOT NULL,
-    SubmittedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
+    rsReviewStatusID TINYINT NOT NULL,
+    SubmittedDateTime DATETIME DEFAULT current_timestamp,
     ProofOfTCRTest BLOB,
     upuPublishedUnregisteredUserID INT,
     upuPublishedAccountID INT,
     rpuPublishedRegisteredUserID INT,
-    rpuPublishedAccountID INT, 
-    oReviewedByOperatorID INT,
-    oReviewedByAccountID INT (10),
+    rpuPublishedAccountID INT,
+    oReviewedByOperatorID MEDIUMINT,
+    oReviewedByAccountID INT,
     CONSTRAINT PK_ExternalFeedbackReport PRIMARY KEY (ReportID),
-    CONSTRAINT FK_S_SymptomID FOREIGN KEY (sSymptomID) REFERENCES Symptoms(SymptomID),
-    CONSTRAINT FK_RS_ReviewStatusID FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatuses(ReviewStatusID),
-    CONSTRAINT FK_UPU_PublishedUnregisteredUserID FOREIGN KEY (upuPublishedUnregisteredUserID) REFERENCES UnregisteredPublicUsers(UnregisteredUserID),
-    CONSTRAINT FK_UPU_PublishedAccountID FOREIGN KEY (upuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID),
-    CONSTRAINT FK_RPU_PublishedRegisteredUserID FOREIGN KEY (rpuPublishedRegisteredUserID) REFERENCES RegisteredPublicUsers(RegisteredUserID),
-    CONSTRAINT FK_RPU_PublishedAccountID FOREIGN KEY (rpuPublishedAccountID) REFERENCES RegisteredPublicUsers(aAccountID),
-    CONSTRAINT FK_O_ReviewedByOperatorID FOREIGN KEY (oReviewedByOperatorID) REFERENCES Operators(OperatorID),
-    CONSTRAINT FK_O_ReviewedByAccountID FOREIGN KEY (oReviewedByAccountID) REFERENCES Operators(aAccountID)
+    CONSTRAINT FK_RS_HSR_ReviewStatusID FOREIGN KEY (rsReviewStatusID) REFERENCES ReviewStatuses(ReviewStatusID),
+    CONSTRAINT FK_UPU_HSR_PublishedUnregisteredUserID FOREIGN KEY (upuPublishedUnregisteredUserID) REFERENCES UnregisteredPublicUsers(UnregisteredUserID),
+    CONSTRAINT FK_UPU_HSR_PublishedAccountID FOREIGN KEY (upuPublishedAccountID) REFERENCES UnregisteredPublicUsers(aAccountID),
+    CONSTRAINT FK_RPU_HSR_PublishedRegisteredUserID FOREIGN KEY (rpuPublishedRegisteredUserID) REFERENCES RegisteredPublicUsers(RegisteredUserID),
+    CONSTRAINT FK_RPU_HSR_PublishedAccountID FOREIGN KEY (rpuPublishedAccountID) REFERENCES RegisteredPublicUsers(aAccountID),
+    CONSTRAINT FK_O_HSR_ReviewedByOperatorID FOREIGN KEY (oReviewedByOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_HSR_ReviewedByAccountID FOREIGN KEY (oReviewedByAccountID) REFERENCES Operators(aAccountID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 25 - HealthStatusReports
+-- AUTO INCREMENT STARTING POINT: TABLE 28 - HealthStatusReports
   ALTER TABLE HealthStatusReports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 25 - HealthStatusReports
-  INSERT INTO HealthStatusReports() 
-  VALUES 
-  ();
+-- INSERTING RECORDS: TABLE 28 - HealthStatusReports
+--   INSERT INTO HealthStatusReports() 
+--   VALUES 
+--   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- CREATING TABLE: TABLE 29 - Symptoms
   CREATE TABLE Symptoms(
-    SymptomsID MEDIUMINT NOT NULL AUTO_INCREMENT,
+    SymptomID MEDIUMINT NOT NULL AUTO_INCREMENT,
     Symptom VARCHAR(150) NOT NULL,
     SymptomCategory VARCHAR(50) NOT NULL,
-    CONSTRAINT PK_Symptom PRIMARY KEY (SymptomsID)
+    CONSTRAINT PK_Symptom PRIMARY KEY (SymptomID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 29 - Symptoms
-  ALTER TABLE Symptoms AUTO_INCREMENT = 001;
+  ALTER TABLE Symptoms AUTO_INCREMENT = 0000001;
 
 -- INSERTING RECORDS: TABLE 29 - Symptoms
-  INSERT INTO Symptoms(Symtom, SymptomCategory) 
+  INSERT INTO Symptoms(Symptom, SymptomCategory) 
   VALUES 
   ('Fewer', 'Common Symptom'),
   ('Dry cough', 'Common Symptom'),
@@ -692,8 +693,8 @@
     hsrReportID INT NOT NULL,
     sSymptomID MEDIUMINT NOT NULL,
     CONSTRAINT PK_HealthStatusReportSymptom PRIMARY KEY (hsrReportID, sSymptomID),
-    CONSTRAINT FK_HS_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID),
-    CONSTRAINT FK_S_SymptomID FOREIGN KEY (sSymptomID) REFERENCES Symptoms(SymptomID)
+    CONSTRAINT FK_HS_HSRS_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID),
+    CONSTRAINT FK_S_HSRS_SymptomID FOREIGN KEY (sSymptomID) REFERENCES Symptoms(SymptomID)
   )ENGINE=INNODB;
 
 -- INSERTING RECORDS: TABLE 30 - HealthStatusReportSymptoms
@@ -708,7 +709,7 @@
 	StandardReportID INT NOT NULL AUTO_INCREMENT,
     hsrReportID INT NOT NULL,
     CONSTRAINT PK_StandardHealthStatusReport PRIMARY KEY (StandardReportID, hsrReportID),
-    CONSTRAINT FK_HSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID)
+    CONSTRAINT FK_HSR_SHSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID)
   )ENGINE=INNODB;
   
 -- AUTO INCREMENT STARTING POINT: TABLE 31 - StandardHealthStatusReports
@@ -746,9 +747,9 @@
     rtReportTypeID TINYINT NOT NULL,
     sSeverityID TINYINT NOT NULL,
     CONSTRAINT PK_EmergencyHealthStatusReport PRIMARY KEY (EmergencyReportID),
-    CONSTRAINT FK_HSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID),
-    CONSTRAINT FK_RT_ReportTypeID FOREIGN KEY (rtReportTypeID) REFERENCES ReportTypes(ReportTypeID),
-    CONSTRAINT FK_S_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID)
+    CONSTRAINT FK_HSR_EHSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID),
+    CONSTRAINT FK_RT_EHSR_ReportTypeID FOREIGN KEY (rtReportTypeID) REFERENCES ReportTypes(ReportTypeID),
+    CONSTRAINT FK_S_EHSR_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 33 - EmergencyHealthStatusReports
@@ -765,16 +766,13 @@
   CREATE TABLE Responses(
 	ReponseID INT NOT NULL AUTO_INCREMENT,
     Message VARCHAR(250) NOT NULL,
-    lSentExistingEmailAddress VARCHAR(250),
-    efrSentReachableEmailAddress VARCHAR(250),
-    SentDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
+    SentEmailAddress VARCHAR(250),
+    SentDateTime DATETIME DEFAULT current_timestamp, 
     frReportID INT,
     hsrReportID INT,
     CONSTRAINT PK_Response PRIMARY KEY (ReponseID),
-    CONSTRAINT FK_L_SentExistingEmailAddress FOREIGN KEY (lSentExistingEmailAddress) REFERENCES Logins(EmailAddress),
-	CONSTRAINT FK_EFR_SentReachableEmailAddress FOREIGN KEY (lSentExistingEmailAddress) REFERENCES ExternalFeedbackReports(AuthorReachableEmailAddress),
-	CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID),
-    CONSTRAINT FK_HSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID)
+	CONSTRAINT FK_FR_R_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID),
+    CONSTRAINT FK_HSR_R_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID)
   )ENGINE=INNODB;
   
   -- AUTO INCREMENT STARTING POINT: TABLE 34 - Responses
@@ -811,18 +809,18 @@
     HealthDetailHeading VARCHAR(150) NOT NULL,
     HealthDetailPassage VARCHAR(250),
     hdcCategoryID TINYINT NOT NULL,
-    LastEditDateTime DATETIME ON UPDATE convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
-    oLastEditByOperatorID INT,
+    LastEditDateTime DATETIME ON UPDATE current_timestamp,
+    oLastEditByOperatorID MEDIUMINT,
     oLastEditByAccountID INT,
-    PublishedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
-    oPublishedOperatorID INT NOT NULL,
+    PublishedDateTime DATETIME DEFAULT current_timestamp, 
+    oPublishedOperatorID MEDIUMINT NOT NULL,
     oPublishedAccountID INT NOT NULL,
     CONSTRAINT PK_HealthDetail PRIMARY KEY (HealthDetailID),
-    CONSTRAINT FK_HDC_CategoryID FOREIGN KEY (hdcCategoryID) REFERENCES HealthDetailCategories(CategoryID),
-    CONSTRAINT FK_O_LastEditByOperatorID FOREIGN KEY (oLastEditByOperatorID) REFERENCES Operators(OperatorID),
-    CONSTRAINT FK_O_LastEditByAccountID FOREIGN KEY (oLastEditByAccountID) REFERENCES Operators(AccountID),
-    CONSTRAINT FK_O_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID),
-    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(AccountID)
+    CONSTRAINT FK_HDC_HD_CategoryID FOREIGN KEY (hdcCategoryID) REFERENCES HealthDetailCategories(CategoryID),
+    CONSTRAINT FK_O_HD_LastEditByOperatorID FOREIGN KEY (oLastEditByOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_HD_LastEditByAccountID FOREIGN KEY (oLastEditByAccountID) REFERENCES Operators(aAccountID),
+    CONSTRAINT FK_O_HD_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_HD_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(aAccountID)
   )ENGINE=INNODB;
   
   -- AUTO INCREMENT STARTING POINT: TABLE 36 - HealthDetails
@@ -843,7 +841,7 @@
     TextSectionSequenceNumber INT NOT NULL,
     hdHealthDetailID INT NOT NULL,
     CONSTRAINT PK_HealthDetailText PRIMARY KEY (TextID),
-    CONSTRAINT FK_HD_HealthDetailID FOREIGN KEY (hdHealthDetailID) REFERENCES HealthDetails(HealthDetailID)
+    CONSTRAINT FK_HD_HDT_HealthDetailID FOREIGN KEY (hdHealthDetailID) REFERENCES HealthDetails(HealthDetailID)
   )ENGINE=INNODB;
   
   -- AUTO INCREMENT STARTING POINT: TABLE 37 - HealthDetailTexts
@@ -877,21 +875,21 @@
   CREATE TABLE HotZoneLocations(
     LocationID INT NOT NULL AUTO_INCREMENT,
     ZoneName VARCHAR(150) NOT NULL,
-    hzcCategoryID VARCHAR(250),
+    hzcCategoryID TINYINT NOT NULL,
     sSeverityID TINYINT NOT NULL,
-    LastEditDateTime DATETIME ON UPDATE convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
-    oLastEditByOperatorID INT, 
+    LastEditDateTime DATETIME ON UPDATE current_timestamp,
+    oLastEditByOperatorID MEDIUMINT, 
     oLastEditByAccountID INT,
-    PublishedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
-    oPublishedOperatorID INT NOT NULL,
+    PublishedDateTime DATETIME DEFAULT current_timestamp, 
+    oPublishedOperatorID MEDIUMINT NOT NULL,
     oPublishedAccountID INT NOT NULL,
     CONSTRAINT PK_HotZoneLocation PRIMARY KEY (LocationID),
-    CONSTRAINT FK_HZL_CategoryID FOREIGN KEY (hzcCategoryID) REFERENCES HotZoneCategories(CategoryID),
-    CONSTRAINT FK_S_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID),
-    CONSTRAINT FK_O_LastEditByOperatorID FOREIGN KEY (oLastEditByOperatorID) REFERENCES Operators(OperatorID),
-    CONSTRAINT FK_O_LastEditByAccountID FOREIGN KEY (oLastEditByAccountID) REFERENCES Operators(AccountID),
-    CONSTRAINT FK_O_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID),
-    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(AccountID)
+    CONSTRAINT FK_HZC_HZL_CategoryID FOREIGN KEY (hzcCategoryID) REFERENCES HotZoneCategories(CategoryID),
+    CONSTRAINT FK_S_HZL_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID),
+    CONSTRAINT FK_O_HZL_LastEditByOperatorID FOREIGN KEY (oLastEditByOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_HZL_LastEditByAccountID FOREIGN KEY (oLastEditByAccountID) REFERENCES Operators(aAccountID),
+    CONSTRAINT FK_O_HZL_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_HZL_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(aAccountID)
   )ENGINE=INNODB;
   
   -- AUTO INCREMENT STARTING POINT: TABLE 39 - HotZoneLocations
@@ -910,7 +908,7 @@
     Latitude FLOAT NOT NULL,
     SequenceOrder INT NOT NULL,
     CONSTRAINT PK_HotZoneLocationLatitude PRIMARY KEY (hzlLocationID, Latitude),
-    CONSTRAINT FK_HZL_hzlLocationID FOREIGN KEY (hzlLocationID) REFERENCES HotZoneLocations(LocationID)
+    CONSTRAINT FK_HZL_HZLLa_hzlLocationID FOREIGN KEY (hzlLocationID) REFERENCES HotZoneLocations(LocationID)
   )ENGINE=INNODB;
   
 -- INSERTING RECORDS: TABLE 40 - HotZoneLocationLatitudes
@@ -926,7 +924,7 @@
     Longitude FLOAT NOT NULL,
     SequenceOrder INT NOT NULL,
     CONSTRAINT PK_HotZoneLocationLongitude PRIMARY KEY (hzlLocationID, Longitude),
-    CONSTRAINT FK_HZL_hzlLocationID FOREIGN KEY (hzlLocationID) REFERENCES HotZoneLocations(LocationID)
+    CONSTRAINT FK_HZL_HZLLo_hzlLocationID FOREIGN KEY (hzlLocationID) REFERENCES HotZoneLocations(LocationID)
   )ENGINE=INNODB;
   
 -- INSERTING RECORDS: TABLE 41 - HotZoneLocationLongitudes
