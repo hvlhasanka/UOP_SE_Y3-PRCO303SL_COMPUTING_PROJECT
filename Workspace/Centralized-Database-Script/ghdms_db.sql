@@ -222,8 +222,8 @@
     NIC VARCHAR(12) NOT NULL,
     PassportNo VARCHAR(15) NOT NULL,
     StreetAddress VARCHAR(120),
-    cCityID INT NOT NULL,
-    pcPostalCodeID INT,
+    cCityID MEDIUMINT NOT NULL,
+    pcPostalCodeID MEDIUMINT,
     dDistrictID TINYINT NOT NULL,
     agAgeGroupID TINYINT,
     gGenderID TINYINT,
@@ -253,11 +253,11 @@
     NIC VARCHAR(12) NOT NULL,
     PassportNo VARCHAR(15) NOT NULL,
     StreetAddress VARCHAR(120),
-    cCityID INT(3) NOT NULL,
-    pcPostalCodeID INT(3),
-    dDistrictID INT(3) NOT NULL,
-    agAgeGroupID INT(3),
-    gGenderID INT(3),
+    cCityID MEDIUMINT NOT NULL,
+    pcPostalCodeID MEDIUMINT,
+    dDistrictID TINYINT NOT NULL,
+    agAgeGroupID TINYINT,
+    gGenderID TINYINT,
     CONSTRAINT PK_RegisteredPublicUser PRIMARY KEY (RegisteredUserID, aAccountID), 
     CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID),
     CONSTRAINT FK_C_CityID FOREIGN KEY (cCityID) REFERENCES Cities(CityID),
@@ -752,11 +752,184 @@
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 33 - EmergencyHealthStatusReports
-  ALTER TABLE EmergencyHealthStatusReports AUTO_INCREMENT = 001;
+  ALTER TABLE EmergencyHealthStatusReports AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 33 - EmergencyHealthStatusReports
 --   INSERT INTO EmergencyHealthStatusReport(hsrReportID, rtReportTypeID, sSeverityID) 
 --   VALUES 
 --   ();
 
+-- |------------------------------------------------------------------------------------------------|
 
+-- CREATING TABLE: TABLE 34 - Responses
+  CREATE TABLE Responses(
+	ReponseID INT NOT NULL AUTO_INCREMENT,
+    Message VARCHAR(250) NOT NULL,
+    lSentExistingEmailAddress VARCHAR(250),
+    efrSentReachableEmailAddress VARCHAR(250),
+    SentDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
+    frReportID INT,
+    hsrReportID INT,
+    CONSTRAINT PK_Response PRIMARY KEY (ReponseID),
+    CONSTRAINT FK_L_SentExistingEmailAddress FOREIGN KEY (lSentExistingEmailAddress) REFERENCES Logins(EmailAddress),
+	CONSTRAINT FK_EFR_SentReachableEmailAddress FOREIGN KEY (lSentExistingEmailAddress) REFERENCES ExternalFeedbackReports(AuthorReachableEmailAddress),
+	CONSTRAINT FK_FR_ReportID FOREIGN KEY (frReportID) REFERENCES FeedbackReports(ReportID),
+    CONSTRAINT FK_HSR_ReportID FOREIGN KEY (hsrReportID) REFERENCES HealthStatusReports(ReportID)
+  )ENGINE=INNODB;
+  
+  -- AUTO INCREMENT STARTING POINT: TABLE 34 - Responses
+  ALTER TABLE Responses AUTO_INCREMENT = 0000000001;
+
+-- INSERTING RECORDS: TABLE 34 - Responses
+--   INSERT INTO Responses(Message, lSentExistingEmailAddress, frReportID) 
+--   VALUES 
+--   ();
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 35 - HealthDetailCategories
+  CREATE TABLE HealthDetailCategories(
+    CategoryID TINYINT NOT NULL AUTO_INCREMENT,
+    Category VARCHAR(100) NOT NULL,
+    CONSTRAINT PK_HealthDetailCategory PRIMARY KEY (CategoryID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 35 - HealthDetailCategories
+  ALTER TABLE HealthDetailCategories AUTO_INCREMENT = 001;
+  
+-- INSERTING RECORDS: TABLE 35 - HealthDetailCategories
+  INSERT INTO HealthDetailCategories(Category) 
+  VALUES 
+  ('Health Guidelines'),
+  ('Curfew Announcement');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 36 - HealthDetails
+  CREATE TABLE HealthDetails(
+    HealthDetailID INT NOT NULL AUTO_INCREMENT,
+    HealthDetailHeading VARCHAR(150) NOT NULL,
+    HealthDetailPassage VARCHAR(250),
+    hdcCategoryID TINYINT NOT NULL,
+    LastEditDateTime DATETIME ON UPDATE convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
+    oLastEditByOperatorID INT,
+    oLastEditByAccountID INT,
+    PublishedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
+    oPublishedOperatorID INT NOT NULL,
+    oPublishedAccountID INT NOT NULL,
+    CONSTRAINT PK_HealthDetail PRIMARY KEY (HealthDetailID),
+    CONSTRAINT FK_HDC_CategoryID FOREIGN KEY (hdcCategoryID) REFERENCES HealthDetailCategories(CategoryID),
+    CONSTRAINT FK_O_LastEditByOperatorID FOREIGN KEY (oLastEditByOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_LastEditByAccountID FOREIGN KEY (oLastEditByAccountID) REFERENCES Operators(AccountID),
+    CONSTRAINT FK_O_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(AccountID)
+  )ENGINE=INNODB;
+  
+  -- AUTO INCREMENT STARTING POINT: TABLE 36 - HealthDetails
+  ALTER TABLE HealthDetails AUTO_INCREMENT = 0000000001;
+  
+-- INSERTING RECORDS: TABLE 36 - HealthDetails
+--   INSERT INTO HealthDetails(HealthDetailHeading, HealthDetailPassage, hdcCategoryID, oPublishedOperatorID, oPublishedAccountID) 
+--   VALUES 
+--   ();
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 37 - HealthDetailTexts
+  CREATE TABLE HealthDetailTexts(
+    TextID INT NOT NULL AUTO_INCREMENT,
+    TextHeading VARCHAR(150) NOT NULL,
+    DetailText VARCHAR(250) NOT NULL,
+    TextSectionSequenceNumber INT NOT NULL,
+    hdHealthDetailID INT NOT NULL,
+    CONSTRAINT PK_HealthDetailText PRIMARY KEY (TextID),
+    CONSTRAINT FK_HD_HealthDetailID FOREIGN KEY (hdHealthDetailID) REFERENCES HealthDetails(HealthDetailID)
+  )ENGINE=INNODB;
+  
+  -- AUTO INCREMENT STARTING POINT: TABLE 37 - HealthDetailTexts
+  ALTER TABLE HealthDetailTexts AUTO_INCREMENT = 0000000001;
+  
+-- INSERTING RECORDS: TABLE 37 - HealthDetailTexts
+--   INSERT INTO HealthDetailTexts(TextHeading, DetailText, TextSectionSequenceNumber, hdHealthDetailID) 
+--   VALUES 
+--   ();
+  
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 38 - HotZoneCategories
+  CREATE TABLE HotZoneCategories(
+    CategoryID TINYINT NOT NULL AUTO_INCREMENT,
+    Category VARCHAR(150) NOT NULL,
+    CONSTRAINT PK_HotZoneCategory PRIMARY KEY (CategoryID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 38 - HotZoneCategories
+  ALTER TABLE HotZoneCategories AUTO_INCREMENT = 001;
+  
+-- INSERTING RECORDS: TABLE 38 - HotZoneCategories
+--   INSERT INTO HotZoneCategories(Category) 
+--   VALUES 
+--   ('');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 39 - HotZoneLocations
+  CREATE TABLE HotZoneLocations(
+    LocationID INT NOT NULL AUTO_INCREMENT,
+    ZoneName VARCHAR(150) NOT NULL,
+    hzcCategoryID VARCHAR(250),
+    sSeverityID TINYINT NOT NULL,
+    LastEditDateTime DATETIME ON UPDATE convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'),
+    oLastEditByOperatorID INT, 
+    oLastEditByAccountID INT,
+    PublishedDateTime DATETIME DEFAULT convert_tz(UTC_TIMESTAMP,'+00:00','+05:30'), 
+    oPublishedOperatorID INT NOT NULL,
+    oPublishedAccountID INT NOT NULL,
+    CONSTRAINT PK_HotZoneLocation PRIMARY KEY (LocationID),
+    CONSTRAINT FK_HZL_CategoryID FOREIGN KEY (hzcCategoryID) REFERENCES HotZoneCategories(CategoryID),
+    CONSTRAINT FK_S_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID),
+    CONSTRAINT FK_O_LastEditByOperatorID FOREIGN KEY (oLastEditByOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_LastEditByAccountID FOREIGN KEY (oLastEditByAccountID) REFERENCES Operators(AccountID),
+    CONSTRAINT FK_O_PublishedOperatorID FOREIGN KEY (oPublishedOperatorID) REFERENCES Operators(OperatorID),
+    CONSTRAINT FK_O_PublishedAccountID FOREIGN KEY (oPublishedAccountID) REFERENCES Operators(AccountID)
+  )ENGINE=INNODB;
+  
+  -- AUTO INCREMENT STARTING POINT: TABLE 39 - HotZoneLocations
+  ALTER TABLE HotZoneLocations AUTO_INCREMENT = 0000000001;
+  
+-- INSERTING RECORDS: TABLE 39 - HotZoneLocations
+--   INSERT INTO HotZoneLocations(ZoneName, hzcCategoryID, sSeverityID, oPublishedOperatorID, oPublishedAccountID) 
+--   VALUES 
+--   ();
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 40 - HotZoneLocationLatitudes
+  CREATE TABLE HotZoneLocationLatitudes(
+    hzlLocationID INT NOT NULL,
+    Latitude FLOAT NOT NULL,
+    SequenceOrder INT NOT NULL,
+    CONSTRAINT PK_HotZoneLocationLatitude PRIMARY KEY (hzlLocationID, Latitude),
+    CONSTRAINT FK_HZL_hzlLocationID FOREIGN KEY (hzlLocationID) REFERENCES HotZoneLocations(LocationID)
+  )ENGINE=INNODB;
+  
+-- INSERTING RECORDS: TABLE 40 - HotZoneLocationLatitudes
+--   INSERT INTO HotZoneLocationLatitudes(hzlLocationID, Latitude, SequenceOrder,) 
+--   VALUES 
+--   ();
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 41 - HotZoneLocationLongitudes
+  CREATE TABLE HotZoneLocationLongitudes(
+    hzlLocationID INT NOT NULL,
+    Longitude FLOAT NOT NULL,
+    SequenceOrder INT NOT NULL,
+    CONSTRAINT PK_HotZoneLocationLongitude PRIMARY KEY (hzlLocationID, Longitude),
+    CONSTRAINT FK_HZL_hzlLocationID FOREIGN KEY (hzlLocationID) REFERENCES HotZoneLocations(LocationID)
+  )ENGINE=INNODB;
+  
+-- INSERTING RECORDS: TABLE 41 - HotZoneLocationLongitudes
+--   INSERT INTO HotZoneLocationLongitudes(hzlLocationID, Latitude, SequenceOrder,) 
+--   VALUES 
+--   ();
