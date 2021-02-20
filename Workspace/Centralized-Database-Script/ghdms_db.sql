@@ -135,7 +135,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 6 - PostalCodes
   ALTER TABLE PostalCodes AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 6 - PostalCodes
+-- INSERTING RECORDS: TABLE 6 - PostalCodes
   INSERT INTO PostalCodes(PostalCodes) 
   VALUES 
   ('34115'),
@@ -155,7 +155,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 7 - Districts
   ALTER TABLE PostalCodes AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 7 - Districts
+-- INSERTING RECORDS: TABLE 7 - Districts
   INSERT INTO Districts(District) 
   VALUES 
   ('Colombo');
@@ -172,7 +172,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 8 - AgeGroups
   ALTER TABLE AgeGroupID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 8 - AgeGroups
+-- INSERTING RECORDS: TABLE 8 - AgeGroups
   INSERT INTO AgeGroups(AgeGroup) 
   VALUES 
   ('Below 18'),
@@ -205,7 +205,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 9 - Genders
   ALTER TABLE GenderID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 9 - Genders
+-- INSERTING RECORDS: TABLE 9 - Genders
   INSERT INTO Genders(Gender) 
   VALUES 
   ('Male'),
@@ -239,10 +239,10 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 10 - UnregisteredPublicUsers
   ALTER TABLE UnregisteredUserID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 10 - RegisteredPublicUsers
+-- INSERTING RECORDS: TABLE 10 - RegisteredPublicUsers
   INSERT INTO RegisteredPublicUsers(aAccountID, NIC, PassportNo, StreetAddress, cCityID, pcPostalCodeID, dDistrictID, agAgeGroupID, gGenderID) 
   VALUES 
-  ();
+  (0000000004, '437523543215', '352465342365346', 'No. 332, Castle Side Street', 0000000001, 0000000002, 001, 005, 001);
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -270,61 +270,147 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 11 - RegisteredPublicUsers
   ALTER TABLE UnregisteredUserID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 11 - RegisteredPublicUsers
+-- INSERTING RECORDS: TABLE 11 - RegisteredPublicUsers
   INSERT INTO RegisteredPublicUsers(aAccountID, NIC, PassportNo, StreetAddress, cCityID, pcPostalCodeID, dDistrictID, agAgeGroupID, gGenderID) 
   VALUES 
-  ();
+  (0000000003, '658634568235', '368904532456497', 'No. 423, Beach Side Street', 0000000001, 0000000002, 001, 008, 001);
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 12 - Operators
+-- CREATING TABLE: TABLE 12 - Administrators
+  CREATE TABLE Administrators(
+    AdminID TINYINT NOT NULL AUTO_INCREMENT,
+    aAccountID INT NOT NULL,
+    aRegisteredByAdminID TINYINT NOT NULL,
+    CONSTRAINT PK_City PRIMARY KEY (CityID),
+    CONSTRAINT FK_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
+  )ENGINE=INNODB;
+
+-- AUTO INCREMENT STARTING POINT: TABLE 12 - Administrators
+  ALTER TABLE AdminID AUTO_INCREMENT = 001;
+
+-- INSERTING RECORDS: TABLE 12 - Administrators
+  INSERT INTO Administrators(aAccountID) 
+  VALUES 
+  (0000000001);
+  
+-- UPDATING TABLE WITH FOREIGN KEY: Table 12 - Administrators
+  -- TODO 
+  
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 13 - Operators
   CREATE TABLE Operators(
-    OperatorID INT(3) NOT NULL AUTO_INCREMENT,
+    OperatorID MEDIUMINT NOT NULL AUTO_INCREMENT,
     aAccountID INT NOT NULL,
     CONSTRAINT PK_Operator PRIMARY KEY (OperatorID, aAccountID),
     CONSTRAINT FK_A_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 12 - Operators
-  ALTER TABLE OperatorID AUTO_INCREMENT = 001;
+-- AUTO INCREMENT STARTING POINT: TABLE 13 - Operators
+  ALTER TABLE OperatorID AUTO_INCREMENT = 001; -- TODO : Checking highest value of mediumint
 
--- INSERT RECORDS: TABLE 12 - Operators
+-- INSERTING RECORDS: TABLE 13 - Operators
   INSERT INTO Operators(aAccount) 
   VALUES 
-  ();
+  (0000000002);
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 13 - Administrators
-  CREATE TABLE Administrators(
-    AdminID INT(3) NOT NULL AUTO_INCREMENT,
-    aAccountID INT NOT NULL,
-    aRegisteredByAdminID INT(3) NOT NULL,
-    CONSTRAINT PK_City PRIMARY KEY (CityID),
-    CONSTRAINT FK_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
+-- CREATING TABLE: TABLE 14 - SituationStatuses
+  CREATE TABLE SituationStatuses(
+	SituationStatusID TINYINT NOT NULL AUTO_INCREMENT,
+    SituationStatus VARCHAR(150) NOT NULL,
+    CONSTRAINT PK_SituationStatuses PRIMARY KEY (SituationStatusID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 14 - SituationStatuses
+  ALTER TABLE SituationStatusID AUTO_INCREMENT = 001;
+  
+-- INSERTING RECORDS: TABLE 14 - SituationStatuses
+  INSERT INTO SituationStatuses(SituationStatus) 
+  VALUES
+  ('Positive Cases Rising'),
+  ('Country in Full Lockdown');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 15 - ColourCodes
+  CREATE TABLE ColourCodes(
+    ColourCodeID INT NOT NULL AUTO_INCREMENT,
+    ColourCode VARCHAR(25) NOT NULL,
+    CONSTRAINT PK_ColourCodes PRIMARY KEY (ColourCodeID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 13 - Administrators
-  ALTER TABLE AdminID AUTO_INCREMENT = 001;
+-- AUTO INCREMENT STARTING POINT: TABLE 15 - ColourCodes
+  ALTER TABLE ColourCodeID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 13 - Administrators
-  INSERT INTO Administrators(aAccountID, aRegisteredByAdminID) 
+-- INSERTING RECORDS: TABLE 15 - ColourCodes
+  INSERT INTO ColourCodes(ColourCode) 
   VALUES 
-  ();
+  ('#ffffff'),
+  ('#1be769'),
+  ('#fffb0a'),
+  ('#ce3d3d');
+  
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 16 - Severities
+  CREATE TABLE Severities(
+	SeverityID TINYINT NOT NULL AUTO_INCREMENT,
+    Severity VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Severity PRIMARY KEY (SeverityID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 16 - Severities
+  ALTER TABLE Severities AUTO_INCREMENT = 001;
+
+-- INSERTING RECORDS: TABLE 16 - Severities
+  INSERT INTO Severities(Severity) 
+  VALUES 
+  ('MINIMAL AFFECT'),
+  ('LOW'),
+  ('MEDIUM'),
+  ('HIGH'),
+  ('CRITICAL');
+  
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 17 - CountryStatuses
+  CREATE TABLE CountryStatuses(
+    CountryStatusID INT NOT NULL AUTO_INCREMENT,
+    ssSituationStatusID INT NOT NULL,
+    sSeverityID INT NOT NULL,
+    ccColourCodeID INT NOT NULL,
+    CurrentCountryStatus BOOLEAN NOT NULL,
+    CONSTRAINT PK_CountryStatusID PRIMARY KEY (CountryStatusID),
+    CONSTRAINT FK_SS_SitationStatusID FOREIGN KEY (ssSituationStatusID) REFERENCES SituationStatuses(SituationStatusID),
+    CONSTRAINT FK_S_SeverityID FOREIGN KEY (sSeverityID) REFERENCES Severities(SeverityID),
+    CONSTRAINT FK_CC_ColourCodeID FOREIGN KEY (ccColourCodeID) REFERENCES ColourCodes(ColourCodeID)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 17 - CountryStatuses
+  ALTER TABLE CountryStatuses AUTO_INCREMENT = 0000000001;
+  
+-- INSERTING RECORDS: TABLE 17 - CountryStatuses
+  INSERT INTO CountryStatuses(sSituationStatusID, sSeverityID, ccColourCodeID, CurrentCountryStatus)
+  VALUES 
+  (001, 001, 0000000001, 0),
+  (002, 002, 0000000002, 1);
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 14 - AccountStatuses
+-- CREATING TABLE: TABLE 18 - AccountStatuses
   CREATE TABLE AccountStatuses(
-    AccountStatusID INT(3) NOT NULL AUTO_INCREMENT,
+    AccountStatusID TINYINT NOT NULL AUTO_INCREMENT,
     AccountStatus VARCHAR(10) NOT NULL,
     CONSTRAINT PK_AccountStatus PRIMARY KEY (AccountStatusID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 14 - AccountStatuses
+-- AUTO INCREMENT STARTING POINT: TABLE 18 - AccountStatuses
   ALTER TABLE AccountStatusID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 14 - AccountStatuses
+-- INSERTING RECORDS: TABLE 18 - AccountStatuses
   INSERT INTO AccountStatuses(AccountStatus) 
   VALUES 
   ('Enabled'),
@@ -332,7 +418,7 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 15 - Logins
+-- CREATING TABLE: TABLE 19 - Logins
   CREATE TABLE Logins(
     LoginID INT NOT NULL AUTO_INCREMENT,
     EmailAddress VARCHAR(150) NOT NULL UNIQUE,
@@ -343,10 +429,10 @@
     CONSTRAINT FK_AS_AccountStatusID FOREIGN KEY (asAccountStatusID) REFERENCES AccountStatuses(AccountStatusID)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 15 - Logins
+-- AUTO INCREMENT STARTING POINT: TABLE 19 - Logins
   ALTER TABLE LoginID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 15 - Logins
+-- INSERTING RECORDS: TABLE 19 - Logins
   INSERT INTO Logins() 
   VALUES 
   ();
@@ -363,7 +449,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 16 - AcountActivities
   ALTER TABLE AccountActivityID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 16 - AcountActivities
+-- INSERTING RECORDS: TABLE 16 - AcountActivities
   INSERT INTO AcountActivities(AccountActivity) 
   VALUES 
   ('ONLINE'),
@@ -386,7 +472,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 17 - LoginActivities
   ALTER TABLE LoginActivityID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 17 - LoginActivities
+-- INSERTING RECORDS: TABLE 17 - LoginActivities
   INSERT INTO PostalCodes() 
   VALUES 
   ();
@@ -406,7 +492,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 18 - ForgotPasswords
   ALTER TABLE RecoveryID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 18 - ForgotPasswords
+-- INSERTING RECORDS: TABLE 18 - ForgotPasswords
   INSERT INTO ForgotPasswords() 
   VALUES 
   ();
@@ -423,7 +509,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 19 - ReviewStatuses
   ALTER TABLE ReviewStatusID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 19 - ReviewStatuses
+-- INSERTING RECORDS: TABLE 19 - ReviewStatuses
   INSERT INTO ReviewStatuses(ReviewStatus) 
   VALUES 
   ('PENDING'),
@@ -457,7 +543,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 20 - FeedbackReports
   ALTER TABLE ReportID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 20 - FeedbackReports
+-- INSERTING RECORDS: TABLE 20 - FeedbackReports
   INSERT INTO FeedbackReports() 
   VALUES 
   ();
@@ -474,7 +560,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 21 - SubmittedUserTypes
   ALTER TABLE UserTypeID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 21 - SubmittedUserTypes
+-- INSERTING RECORDS: TABLE 21 - SubmittedUserTypes
   INSERT INTO SubmittedUserTypes() 
   VALUES 
   ();
@@ -502,7 +588,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 22 - InternalFeedbackReports
   ALTER TABLE InternalReportID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 22 - InternalFeedbackReports
+-- INSERTING RECORDS: TABLE 22 - InternalFeedbackReports
   INSERT INTO InternalFeedbackReports() 
   VALUES 
   ();
@@ -525,7 +611,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 23 - ExternalFeedbackReports
   ALTER TABLE ExternalReportID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 23 - ExternalFeedbackReports
+-- INSERTING RECORDS: TABLE 23 - ExternalFeedbackReports
   INSERT INTO ExternalFeedbackReports() 
   VALUES 
   ();
@@ -542,7 +628,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 24 - Symptoms
   ALTER TABLE SymptomsID AUTO_INCREMENT = 001;
 
--- INSERT RECORDS: TABLE 24 - Symptoms
+-- INSERTING RECORDS: TABLE 24 - Symptoms
   INSERT INTO Symptoms() 
   VALUES 
   ();
@@ -577,7 +663,7 @@
 -- AUTO INCREMENT STARTING POINT: TABLE 25 - HealthStatusReports
   ALTER TABLE ReportID AUTO_INCREMENT = 0000000001;
 
--- INSERT RECORDS: TABLE 25 - HealthStatusReports
+-- INSERTING RECORDS: TABLE 25 - HealthStatusReports
   INSERT INTO HealthStatusReports() 
   VALUES 
   ();
