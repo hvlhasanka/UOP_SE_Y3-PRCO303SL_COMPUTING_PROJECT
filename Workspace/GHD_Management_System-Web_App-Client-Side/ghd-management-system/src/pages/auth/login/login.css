@@ -1,0 +1,19 @@
+
+.loginPage{
+  width: 100%;
+  height: 100%;
+}
+
+.loginSection{
+  min-height: 100vh;
+  width: 30%;
+  float: left;
+  background-color: rgb(5, 164, 238);
+}
+
+.coverImageSection{
+  min-height: 100vh;
+  width: 70%;
+  float: right;
+  background-color: rgb(177, 240, 251);
+}
