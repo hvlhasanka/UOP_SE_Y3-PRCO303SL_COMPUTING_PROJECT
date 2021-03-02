@@ -6,7 +6,7 @@ const SettingsSubPage = () => {
 
   return(
     <div className='settings-sub-page'>
-
+admin-settings
     </div>
   );
 
