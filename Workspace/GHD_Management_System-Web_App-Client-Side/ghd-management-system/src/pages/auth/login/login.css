@@ -9,7 +9,7 @@
   min-height: 100vh;
   width: 30%;
   float: left;
-  background-color: rgb(5, 164, 238);
+  background-color: rgb(76, 160, 199);
 }
 
 .coverImageSection{
@@ -17,4 +17,33 @@
   width: 70%;
   float: right;
   background-color: rgb(177, 240, 251);
+}
+
+.logoContainer{
+  background-color: #ffffff;
+  border-radius: 10px;
+  min-width: 90%;
+  margin: 25px;
+  box-shadow: 5px 3px 18px #117999;
+}
+
+.ghdManagementSystemLogo{
+  width: 30%;
+  height: 20%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loginContainer{
+  width: 90%;
+  margin: 25px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 5px 3px 18px #127c9c;
+  min-height: 50%;
+}
+
+.innerLoginContainer{
+  min-height: 200px;
 }

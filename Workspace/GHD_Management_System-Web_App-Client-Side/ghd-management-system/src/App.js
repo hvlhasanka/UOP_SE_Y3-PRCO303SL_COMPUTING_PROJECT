@@ -8,9 +8,9 @@ import OperatorNavPage from './pages/account/operator-nav-page/operator-nav-page
 function App() {
   return (
     <div className="GHD-Management-System-App">
-   {/* <Login />*/}  
-      <AdministratorNavPage />
-      <OperatorNavPage />
+      <Login />
+      {/*<AdministratorNavPage />
+      <OperatorNavPage />*/}
     </div>
   );
 }
