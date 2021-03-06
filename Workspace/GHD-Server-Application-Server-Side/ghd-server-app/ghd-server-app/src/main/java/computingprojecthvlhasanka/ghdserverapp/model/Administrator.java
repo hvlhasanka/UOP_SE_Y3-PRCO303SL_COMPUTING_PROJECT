@@ -52,5 +52,5 @@ public class Administrator {
     public void setARegisteredByAdminId(long aRegisteredByAdminId) {
         this.aRegisteredByAdminId = aRegisteredByAdminId;
     }
-    
+
 }
