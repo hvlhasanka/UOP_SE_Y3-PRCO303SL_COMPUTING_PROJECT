@@ -17,6 +17,7 @@ public class AccountType {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
+    @Column(name = "AccountTypeId", nullable = false)
     private long accountTypeId;
 
     @Column(name = "AccountType")

@@ -17,6 +17,7 @@ public class Login {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
+    @Column(name = "LoginId", nullable = false)
     private long loginId;
 
     @Column(name = "EmailAddress")

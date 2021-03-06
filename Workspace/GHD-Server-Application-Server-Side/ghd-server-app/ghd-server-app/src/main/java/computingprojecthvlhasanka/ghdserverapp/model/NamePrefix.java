@@ -17,6 +17,7 @@ public class NamePrefix {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
+    @Column(name = "NamePrefixId", nullable = false)
     private long namePrefixId;
 
     @Column(name = "NamePrefix")

@@ -5,10 +5,7 @@
 
 package computingprojecthvlhasanka.ghdserverapp.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "accounts")
@@ -17,9 +14,11 @@ public class Account {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
+    @Column(name = "AccountId", nullable = false)
     private long accountId;
 
-    @Column(name = "npNamePrefixID")
+    @OneToOne(targetEntity = NamePrefix.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "npNamePrefixID", referencedColumnName = "NamePrefixID")
     private int npNamePrefixId;
     @Column(name = "FirstName")
     private String firstName;
@@ -27,7 +26,8 @@ public class Account {
     private String middleName;
     @Column(name = "LastName")
     private String lastName;
-    @Column(name = "atAccountTypeID")
+    @OneToOne(targetEntity = AccountType.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "atAccountTypeId", referencedColumnName = "AccountTypeID")
     private int atAccountTypeId;
     @Column(name = "LastEditDateTime")
     private String lastEditDateTime;
@@ -102,5 +102,7 @@ public class Account {
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
+
+
 
 }
