@@ -19,7 +19,7 @@ public class Account {
 
     @OneToOne(targetEntity = NamePrefix.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "npNamePrefixID", referencedColumnName = "NamePrefixID")
-    private int npNamePrefixId;
+    private long npNamePrefixId;
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "MiddleName")
@@ -28,7 +28,7 @@ public class Account {
     private String lastName;
     @OneToOne(targetEntity = AccountType.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "atAccountTypeId", referencedColumnName = "AccountTypeID")
-    private int atAccountTypeId;
+    private long atAccountTypeId;
     @Column(name = "LastEditDateTime")
     private String lastEditDateTime;
     @Column(name = "CreatedDateTime")
@@ -47,11 +47,11 @@ public class Account {
         this.accountId = accountId;
     }
 
-    public int getNpNamePrefixId() {
+    public long getNpNamePrefixId() {
         return npNamePrefixId;
     }
 
-    public void setNpNamePrefixId(int npNamePrefixId) {
+    public void setNpNamePrefixId(long npNamePrefixId) {
         this.npNamePrefixId = npNamePrefixId;
     }
 
@@ -79,11 +79,11 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public int getAtAccountTypeId() {
+    public long getAtAccountTypeId() {
         return atAccountTypeId;
     }
 
-    public void setAtAccountTypeId(int atAccountTypeId) {
+    public void setAtAccountTypeId(long atAccountTypeId) {
         this.atAccountTypeId = atAccountTypeId;
     }
 
@@ -102,7 +102,5 @@ public class Account {
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
-
-
 
 }

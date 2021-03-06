@@ -27,7 +27,7 @@ public class UnregisteredPublicUser {
     private String streetAddress;
     @OneToOne(targetEntity = City.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "cCityID", referencedColumnName = "CityID")
-    private City cCityID;
+    private long cCityID;
     @OneToOne(targetEntity = PostalCode.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "pcPostalCodeID", referencedColumnName = "PostalCodeID")
     private long pcPostalCodeID;
@@ -86,11 +86,11 @@ public class UnregisteredPublicUser {
         this.streetAddress = streetAddress;
     }
 
-    public City getCCityID() {
+    public long getCCityID() {
         return cCityID;
     }
 
-    public void setCCityID(City cCityID) {
+    public void setCCityID(long cCityID) {
         this.cCityID = cCityID;
     }
 

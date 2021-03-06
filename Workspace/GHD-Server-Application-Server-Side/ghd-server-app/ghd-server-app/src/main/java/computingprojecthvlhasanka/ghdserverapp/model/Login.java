@@ -25,9 +25,9 @@ public class Login {
     @Column(name = "PasswordHash")
     private String passwordHash;
     @Column(name = "asAccountStatusID")
-    private int asAccountStatusId;
+    private long asAccountStatusId;
     @Column(name = "aAccountID")
-    private int aAccountId;
+    private long aAccountId;
 
     /* Class Methods */
     // Default constructor
@@ -58,19 +58,19 @@ public class Login {
         this.passwordHash = passwordHash;
     }
 
-    public int getAsAccountStatusId() {
+    public long getAsAccountStatusId() {
         return asAccountStatusId;
     }
 
-    public void setAsAccountStatusId(int asAccountStatusId) {
+    public void setAsAccountStatusId(long asAccountStatusId) {
         this.asAccountStatusId = asAccountStatusId;
     }
 
-    public int getAAccountId() {
+    public long getAAccountId() {
         return aAccountId;
     }
 
-    public void setAAccountId(int aAccountId) {
+    public void setAAccountId(long aAccountId) {
         this.aAccountId = aAccountId;
     }
 

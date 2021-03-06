@@ -125,5 +125,5 @@ public class RegisteredPublicUsers {
     public void setGGenderID(long gGenderID) {
         this.gGenderID = gGenderID;
     }
-    
+
 }

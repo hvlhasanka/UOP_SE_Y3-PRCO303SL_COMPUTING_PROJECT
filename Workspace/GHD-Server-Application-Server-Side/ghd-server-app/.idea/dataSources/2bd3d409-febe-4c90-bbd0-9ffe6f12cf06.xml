@@ -2207,425 +2207,439 @@ Longitude</ColNames>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="585" parent="313" name="FK_A_O_AccountID">
+    <column id="585" parent="313" name="aRegisteredByAdminID">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="586" parent="313" name="FK_A_O_AccountID">
       <ColNames>aAccountID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="586" parent="313" name="PRIMARY">
+    <index id="587" parent="313" name="FK_A_O_AdminID">
+      <ColNames>aRegisteredByAdminID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="588" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>OperatorID
 aAccountID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="587" parent="313" name="FK_A_O_AccountID">
+    <foreign-key id="589" parent="313" name="FK_A_O_AccountID">
       <ColNames>aAccountID</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>AccountID</RefColNames>
     </foreign-key>
-    <column id="588" parent="314" name="PostalCodeID">
+    <foreign-key id="590" parent="313" name="FK_A_O_AdminID">
+      <ColNames>aRegisteredByAdminID</ColNames>
+      <RefTableName>administrators</RefTableName>
+      <RefColNames>AdminID</RefColNames>
+    </foreign-key>
+    <column id="591" parent="314" name="PostalCodeID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="589" parent="314" name="PostalCode">
+    <column id="592" parent="314" name="PostalCode">
       <Position>2</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="590" parent="314" name="PRIMARY">
+    <key id="593" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>PostalCodeID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="591" parent="315" name="RegisteredUserID">
+    <column id="594" parent="315" name="RegisteredUserID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="592" parent="315" name="aAccountID">
+    <column id="595" parent="315" name="aAccountID">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="593" parent="315" name="NIC">
+    <column id="596" parent="315" name="NIC">
       <Position>3</Position>
       <DataType>varchar(12)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="594" parent="315" name="PassportNo">
+    <column id="597" parent="315" name="PassportNo">
       <Position>4</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="595" parent="315" name="StreetAddress">
+    <column id="598" parent="315" name="StreetAddress">
       <Position>5</Position>
       <DataType>varchar(120)|0s</DataType>
     </column>
-    <column id="596" parent="315" name="cCityID">
+    <column id="599" parent="315" name="cCityID">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="597" parent="315" name="pcPostalCodeID">
+    <column id="600" parent="315" name="pcPostalCodeID">
       <Position>7</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="598" parent="315" name="dDistrictID">
+    <column id="601" parent="315" name="dDistrictID">
       <Position>8</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="599" parent="315" name="agAgeGroupID">
+    <column id="602" parent="315" name="agAgeGroupID">
       <Position>9</Position>
       <DataType>tinyint|0s</DataType>
     </column>
-    <column id="600" parent="315" name="gGenderID">
+    <column id="603" parent="315" name="gGenderID">
       <Position>10</Position>
       <DataType>tinyint|0s</DataType>
     </column>
-    <index id="601" parent="315" name="FK_A_RPU_AccountID">
+    <index id="604" parent="315" name="FK_A_RPU_AccountID">
       <ColNames>aAccountID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="602" parent="315" name="FK_C_RPU_CityID">
+    <index id="605" parent="315" name="FK_C_RPU_CityID">
       <ColNames>cCityID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="603" parent="315" name="FK_PC_RPU_PostalCodeID">
+    <index id="606" parent="315" name="FK_PC_RPU_PostalCodeID">
       <ColNames>pcPostalCodeID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="604" parent="315" name="FK_D_RPU_DistrictID">
+    <index id="607" parent="315" name="FK_D_RPU_DistrictID">
       <ColNames>dDistrictID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="605" parent="315" name="FK_AG_RPU_AgeGroupID">
+    <index id="608" parent="315" name="FK_AG_RPU_AgeGroupID">
       <ColNames>agAgeGroupID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="606" parent="315" name="FK_G_RPU_GenderID">
+    <index id="609" parent="315" name="FK_G_RPU_GenderID">
       <ColNames>gGenderID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="607" parent="315" name="PRIMARY">
+    <key id="610" parent="315" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>RegisteredUserID
 aAccountID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="608" parent="315" name="FK_A_RPU_AccountID">
+    <foreign-key id="611" parent="315" name="FK_A_RPU_AccountID">
       <ColNames>aAccountID</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>AccountID</RefColNames>
     </foreign-key>
-    <foreign-key id="609" parent="315" name="FK_C_RPU_CityID">
+    <foreign-key id="612" parent="315" name="FK_C_RPU_CityID">
       <ColNames>cCityID</ColNames>
       <RefTableName>cities</RefTableName>
       <RefColNames>CityID</RefColNames>
     </foreign-key>
-    <foreign-key id="610" parent="315" name="FK_PC_RPU_PostalCodeID">
+    <foreign-key id="613" parent="315" name="FK_PC_RPU_PostalCodeID">
       <ColNames>pcPostalCodeID</ColNames>
       <RefTableName>postalcodes</RefTableName>
       <RefColNames>PostalCodeID</RefColNames>
     </foreign-key>
-    <foreign-key id="611" parent="315" name="FK_D_RPU_DistrictID">
+    <foreign-key id="614" parent="315" name="FK_D_RPU_DistrictID">
       <ColNames>dDistrictID</ColNames>
       <RefTableName>districts</RefTableName>
       <RefColNames>DistrictID</RefColNames>
     </foreign-key>
-    <foreign-key id="612" parent="315" name="FK_AG_RPU_AgeGroupID">
+    <foreign-key id="615" parent="315" name="FK_AG_RPU_AgeGroupID">
       <ColNames>agAgeGroupID</ColNames>
       <RefTableName>agegroups</RefTableName>
       <RefColNames>AgeGroupID</RefColNames>
     </foreign-key>
-    <foreign-key id="613" parent="315" name="FK_G_RPU_GenderID">
+    <foreign-key id="616" parent="315" name="FK_G_RPU_GenderID">
       <ColNames>gGenderID</ColNames>
       <RefTableName>genders</RefTableName>
       <RefColNames>GenderID</RefColNames>
     </foreign-key>
-    <column id="614" parent="316" name="ReportTypeID">
+    <column id="617" parent="316" name="ReportTypeID">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="615" parent="316" name="ReportType">
+    <column id="618" parent="316" name="ReportType">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="616" parent="316" name="PRIMARY">
+    <key id="619" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ReportTypeID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="617" parent="317" name="ReponseID">
+    <column id="620" parent="317" name="ReponseID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="618" parent="317" name="Message">
+    <column id="621" parent="317" name="Message">
       <Position>2</Position>
       <DataType>varchar(250)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="619" parent="317" name="SentEmailAddress">
+    <column id="622" parent="317" name="SentEmailAddress">
       <Position>3</Position>
       <DataType>varchar(250)|0s</DataType>
     </column>
-    <column id="620" parent="317" name="SentDateTime">
+    <column id="623" parent="317" name="SentDateTime">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="621" parent="317" name="frReportID">
+    <column id="624" parent="317" name="frReportID">
       <Position>5</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="622" parent="317" name="hsrReportID">
+    <column id="625" parent="317" name="hsrReportID">
       <Position>6</Position>
       <DataType>int|0s</DataType>
     </column>
-    <index id="623" parent="317" name="FK_FR_R_ReportID">
+    <index id="626" parent="317" name="FK_FR_R_ReportID">
       <ColNames>frReportID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="624" parent="317" name="FK_HSR_R_ReportID">
+    <index id="627" parent="317" name="FK_HSR_R_ReportID">
       <ColNames>hsrReportID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="625" parent="317" name="PRIMARY">
+    <key id="628" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ReponseID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="626" parent="317" name="FK_FR_R_ReportID">
+    <foreign-key id="629" parent="317" name="FK_FR_R_ReportID">
       <ColNames>frReportID</ColNames>
       <RefTableName>feedbackreports</RefTableName>
       <RefColNames>ReportID</RefColNames>
     </foreign-key>
-    <foreign-key id="627" parent="317" name="FK_HSR_R_ReportID">
+    <foreign-key id="630" parent="317" name="FK_HSR_R_ReportID">
       <ColNames>hsrReportID</ColNames>
       <RefTableName>healthstatusreports</RefTableName>
       <RefColNames>ReportID</RefColNames>
     </foreign-key>
-    <column id="628" parent="318" name="ReviewStatusID">
+    <column id="631" parent="318" name="ReviewStatusID">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="629" parent="318" name="ReviewStatus">
+    <column id="632" parent="318" name="ReviewStatus">
       <Position>2</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="630" parent="318" name="PRIMARY">
+    <key id="633" parent="318" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ReviewStatusID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="631" parent="319" name="SeverityID">
+    <column id="634" parent="319" name="SeverityID">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="632" parent="319" name="Severity">
+    <column id="635" parent="319" name="Severity">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="633" parent="319" name="PRIMARY">
+    <key id="636" parent="319" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SeverityID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="634" parent="320" name="SituationStatusID">
+    <column id="637" parent="320" name="SituationStatusID">
       <Position>1</Position>
       <DataType>mediumint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="635" parent="320" name="SituationStatus">
+    <column id="638" parent="320" name="SituationStatus">
       <Position>2</Position>
       <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="636" parent="320" name="PRIMARY">
+    <key id="639" parent="320" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SituationStatusID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="637" parent="321" name="StandardReportID">
+    <column id="640" parent="321" name="StandardReportID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="638" parent="321" name="hsrReportID">
+    <column id="641" parent="321" name="hsrReportID">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="639" parent="321" name="FK_HSR_SHSR_ReportID">
+    <index id="642" parent="321" name="FK_HSR_SHSR_ReportID">
       <ColNames>hsrReportID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="640" parent="321" name="PRIMARY">
+    <key id="643" parent="321" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>StandardReportID
 hsrReportID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="641" parent="321" name="FK_HSR_SHSR_ReportID">
+    <foreign-key id="644" parent="321" name="FK_HSR_SHSR_ReportID">
       <ColNames>hsrReportID</ColNames>
       <RefTableName>healthstatusreports</RefTableName>
       <RefColNames>ReportID</RefColNames>
     </foreign-key>
-    <column id="642" parent="322" name="UserTypeID">
+    <column id="645" parent="322" name="UserTypeID">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="643" parent="322" name="UserType">
+    <column id="646" parent="322" name="UserType">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="644" parent="322" name="PRIMARY">
+    <key id="647" parent="322" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>UserTypeID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="645" parent="323" name="SymptomID">
+    <column id="648" parent="323" name="SymptomID">
       <Position>1</Position>
       <DataType>mediumint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="646" parent="323" name="Symptom">
+    <column id="649" parent="323" name="Symptom">
       <Position>2</Position>
       <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="647" parent="323" name="SymptomCategory">
+    <column id="650" parent="323" name="SymptomCategory">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="648" parent="323" name="PRIMARY">
+    <key id="651" parent="323" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SymptomID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="649" parent="324" name="UnregisteredUserID">
+    <column id="652" parent="324" name="UnregisteredUserID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="650" parent="324" name="aAccountID">
+    <column id="653" parent="324" name="aAccountID">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="651" parent="324" name="NIC">
+    <column id="654" parent="324" name="NIC">
       <Position>3</Position>
       <DataType>varchar(12)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="652" parent="324" name="PassportNo">
+    <column id="655" parent="324" name="PassportNo">
       <Position>4</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="653" parent="324" name="StreetAddress">
+    <column id="656" parent="324" name="StreetAddress">
       <Position>5</Position>
       <DataType>varchar(120)|0s</DataType>
     </column>
-    <column id="654" parent="324" name="cCityID">
+    <column id="657" parent="324" name="cCityID">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="655" parent="324" name="pcPostalCodeID">
+    <column id="658" parent="324" name="pcPostalCodeID">
       <Position>7</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="656" parent="324" name="dDistrictID">
+    <column id="659" parent="324" name="dDistrictID">
       <Position>8</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="657" parent="324" name="agAgeGroupID">
+    <column id="660" parent="324" name="agAgeGroupID">
       <Position>9</Position>
       <DataType>tinyint|0s</DataType>
     </column>
-    <column id="658" parent="324" name="gGenderID">
+    <column id="661" parent="324" name="gGenderID">
       <Position>10</Position>
       <DataType>tinyint|0s</DataType>
     </column>
-    <index id="659" parent="324" name="FK_A_UPU_AccountID">
+    <index id="662" parent="324" name="FK_A_UPU_AccountID">
       <ColNames>aAccountID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="660" parent="324" name="FK_C_UPU_CityID">
+    <index id="663" parent="324" name="FK_C_UPU_CityID">
       <ColNames>cCityID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="661" parent="324" name="FK_PC_UPU_PostalCodeID">
+    <index id="664" parent="324" name="FK_PC_UPU_PostalCodeID">
       <ColNames>pcPostalCodeID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="662" parent="324" name="FK_D_UPU_DistrictID">
+    <index id="665" parent="324" name="FK_D_UPU_DistrictID">
       <ColNames>dDistrictID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="663" parent="324" name="FK_AG_UPU_AgeGroupID">
+    <index id="666" parent="324" name="FK_AG_UPU_AgeGroupID">
       <ColNames>agAgeGroupID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="664" parent="324" name="FK_G_UPU_GenderID">
+    <index id="667" parent="324" name="FK_G_UPU_GenderID">
       <ColNames>gGenderID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="665" parent="324" name="PRIMARY">
+    <key id="668" parent="324" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>UnregisteredUserID
 aAccountID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="666" parent="324" name="FK_A_UPU_AccountID">
+    <foreign-key id="669" parent="324" name="FK_A_UPU_AccountID">
       <ColNames>aAccountID</ColNames>
       <RefTableName>accounts</RefTableName>
       <RefColNames>AccountID</RefColNames>
     </foreign-key>
-    <foreign-key id="667" parent="324" name="FK_C_UPU_CityID">
+    <foreign-key id="670" parent="324" name="FK_C_UPU_CityID">
       <ColNames>cCityID</ColNames>
       <RefTableName>cities</RefTableName>
       <RefColNames>CityID</RefColNames>
     </foreign-key>
-    <foreign-key id="668" parent="324" name="FK_PC_UPU_PostalCodeID">
+    <foreign-key id="671" parent="324" name="FK_PC_UPU_PostalCodeID">
       <ColNames>pcPostalCodeID</ColNames>
       <RefTableName>postalcodes</RefTableName>
       <RefColNames>PostalCodeID</RefColNames>
     </foreign-key>
-    <foreign-key id="669" parent="324" name="FK_D_UPU_DistrictID">
+    <foreign-key id="672" parent="324" name="FK_D_UPU_DistrictID">
       <ColNames>dDistrictID</ColNames>
       <RefTableName>districts</RefTableName>
       <RefColNames>DistrictID</RefColNames>
     </foreign-key>
-    <foreign-key id="670" parent="324" name="FK_AG_UPU_AgeGroupID">
+    <foreign-key id="673" parent="324" name="FK_AG_UPU_AgeGroupID">
       <ColNames>agAgeGroupID</ColNames>
       <RefTableName>agegroups</RefTableName>
       <RefColNames>AgeGroupID</RefColNames>
     </foreign-key>
-    <foreign-key id="671" parent="324" name="FK_G_UPU_GenderID">
+    <foreign-key id="674" parent="324" name="FK_G_UPU_GenderID">
       <ColNames>gGenderID</ColNames>
       <RefTableName>genders</RefTableName>
       <RefColNames>GenderID</RefColNames>
