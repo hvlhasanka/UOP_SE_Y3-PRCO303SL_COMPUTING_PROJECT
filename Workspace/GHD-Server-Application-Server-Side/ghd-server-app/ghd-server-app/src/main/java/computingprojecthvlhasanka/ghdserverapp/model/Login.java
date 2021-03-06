@@ -1,3 +1,8 @@
+/**
+ * Model: Login
+ * Database Relation: 'logins'
+ */
+
 package computingprojecthvlhasanka.ghdserverapp.model;
 
 import javax.persistence.Entity;
@@ -9,6 +14,8 @@ import javax.persistence.Column;
 @Table(name = "logins")
 public class Login {
 
+    /* Class Attributes */
+    // Declaring private class attributes (variables)
     @Id
     private long loginId;
 
@@ -21,8 +28,11 @@ public class Login {
     @Column(name = "aAccountID")
     private int aAccountId;
 
+    /* Class Methods */
+    // Default constructor
     public Login() { }
 
+    // Setters and Getters
     public long getLoginId() {
         return loginId;
     }

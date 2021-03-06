@@ -15,7 +15,7 @@
       <jdbc-driver>java.sql.Driver</jdbc-driver>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="localhost-ghdms_db" uuid="6f9778cb-bb71-4807-a7ea-847b81505990">
+    <data-source source="LOCAL" name="@localhost" uuid="2bd3d409-febe-4c90-bbd0-9ffe6f12cf06">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
