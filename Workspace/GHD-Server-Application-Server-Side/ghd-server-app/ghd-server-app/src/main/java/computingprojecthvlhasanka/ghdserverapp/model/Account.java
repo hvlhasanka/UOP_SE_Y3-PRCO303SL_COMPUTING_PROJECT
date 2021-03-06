@@ -36,7 +36,7 @@ public class Account {
 
     /* Class Methods */
     // Default constructor
-    public Account() {}
+    public Account() { }
 
     // Setters and Getters
     public long getAccountId() {
@@ -102,7 +102,5 @@ public class Account {
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
-
-
 
 }
