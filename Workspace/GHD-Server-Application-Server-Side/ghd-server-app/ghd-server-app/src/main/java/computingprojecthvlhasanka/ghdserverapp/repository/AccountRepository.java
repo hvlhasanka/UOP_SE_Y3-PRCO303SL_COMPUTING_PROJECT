@@ -11,6 +11,6 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
     // Custom method to find account by 'LastName' field
-    List<Account> findByLastName(String lastName);
+   // List<Account> findByLastName(String lastName);
 
 }

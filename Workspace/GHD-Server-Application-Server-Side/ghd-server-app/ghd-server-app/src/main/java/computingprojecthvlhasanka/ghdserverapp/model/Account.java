@@ -5,7 +5,11 @@
 
 package computingprojecthvlhasanka.ghdserverapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "accounts")
@@ -14,31 +18,37 @@ public class Account {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
-    @Column(name = "AccountId", nullable = false)
+    @Column(name = "account_id", nullable = false)
     private long accountId;
-
-    @OneToOne(targetEntity = NamePrefix.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "npNamePrefixID", referencedColumnName = "NamePrefixID")
-    private long npNamePrefixId;
-    @Column(name = "FirstName")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "np_name_prefix_id", referencedColumnName = "name_prefix_id")
+    private NamePrefix namePrefix;
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "MiddleName")
-    private String middleName;
-    @Column(name = "LastName")
-    private String lastName;
-    @OneToOne(targetEntity = AccountType.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "atAccountTypeId", referencedColumnName = "AccountTypeID")
-    private long atAccountTypeId;
-    @Column(name = "LastEditDateTime")
-    private String lastEditDateTime;
-    @Column(name = "CreatedDateTime")
-    private String createdDateTime;
+//    @Column(name = "MiddleName")
+//    private String middleName;
+//    @Column(name = "LastName")
+//    private String lastName;
+//    @Column(name = "atAccountTypeID")
+//    private long atAccountTypeId;
+//    @Column(name = "LastEditDateTime")
+//    private String lastEditDateTime;
+//    @Column(name = "CreatedDateTime")
+//    private String createdDateTime;
 
     /* Class Methods */
     // Default constructor
-    public Account() { }
 
-    // Setters and Getters
+
+    public Account() {
+    }
+
+    public Account(long accountId, NamePrefix namePrefix, String firstName) {
+        this.accountId = accountId;
+        this.namePrefix = namePrefix;
+        this.firstName = firstName;
+    }
+
     public long getAccountId() {
         return accountId;
     }
@@ -47,12 +57,12 @@ public class Account {
         this.accountId = accountId;
     }
 
-    public long getNpNamePrefixId() {
-        return npNamePrefixId;
+    public NamePrefix getNamePrefix() {
+        return namePrefix;
     }
 
-    public void setNpNamePrefixId(long npNamePrefixId) {
-        this.npNamePrefixId = npNamePrefixId;
+    public void setNamePrefix(NamePrefix namePrefix) {
+        this.namePrefix = namePrefix;
     }
 
     public String getFirstName() {
@@ -62,45 +72,45 @@ public class Account {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public long getAtAccountTypeId() {
-        return atAccountTypeId;
-    }
-
-    public void setAtAccountTypeId(long atAccountTypeId) {
-        this.atAccountTypeId = atAccountTypeId;
-    }
-
-    public String getLastEditDateTime() {
-        return lastEditDateTime;
-    }
-
-    public void setLastEditDateTime(String lastEditDateTime) {
-        this.lastEditDateTime = lastEditDateTime;
-    }
-
-    public String getCreatedDateTime() {
-        return createdDateTime;
-    }
-
-    public void setCreatedDateTime(String createdDateTime) {
-        this.createdDateTime = createdDateTime;
-    }
+//
+//    public String getMiddleName() {
+//        return middleName;
+//    }
+//
+//    public void setMiddleName(String middleName) {
+//        this.middleName = middleName;
+//    }
+//
+//    public String getLastName() {
+//        return lastName;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
+//
+//    public long getAtAccountTypeId() {
+//        return atAccountTypeId;
+//    }
+//
+//    public void setAtAccountTypeId(long atAccountTypeId) {
+//        this.atAccountTypeId = atAccountTypeId;
+//    }
+//
+//    public String getLastEditDateTime() {
+//        return lastEditDateTime;
+//    }
+//
+//    public void setLastEditDateTime(String lastEditDateTime) {
+//        this.lastEditDateTime = lastEditDateTime;
+//    }
+//
+//    public String getCreatedDateTime() {
+//        return createdDateTime;
+//    }
+//
+//    public void setCreatedDateTime(String createdDateTime) {
+//        this.createdDateTime = createdDateTime;
+//    }
 
 }

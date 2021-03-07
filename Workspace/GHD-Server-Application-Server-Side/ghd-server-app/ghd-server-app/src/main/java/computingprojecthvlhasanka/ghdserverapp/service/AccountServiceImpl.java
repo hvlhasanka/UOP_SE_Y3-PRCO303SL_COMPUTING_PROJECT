@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
 
     // GET - Retrieving all accounts
     @Override
-    public List<Account> getAccounts() {
+    public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }
 
@@ -38,10 +38,10 @@ public class AccountServiceImpl implements AccountService {
         return accountRepository.findById(accountId).orElse(null);
     }
 
-    @Override
-    public List<Account> getAccountsByLastName(String lastName) {
-        return accountRepository.findByLastName(lastName);
-    }
-
+    // GET - Retrieving accounts according to the 'LastName'
+ //   @Override
+  //  public List<Account> getAccountsByLastName(String lastName) {
+   //     return accountRepository.findByLastName(lastName);
+   // }
 
 }

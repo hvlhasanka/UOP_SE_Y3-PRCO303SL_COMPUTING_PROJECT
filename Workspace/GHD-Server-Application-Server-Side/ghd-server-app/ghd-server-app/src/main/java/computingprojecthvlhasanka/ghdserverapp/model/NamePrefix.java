@@ -11,16 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "namePrefixes")
+@Table(name = "name_prefixes")
 public class NamePrefix {
 
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
-    @Column(name = "NamePrefixId", nullable = false)
+    @Column(name = "name_prefix_id", nullable = false)
     private long namePrefixId;
 
-    @Column(name = "NamePrefix")
+    @Column(name = "name_prefix")
     private String namePrefix;
 
     /* Class Methods */

@@ -6,16 +6,16 @@
 package computingprojecthvlhasanka.ghdserverapp.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "accountPhoneNumbers")
-public class AccountPhoneNumber {
+public class AccountPhoneNumber implements Serializable {
 
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
-    @OneToOne(targetEntity = Account.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "aAccountId", referencedColumnName = "AccountId")
+
     private long aAccountId;
     @Id
     @Column(name = "PhoneNumber", nullable = false)

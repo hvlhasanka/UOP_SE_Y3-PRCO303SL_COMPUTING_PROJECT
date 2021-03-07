@@ -284,20 +284,26 @@
     AdminID TINYINT NOT NULL AUTO_INCREMENT,
     aAccountID INT NOT NULL,
     aRegisteredByAdminID TINYINT,
-    CONSTRAINT PK_Administrator PRIMARY KEY (AdminID),
-    CONSTRAINT FK_A_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
+    CONSTRAINT PK_Administrator PRIMARY KEY (AdminID, aAccountID)
+    -- CONSTRAINT FK_A_A_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 12 - Administrators
   ALTER TABLE Administrators AUTO_INCREMENT = 001;
 
 -- INSERTING RECORDS: TABLE 12 - Administrators
-  INSERT INTO Administrators(aAccountID) 
+  INSERT INTO Administrators(aAccountID, aRegisteredByAdminID) 
   VALUES 
-  (0000000001);
+  (0000000001, 001);
   
 -- UPDATING TABLE WITH FOREIGN KEY: Table 12 - Administrators
-  -- TODO 
+ -- ALTER TABLE Administrators ADD CONSTRAINT FK_A_A_AdminID FOREIGN KEY (aRegisteredByAdminID) 
+--  REFERENCES Administrators(AdminID);
+  
+-- INSERTING VALUE INTO UPDATED COLUMN: Table 12 - Administrators
+ -- UPDATE Administrators SET aRegisteredByAdminID = 001
+ -- WHERE AdminID = 001;
+
   
 -- |------------------------------------------------------------------------------------------------|
 
@@ -305,17 +311,19 @@
   CREATE TABLE Operators(
     OperatorID MEDIUMINT NOT NULL AUTO_INCREMENT,
     aAccountID INT NOT NULL,
+    aRegisteredByAdminID TINYINT NOT NULL,
     CONSTRAINT PK_Operator PRIMARY KEY (OperatorID, aAccountID),
     CONSTRAINT FK_A_O_AccountID FOREIGN KEY (aAccountID) REFERENCES Accounts(AccountID)
+  --  CONSTRAINT FK_A_O_AdminID FOREIGN KEY (aRegisteredByAdminID) REFERENCES Administrators(AdminID)
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 13 - Operators
   ALTER TABLE Operators AUTO_INCREMENT = 0000001;
 
 -- INSERTING RECORDS: TABLE 13 - Operators
-  INSERT INTO Operators(aAccountID) 
+  INSERT INTO Operators(aAccountID, aRegisteredByAdminID) 
   VALUES 
-  (0000000002);
+  (0000000002, 001);
 
 -- |------------------------------------------------------------------------------------------------|
 

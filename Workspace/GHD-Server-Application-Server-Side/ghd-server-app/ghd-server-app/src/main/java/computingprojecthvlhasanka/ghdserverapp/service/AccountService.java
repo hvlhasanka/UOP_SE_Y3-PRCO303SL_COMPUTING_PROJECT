@@ -3,6 +3,7 @@ package computingprojecthvlhasanka.ghdserverapp.service;
 import computingprojecthvlhasanka.ghdserverapp.model.Account;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,12 +16,12 @@ public interface AccountService {
     List<Account> saveAccounts(List<Account> accounts);
 
     // GET - Retrieving all accounts
-    List<Account> getAccounts();
+    List<Account> getAllAccounts();
 
     // GET - Retrieving an account according to the 'AccountID'
     Account getAccountByAccountId(long accountId);
 
     // GET - Retrieving accounts according to the 'LastName'
-    List<Account> getAccountsByLastName(String lastName);
+   // List<Account> getAccountsByLastName(String lastName);
 
 }
