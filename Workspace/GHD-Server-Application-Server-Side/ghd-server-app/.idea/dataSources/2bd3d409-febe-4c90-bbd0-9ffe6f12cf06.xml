@@ -911,103 +911,1748 @@ SELECT|sys.sys_config
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,RELOAD,SHUTDOWN,PROCESS,FILE,REFERENCES,INDEX,ALTER,SHOW DATABASES,SUPER,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,REPLICATION SLAVE,REPLICATION CLIENT,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,CREATE USER,EVENT,TRIGGER,CREATE TABLESPACE!
 </ObjectGrants>
     </user>
-    <table id="284" parent="2" name="account_types"/>
-    <table id="285" parent="2" name="accounts"/>
-    <table id="286" parent="2" name="name_prefixes"/>
-    <column id="287" parent="284" name="account_type_id">
+    <table id="284" parent="2" name="account_activities"/>
+    <table id="285" parent="2" name="account_phone_numbers"/>
+    <table id="286" parent="2" name="account_statuses"/>
+    <table id="287" parent="2" name="account_types"/>
+    <table id="288" parent="2" name="accounts"/>
+    <table id="289" parent="2" name="administrators"/>
+    <table id="290" parent="2" name="age_groups"/>
+    <table id="291" parent="2" name="cities"/>
+    <table id="292" parent="2" name="colour_codes"/>
+    <table id="293" parent="2" name="country_statuses"/>
+    <table id="294" parent="2" name="districts"/>
+    <table id="295" parent="2" name="emergency_health_status_reports"/>
+    <table id="296" parent="2" name="external_feedback_reports"/>
+    <table id="297" parent="2" name="feedback_reports"/>
+    <table id="298" parent="2" name="forgot_passwords"/>
+    <table id="299" parent="2" name="genders"/>
+    <table id="300" parent="2" name="health_detail_categories"/>
+    <table id="301" parent="2" name="health_detail_texts"/>
+    <table id="302" parent="2" name="health_details"/>
+    <table id="303" parent="2" name="health_status_report_symptoms"/>
+    <table id="304" parent="2" name="health_status_reports"/>
+    <table id="305" parent="2" name="hot_zone_categories"/>
+    <table id="306" parent="2" name="hot_zone_location_latitudes"/>
+    <table id="307" parent="2" name="hot_zone_location_longitudes"/>
+    <table id="308" parent="2" name="hot_zone_locations"/>
+    <table id="309" parent="2" name="internal_feedback_reports"/>
+    <table id="310" parent="2" name="login_activities"/>
+    <table id="311" parent="2" name="logins"/>
+    <table id="312" parent="2" name="name_prefixes"/>
+    <table id="313" parent="2" name="operators"/>
+    <table id="314" parent="2" name="postal_codes"/>
+    <table id="315" parent="2" name="registered_public_users"/>
+    <table id="316" parent="2" name="report_types"/>
+    <table id="317" parent="2" name="responses"/>
+    <table id="318" parent="2" name="review_statuses"/>
+    <table id="319" parent="2" name="severities"/>
+    <table id="320" parent="2" name="situation_statuses"/>
+    <table id="321" parent="2" name="standard_health_status_reports"/>
+    <table id="322" parent="2" name="submitted_user_types"/>
+    <table id="323" parent="2" name="symptoms"/>
+    <table id="324" parent="2" name="unregistered_public_users"/>
+    <column id="325" parent="284" name="account_activity_id">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="288" parent="284" name="account_type">
+    <column id="326" parent="284" name="account_activity">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="327" parent="284" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>account_activity_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="328" parent="285" name="a_account_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="329" parent="285" name="phone_number">
+      <Position>2</Position>
+      <DataType>char(12)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="330" parent="285" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>a_account_id
+phone_number</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="331" parent="285" name="fk_a_apn_account_id">
+      <ColNames>a_account_id</ColNames>
+      <RefTableName>accounts</RefTableName>
+      <RefColNames>account_id</RefColNames>
+    </foreign-key>
+    <column id="332" parent="286" name="account_status_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="333" parent="286" name="account_status">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="334" parent="286" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>account_status_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="335" parent="287" name="account_type_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="336" parent="287" name="account_type">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="289" parent="284" name="PRIMARY">
+    <key id="337" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>account_type_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="290" parent="285" name="account_id">
+    <column id="338" parent="288" name="account_id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="291" parent="285" name="np_name_prefix_id">
+    <column id="339" parent="288" name="np_name_prefix_id">
       <Position>2</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="292" parent="285" name="first_name">
+    <column id="340" parent="288" name="first_name">
       <Position>3</Position>
       <DataType>varchar(90)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="293" parent="285" name="middle_name">
+    <column id="341" parent="288" name="middle_name">
       <Position>4</Position>
       <DataType>varchar(90)|0s</DataType>
     </column>
-    <column id="294" parent="285" name="last_name">
+    <column id="342" parent="288" name="last_name">
       <Position>5</Position>
       <DataType>varchar(150)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="295" parent="285" name="at_account_type_id">
+    <column id="343" parent="288" name="at_account_type_id">
       <Position>6</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="296" parent="285" name="last_edit_date_time">
+    <column id="344" parent="288" name="last_edit_date_time">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="297" parent="285" name="created_date_time">
+    <column id="345" parent="288" name="created_date_time">
       <Position>8</Position>
       <DataType>datetime|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <index id="298" parent="285" name="fk_np_a_name_prefix_id">
+    <index id="346" parent="288" name="fk_np_a_name_prefix_id">
       <ColNames>np_name_prefix_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="299" parent="285" name="fk_at_a_account_type_id">
+    <index id="347" parent="288" name="fk_at_a_account_type_id">
       <ColNames>at_account_type_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="300" parent="285" name="PRIMARY">
+    <key id="348" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>account_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="301" parent="285" name="fk_np_a_name_prefix_id">
+    <foreign-key id="349" parent="288" name="fk_np_a_name_prefix_id">
       <ColNames>np_name_prefix_id</ColNames>
       <RefTableName>name_prefixes</RefTableName>
       <RefColNames>name_prefix_id</RefColNames>
     </foreign-key>
-    <foreign-key id="302" parent="285" name="fk_at_a_account_type_id">
+    <foreign-key id="350" parent="288" name="fk_at_a_account_type_id">
       <ColNames>at_account_type_id</ColNames>
       <RefTableName>account_types</RefTableName>
       <RefColNames>account_type_id</RefColNames>
     </foreign-key>
-    <column id="303" parent="286" name="name_prefix_id">
+    <column id="351" parent="289" name="admin_id">
       <Position>1</Position>
       <DataType>tinyint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="304" parent="286" name="name_prefix">
+    <column id="352" parent="289" name="a_account_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="353" parent="289" name="a_registered_by_admin_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <index id="354" parent="289" name="fk_a_a_admin_id">
+      <ColNames>a_registered_by_admin_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="355" parent="289" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>admin_id
+a_account_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="356" parent="289" name="fk_a_a_admin_id">
+      <ColNames>a_registered_by_admin_id</ColNames>
+      <RefTableName>administrators</RefTableName>
+      <RefColNames>admin_id</RefColNames>
+    </foreign-key>
+    <column id="357" parent="290" name="age_group_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="358" parent="290" name="age_group">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="359" parent="290" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>age_group_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="360" parent="291" name="city_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="361" parent="291" name="city">
+      <Position>2</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="362" parent="291" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>city_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="363" parent="292" name="colour_code_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="364" parent="292" name="colour_code">
+      <Position>2</Position>
+      <DataType>varchar(25)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="365" parent="292" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>colour_code_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="366" parent="293" name="country_status_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="367" parent="293" name="ss_situation_status_id">
+      <Position>2</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="368" parent="293" name="s_severity_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="369" parent="293" name="cc_colour_code_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="370" parent="293" name="current_country_status">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="371" parent="293" name="fk_ss_cs_sitation_status_id">
+      <ColNames>ss_situation_status_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="372" parent="293" name="fk_s_cs_severity_id">
+      <ColNames>s_severity_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="373" parent="293" name="fk_cc_cs_colour_code_id">
+      <ColNames>cc_colour_code_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="374" parent="293" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>country_status_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="375" parent="293" name="fk_ss_cs_sitation_status_id">
+      <ColNames>ss_situation_status_id</ColNames>
+      <RefTableName>situation_statuses</RefTableName>
+      <RefColNames>situation_status_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="376" parent="293" name="fk_s_cs_severity_id">
+      <ColNames>s_severity_id</ColNames>
+      <RefTableName>severities</RefTableName>
+      <RefColNames>severity_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="377" parent="293" name="fk_cc_cs_colour_code_id">
+      <ColNames>cc_colour_code_id</ColNames>
+      <RefTableName>colour_codes</RefTableName>
+      <RefColNames>colour_code_id</RefColNames>
+    </foreign-key>
+    <column id="378" parent="294" name="district_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="379" parent="294" name="district">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="380" parent="294" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>district_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="381" parent="295" name="emergency_report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="382" parent="295" name="hsr_report_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="383" parent="295" name="rt_report_type_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="384" parent="295" name="s_severity_id">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="385" parent="295" name="fk_hsr_ehsr_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="386" parent="295" name="fk_rt_eshr_report_type_id">
+      <ColNames>rt_report_type_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="387" parent="295" name="fk_s_eshr_severity_id">
+      <ColNames>s_severity_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="388" parent="295" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>emergency_report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="389" parent="295" name="fk_hsr_ehsr_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <RefTableName>health_status_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="390" parent="295" name="fk_rt_eshr_report_type_id">
+      <ColNames>rt_report_type_id</ColNames>
+      <RefTableName>report_types</RefTableName>
+      <RefColNames>report_type_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="391" parent="295" name="fk_s_eshr_severity_id">
+      <ColNames>s_severity_id</ColNames>
+      <RefTableName>severities</RefTableName>
+      <RefColNames>severity_id</RefColNames>
+    </foreign-key>
+    <column id="392" parent="296" name="external_report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="393" parent="296" name="fr_report_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="394" parent="296" name="author_reachable_email_address">
+      <Position>3</Position>
+      <DataType>varchar(250)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="395" parent="296" name="upu_published_unregistered_user_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="396" parent="296" name="upu_published_account_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="397" parent="296" name="fk_fr_efr_report_id">
+      <ColNames>fr_report_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="398" parent="296" name="fk_upu_efr_published_unregistered_user_id">
+      <ColNames>upu_published_unregistered_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="399" parent="296" name="fk_upu_efr_published_account_id">
+      <ColNames>upu_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="400" parent="296" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>external_report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="401" parent="296" name="fk_fr_efr_report_id">
+      <ColNames>fr_report_id</ColNames>
+      <RefTableName>feedback_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="402" parent="296" name="fk_upu_efr_published_unregistered_user_id">
+      <ColNames>upu_published_unregistered_user_id</ColNames>
+      <RefTableName>unregistered_public_users</RefTableName>
+      <RefColNames>unregistered_user_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="403" parent="296" name="fk_upu_efr_published_account_id">
+      <ColNames>upu_published_account_id</ColNames>
+      <RefTableName>unregistered_public_users</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <column id="404" parent="297" name="report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="405" parent="297" name="report_subject">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="406" parent="297" name="feedback">
+      <Position>3</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="407" parent="297" name="rs_review_status_id">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="408" parent="297" name="submitted_date_time">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="409" parent="297" name="o_forwarded_by_operator_id">
+      <Position>6</Position>
+      <DataType>mediumint|0s</DataType>
+    </column>
+    <column id="410" parent="297" name="o_forwarded_by_account_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="411" parent="297" name="o_reviewed_by_operator_id">
+      <Position>8</Position>
+      <DataType>mediumint|0s</DataType>
+    </column>
+    <column id="412" parent="297" name="o_reviewed_by_account_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="413" parent="297" name="a_reviewed_by_admin_id">
+      <Position>10</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="414" parent="297" name="a_reviewed_by_account_id">
+      <Position>11</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="415" parent="297" name="fk_rs_fr_review_status_id">
+      <ColNames>rs_review_status_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="416" parent="297" name="fk_o_fr_forwarded_by_opertor_id">
+      <ColNames>o_forwarded_by_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="417" parent="297" name="fk_o_fr_forwarded_by_account_id">
+      <ColNames>o_forwarded_by_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="418" parent="297" name="fk_o_fr_reviewed_by_operator_id">
+      <ColNames>o_reviewed_by_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="419" parent="297" name="fk_o_fr_reviewed_by_account_id">
+      <ColNames>o_reviewed_by_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="420" parent="297" name="fk_a_fr_reviewed_by_admin_id">
+      <ColNames>a_reviewed_by_admin_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="421" parent="297" name="fk_a_fr_reviewed_by_account_id">
+      <ColNames>a_reviewed_by_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="422" parent="297" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="423" parent="297" name="fk_rs_fr_review_status_id">
+      <ColNames>rs_review_status_id</ColNames>
+      <RefTableName>review_statuses</RefTableName>
+      <RefColNames>review_status_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="424" parent="297" name="fk_o_fr_forwarded_by_opertor_id">
+      <ColNames>o_forwarded_by_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="425" parent="297" name="fk_o_fr_forwarded_by_account_id">
+      <ColNames>o_forwarded_by_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="426" parent="297" name="fk_o_fr_reviewed_by_operator_id">
+      <ColNames>o_reviewed_by_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="427" parent="297" name="fk_o_fr_reviewed_by_account_id">
+      <ColNames>o_reviewed_by_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="428" parent="297" name="fk_a_fr_reviewed_by_admin_id">
+      <ColNames>a_reviewed_by_admin_id</ColNames>
+      <RefTableName>administrators</RefTableName>
+      <RefColNames>admin_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="429" parent="297" name="fk_a_fr_reviewed_by_account_id">
+      <ColNames>a_reviewed_by_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <column id="430" parent="298" name="recovery_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="431" parent="298" name="pin_code">
+      <Position>2</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="432" parent="298" name="created_date_time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="433" parent="298" name="l_login_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="434" parent="298" name="fk_l_lp_login_id">
+      <ColNames>l_login_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="435" parent="298" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>recovery_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="436" parent="298" name="fk_l_lp_login_id">
+      <ColNames>l_login_id</ColNames>
+      <RefTableName>logins</RefTableName>
+      <RefColNames>login_id</RefColNames>
+    </foreign-key>
+    <column id="437" parent="299" name="gender_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="438" parent="299" name="gender">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="439" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>gender_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="440" parent="300" name="category_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="441" parent="300" name="category">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="442" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>category_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="443" parent="301" name="text_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="444" parent="301" name="text_heading">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="445" parent="301" name="detail_text">
+      <Position>3</Position>
+      <DataType>varchar(250)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="446" parent="301" name="text_section_sequence_number">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="447" parent="301" name="hd_health_detail_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="448" parent="301" name="fk_hd_hdt_health_detail_id">
+      <ColNames>hd_health_detail_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="449" parent="301" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>text_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="450" parent="301" name="fk_hd_hdt_health_detail_id">
+      <ColNames>hd_health_detail_id</ColNames>
+      <RefTableName>health_details</RefTableName>
+      <RefColNames>health_detail_id</RefColNames>
+    </foreign-key>
+    <column id="451" parent="302" name="health_detail_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="452" parent="302" name="health_detail_heading">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="453" parent="302" name="health_detail_passage">
+      <Position>3</Position>
+      <DataType>varchar(250)|0s</DataType>
+    </column>
+    <column id="454" parent="302" name="hdc_category_id">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="455" parent="302" name="last_edit_date_time">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+    </column>
+    <column id="456" parent="302" name="o_last_edit_by_operator_id">
+      <Position>6</Position>
+      <DataType>mediumint|0s</DataType>
+    </column>
+    <column id="457" parent="302" name="o_last_edit_by_account_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="458" parent="302" name="published_date_time">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="459" parent="302" name="o_published_operator_id">
+      <Position>9</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="460" parent="302" name="o_published_account_id">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="461" parent="302" name="fk_hdc_hd_category_id">
+      <ColNames>hdc_category_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="462" parent="302" name="fk_o_hd_last_editByOperator_id">
+      <ColNames>o_last_edit_by_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="463" parent="302" name="fk_o_hd_last_editByAccount_id">
+      <ColNames>o_last_edit_by_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="464" parent="302" name="fk_o_hd_published_operator_id">
+      <ColNames>o_published_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="465" parent="302" name="fk_o_hd_published_account_id">
+      <ColNames>o_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="466" parent="302" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>health_detail_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="467" parent="302" name="fk_hdc_hd_category_id">
+      <ColNames>hdc_category_id</ColNames>
+      <RefTableName>health_detail_categories</RefTableName>
+      <RefColNames>category_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="468" parent="302" name="fk_o_hd_last_editByOperator_id">
+      <ColNames>o_last_edit_by_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="469" parent="302" name="fk_o_hd_last_editByAccount_id">
+      <ColNames>o_last_edit_by_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="470" parent="302" name="fk_o_hd_published_operator_id">
+      <ColNames>o_published_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="471" parent="302" name="fk_o_hd_published_account_id">
+      <ColNames>o_published_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <column id="472" parent="303" name="hsr_report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="473" parent="303" name="s_symptom_id">
+      <Position>2</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="474" parent="303" name="fk_s_hsrs_dymptom_id">
+      <ColNames>s_symptom_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="475" parent="303" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>hsr_report_id
+s_symptom_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="476" parent="303" name="fk_hs_hsrs_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <RefTableName>health_status_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="477" parent="303" name="fk_s_hsrs_dymptom_id">
+      <ColNames>s_symptom_id</ColNames>
+      <RefTableName>symptoms</RefTableName>
+      <RefColNames>symptom_id</RefColNames>
+    </foreign-key>
+    <column id="478" parent="304" name="report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="479" parent="304" name="report_description">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="480" parent="304" name="rs_review_status_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="481" parent="304" name="submitted_date_time">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="482" parent="304" name="proof_of_pcr_test">
+      <Position>5</Position>
+      <DataType>blob|0s</DataType>
+    </column>
+    <column id="483" parent="304" name="upu_published_unregistered_user_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="484" parent="304" name="upu_published_account_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="485" parent="304" name="rpu_published_registered_user_id">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="486" parent="304" name="rpu_published_account_id">
+      <Position>9</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="487" parent="304" name="o_reviewed_by_operator_id">
+      <Position>10</Position>
+      <DataType>mediumint|0s</DataType>
+    </column>
+    <column id="488" parent="304" name="o_reviewed_by_account_id">
+      <Position>11</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="489" parent="304" name="fk_rs_hsr_review_status_id">
+      <ColNames>rs_review_status_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="490" parent="304" name="fk_upu_hsr_published_unregistered_user_id">
+      <ColNames>upu_published_unregistered_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="491" parent="304" name="fk_upu_hsr_published_account_id">
+      <ColNames>upu_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="492" parent="304" name="fk_rpu_hsr_published_registeredUserID">
+      <ColNames>rpu_published_registered_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="493" parent="304" name="fk_rpu_hsr_published_account_id">
+      <ColNames>rpu_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="494" parent="304" name="fk_o_hsr_reviewed_by_operator_id">
+      <ColNames>o_reviewed_by_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="495" parent="304" name="fk_o_hsr_reviewed_by_account_id">
+      <ColNames>o_reviewed_by_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="496" parent="304" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="497" parent="304" name="fk_rs_hsr_review_status_id">
+      <ColNames>rs_review_status_id</ColNames>
+      <RefTableName>review_statuses</RefTableName>
+      <RefColNames>review_status_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="498" parent="304" name="fk_upu_hsr_published_unregistered_user_id">
+      <ColNames>upu_published_unregistered_user_id</ColNames>
+      <RefTableName>unregistered_public_users</RefTableName>
+      <RefColNames>unregistered_user_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="499" parent="304" name="fk_upu_hsr_published_account_id">
+      <ColNames>upu_published_account_id</ColNames>
+      <RefTableName>unregistered_public_users</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="500" parent="304" name="fk_rpu_hsr_published_registeredUserID">
+      <ColNames>rpu_published_registered_user_id</ColNames>
+      <RefTableName>registered_public_users</RefTableName>
+      <RefColNames>registered_user_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="501" parent="304" name="fk_rpu_hsr_published_account_id">
+      <ColNames>rpu_published_account_id</ColNames>
+      <RefTableName>registered_public_users</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="502" parent="304" name="fk_o_hsr_reviewed_by_operator_id">
+      <ColNames>o_reviewed_by_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="503" parent="304" name="fk_o_hsr_reviewed_by_account_id">
+      <ColNames>o_reviewed_by_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <column id="504" parent="305" name="category_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="505" parent="305" name="category">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="506" parent="305" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>category_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="507" parent="306" name="hzl_location_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="508" parent="306" name="latitude">
+      <Position>2</Position>
+      <DataType>float|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="509" parent="306" name="sequence_order">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="510" parent="306" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>hzl_location_id
+latitude</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="511" parent="306" name="fk_hzl_zhlla_hzl_location_id">
+      <ColNames>hzl_location_id</ColNames>
+      <RefTableName>hot_zone_locations</RefTableName>
+      <RefColNames>location_id</RefColNames>
+    </foreign-key>
+    <column id="512" parent="307" name="hzl_location_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="513" parent="307" name="longitude">
+      <Position>2</Position>
+      <DataType>float|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="514" parent="307" name="sequence_order">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="515" parent="307" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>hzl_location_id
+longitude</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="516" parent="307" name="fk_hzl_hzllo_hzl_location_id">
+      <ColNames>hzl_location_id</ColNames>
+      <RefTableName>hot_zone_locations</RefTableName>
+      <RefColNames>location_id</RefColNames>
+    </foreign-key>
+    <column id="517" parent="308" name="location_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="518" parent="308" name="zone_name">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="519" parent="308" name="hzc_category_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="520" parent="308" name="s_severity_id">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="521" parent="308" name="last_edit_date_time">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
+    </column>
+    <column id="522" parent="308" name="o_last_edit_by_operator_id">
+      <Position>6</Position>
+      <DataType>mediumint|0s</DataType>
+    </column>
+    <column id="523" parent="308" name="o_last_edit_by_account_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="524" parent="308" name="published_date_time">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="525" parent="308" name="o_published_operator_id">
+      <Position>9</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="526" parent="308" name="o_published_account_id">
+      <Position>10</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="527" parent="308" name="fk_hzc_hzl_category_id">
+      <ColNames>hzc_category_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="528" parent="308" name="fk_s_hzl_severity_id">
+      <ColNames>s_severity_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="529" parent="308" name="fk_o_hzl_last_edit_by_operator_id">
+      <ColNames>o_last_edit_by_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="530" parent="308" name="fk_o_hzl_last_edit_by_account_id">
+      <ColNames>o_last_edit_by_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="531" parent="308" name="fk_o_hzl_published_operator_id">
+      <ColNames>o_published_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="532" parent="308" name="fk_o_hzl_published_account_id">
+      <ColNames>o_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="533" parent="308" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>location_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="534" parent="308" name="fk_hzc_hzl_category_id">
+      <ColNames>hzc_category_id</ColNames>
+      <RefTableName>hot_zone_categories</RefTableName>
+      <RefColNames>category_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="535" parent="308" name="fk_s_hzl_severity_id">
+      <ColNames>s_severity_id</ColNames>
+      <RefTableName>severities</RefTableName>
+      <RefColNames>severity_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="536" parent="308" name="fk_o_hzl_last_edit_by_operator_id">
+      <ColNames>o_last_edit_by_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="537" parent="308" name="fk_o_hzl_last_edit_by_account_id">
+      <ColNames>o_last_edit_by_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="538" parent="308" name="fk_o_hzl_published_operator_id">
+      <ColNames>o_published_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="539" parent="308" name="fk_o_hzl_published_account_id">
+      <ColNames>o_published_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <column id="540" parent="309" name="internal_report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="541" parent="309" name="fr_report_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="542" parent="309" name="sut_user_type_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="543" parent="309" name="rpu_published_registered_user_id">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="544" parent="309" name="rpu_published_account_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="545" parent="309" name="o_published_operator_id">
+      <Position>6</Position>
+      <DataType>mediumint|0s</DataType>
+    </column>
+    <column id="546" parent="309" name="o_published_account_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="547" parent="309" name="fk_fr_ifr_report_id">
+      <ColNames>fr_report_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="548" parent="309" name="fk_sut_ifr_user_type_id">
+      <ColNames>sut_user_type_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="549" parent="309" name="fk_rpu_ifr_published_registered_user_id">
+      <ColNames>rpu_published_registered_user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="550" parent="309" name="fk_rpu_ifr_publishedAccount_id">
+      <ColNames>rpu_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="551" parent="309" name="fk_o_ifr_published_operator_id">
+      <ColNames>o_published_operator_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="552" parent="309" name="fk_o_ifr_published_account_id">
+      <ColNames>o_published_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="553" parent="309" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>internal_report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="554" parent="309" name="fk_fr_ifr_report_id">
+      <ColNames>fr_report_id</ColNames>
+      <RefTableName>feedback_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="555" parent="309" name="fk_sut_ifr_user_type_id">
+      <ColNames>sut_user_type_id</ColNames>
+      <RefTableName>submitted_user_types</RefTableName>
+      <RefColNames>user_type_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="556" parent="309" name="fk_rpu_ifr_published_registered_user_id">
+      <ColNames>rpu_published_registered_user_id</ColNames>
+      <RefTableName>registered_public_users</RefTableName>
+      <RefColNames>registered_user_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="557" parent="309" name="fk_rpu_ifr_publishedAccount_id">
+      <ColNames>rpu_published_account_id</ColNames>
+      <RefTableName>unregistered_public_users</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="558" parent="309" name="fk_o_ifr_published_operator_id">
+      <ColNames>o_published_operator_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>operator_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="559" parent="309" name="fk_o_ifr_published_account_id">
+      <ColNames>o_published_account_id</ColNames>
+      <RefTableName>operators</RefTableName>
+      <RefColNames>a_account_id</RefColNames>
+    </foreign-key>
+    <column id="560" parent="310" name="login_activity_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="561" parent="310" name="login_date_time">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="562" parent="310" name="logout_date_time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="563" parent="310" name="as_account_activity_id">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="564" parent="310" name="l_login_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="565" parent="310" name="fk_aa_la_account_activity_id">
+      <ColNames>as_account_activity_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="566" parent="310" name="fk_l_la_login_id">
+      <ColNames>l_login_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="567" parent="310" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>login_activity_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="568" parent="310" name="fk_aa_la_account_activity_id">
+      <ColNames>as_account_activity_id</ColNames>
+      <RefTableName>account_activities</RefTableName>
+      <RefColNames>account_activity_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="569" parent="310" name="fk_l_la_login_id">
+      <ColNames>l_login_id</ColNames>
+      <RefTableName>logins</RefTableName>
+      <RefColNames>login_id</RefColNames>
+    </foreign-key>
+    <column id="570" parent="311" name="login_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="571" parent="311" name="email_address">
+      <Position>2</Position>
+      <DataType>varchar(250)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="572" parent="311" name="password_hash">
+      <Position>3</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="573" parent="311" name="as_account_status_id">
+      <Position>4</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="574" parent="311" name="a_account_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="575" parent="311" name="email_address">
+      <ColNames>email_address</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="576" parent="311" name="fk_as_l_account_status_id">
+      <ColNames>as_account_status_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="577" parent="311" name="fk_a_l_account_id">
+      <ColNames>a_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="578" parent="311" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>login_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="579" parent="311" name="email_address">
+      <ColNames>email_address</ColNames>
+      <UnderlyingIndexName>email_address</UnderlyingIndexName>
+    </key>
+    <foreign-key id="580" parent="311" name="fk_as_l_account_status_id">
+      <ColNames>as_account_status_id</ColNames>
+      <RefTableName>account_statuses</RefTableName>
+      <RefColNames>account_status_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="581" parent="311" name="fk_a_l_account_id">
+      <ColNames>a_account_id</ColNames>
+      <RefTableName>accounts</RefTableName>
+      <RefColNames>account_id</RefColNames>
+    </foreign-key>
+    <column id="582" parent="312" name="name_prefix_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="583" parent="312" name="name_prefix">
       <Position>2</Position>
       <DataType>varchar(8)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="305" parent="286" name="PRIMARY">
+    <key id="584" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name_prefix_id</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="585" parent="313" name="operator_id">
+      <Position>1</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="586" parent="313" name="a_account_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="587" parent="313" name="a_registered_by_admin_id">
+      <Position>3</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="588" parent="313" name="fk_a_o_account_id">
+      <ColNames>a_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="589" parent="313" name="fk_a_o_admin_id">
+      <ColNames>a_registered_by_admin_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="590" parent="313" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>operator_id
+a_account_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="591" parent="313" name="fk_a_o_account_id">
+      <ColNames>a_account_id</ColNames>
+      <RefTableName>accounts</RefTableName>
+      <RefColNames>account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="592" parent="313" name="fk_a_o_admin_id">
+      <ColNames>a_registered_by_admin_id</ColNames>
+      <RefTableName>administrators</RefTableName>
+      <RefColNames>admin_id</RefColNames>
+    </foreign-key>
+    <column id="593" parent="314" name="postal_code_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="594" parent="314" name="postal_code">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="595" parent="314" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>postal_code_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="596" parent="315" name="registered_user_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="597" parent="315" name="a_account_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="598" parent="315" name="nic">
+      <Position>3</Position>
+      <DataType>varchar(12)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="599" parent="315" name="passport_no">
+      <Position>4</Position>
+      <DataType>varchar(15)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="600" parent="315" name="street_address">
+      <Position>5</Position>
+      <DataType>varchar(120)|0s</DataType>
+    </column>
+    <column id="601" parent="315" name="c_city_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="602" parent="315" name="pc_postal_code_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="603" parent="315" name="d_district_id">
+      <Position>8</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="604" parent="315" name="ag_age_group_id">
+      <Position>9</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="605" parent="315" name="g_gender_id">
+      <Position>10</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <index id="606" parent="315" name="fk_a_rpu_account_id">
+      <ColNames>a_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="607" parent="315" name="fk_c_rpu_city_id">
+      <ColNames>c_city_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="608" parent="315" name="fk_pc_rpu_postal_code_id">
+      <ColNames>pc_postal_code_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="609" parent="315" name="fk_d_rpu_district_id">
+      <ColNames>d_district_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="610" parent="315" name="fk_ag_rpu_age_group_id">
+      <ColNames>ag_age_group_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="611" parent="315" name="fk_g_rpu_gender_id">
+      <ColNames>g_gender_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="612" parent="315" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>registered_user_id
+a_account_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="613" parent="315" name="fk_a_rpu_account_id">
+      <ColNames>a_account_id</ColNames>
+      <RefTableName>accounts</RefTableName>
+      <RefColNames>account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="614" parent="315" name="fk_c_rpu_city_id">
+      <ColNames>c_city_id</ColNames>
+      <RefTableName>cities</RefTableName>
+      <RefColNames>city_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="615" parent="315" name="fk_pc_rpu_postal_code_id">
+      <ColNames>pc_postal_code_id</ColNames>
+      <RefTableName>postal_codes</RefTableName>
+      <RefColNames>postal_code_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="616" parent="315" name="fk_d_rpu_district_id">
+      <ColNames>d_district_id</ColNames>
+      <RefTableName>districts</RefTableName>
+      <RefColNames>district_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="617" parent="315" name="fk_ag_rpu_age_group_id">
+      <ColNames>ag_age_group_id</ColNames>
+      <RefTableName>age_groups</RefTableName>
+      <RefColNames>age_group_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="618" parent="315" name="fk_g_rpu_gender_id">
+      <ColNames>g_gender_id</ColNames>
+      <RefTableName>genders</RefTableName>
+      <RefColNames>gender_id</RefColNames>
+    </foreign-key>
+    <column id="619" parent="316" name="report_type_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="620" parent="316" name="report_type">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="621" parent="316" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>report_type_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="622" parent="317" name="reponse_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="623" parent="317" name="message">
+      <Position>2</Position>
+      <DataType>varchar(250)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="624" parent="317" name="sent_email_address">
+      <Position>3</Position>
+      <DataType>varchar(250)|0s</DataType>
+    </column>
+    <column id="625" parent="317" name="sent_date_time">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="626" parent="317" name="fr_report_id">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="627" parent="317" name="hsr_report_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <index id="628" parent="317" name="fk_fr_r_report_id">
+      <ColNames>fr_report_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="629" parent="317" name="fk_hsr_r_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="630" parent="317" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>reponse_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="631" parent="317" name="fk_fr_r_report_id">
+      <ColNames>fr_report_id</ColNames>
+      <RefTableName>feedback_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="632" parent="317" name="fk_hsr_r_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <RefTableName>health_status_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <column id="633" parent="318" name="review_status_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="634" parent="318" name="review_status">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="635" parent="318" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>review_status_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="636" parent="319" name="severity_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="637" parent="319" name="severity">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="638" parent="319" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>severity_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="639" parent="320" name="situation_status_id">
+      <Position>1</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="640" parent="320" name="situation_status">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="641" parent="320" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>situation_status_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="642" parent="321" name="standard_report_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="643" parent="321" name="hsr_report_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="644" parent="321" name="fk_hsr_shsr_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="645" parent="321" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>standard_report_id
+hsr_report_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="646" parent="321" name="fk_hsr_shsr_report_id">
+      <ColNames>hsr_report_id</ColNames>
+      <RefTableName>health_status_reports</RefTableName>
+      <RefColNames>report_id</RefColNames>
+    </foreign-key>
+    <column id="647" parent="322" name="user_type_id">
+      <Position>1</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="648" parent="322" name="user_type">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="649" parent="322" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_type_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="650" parent="323" name="symptom_id">
+      <Position>1</Position>
+      <DataType>mediumint|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="651" parent="323" name="symptom">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="652" parent="323" name="symptom_category">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="653" parent="323" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>symptom_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="654" parent="324" name="unregistered_user_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="655" parent="324" name="a_account_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="656" parent="324" name="nic">
+      <Position>3</Position>
+      <DataType>varchar(12)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="657" parent="324" name="passport_no">
+      <Position>4</Position>
+      <DataType>varchar(15)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="658" parent="324" name="street_address">
+      <Position>5</Position>
+      <DataType>varchar(120)|0s</DataType>
+    </column>
+    <column id="659" parent="324" name="c_city_id">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="660" parent="324" name="pc_postal_code_id">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="661" parent="324" name="d_district_id">
+      <Position>8</Position>
+      <DataType>tinyint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="662" parent="324" name="ag_age_group_id">
+      <Position>9</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <column id="663" parent="324" name="g_gender_id">
+      <Position>10</Position>
+      <DataType>tinyint|0s</DataType>
+    </column>
+    <index id="664" parent="324" name="fk_a_upu_account_id">
+      <ColNames>a_account_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="665" parent="324" name="fk_c_upu_city_id">
+      <ColNames>c_city_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="666" parent="324" name="fk_pc_upu_postal_code_id">
+      <ColNames>pc_postal_code_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="667" parent="324" name="fk_d_upu_district_id">
+      <ColNames>d_district_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="668" parent="324" name="fk_ag_upu_age_group_id">
+      <ColNames>ag_age_group_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="669" parent="324" name="fk_g_upu_gender_id">
+      <ColNames>g_gender_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="670" parent="324" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>unregistered_user_id
+a_account_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="671" parent="324" name="fk_a_upu_account_id">
+      <ColNames>a_account_id</ColNames>
+      <RefTableName>accounts</RefTableName>
+      <RefColNames>account_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="672" parent="324" name="fk_c_upu_city_id">
+      <ColNames>c_city_id</ColNames>
+      <RefTableName>cities</RefTableName>
+      <RefColNames>city_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="673" parent="324" name="fk_pc_upu_postal_code_id">
+      <ColNames>pc_postal_code_id</ColNames>
+      <RefTableName>postal_codes</RefTableName>
+      <RefColNames>postal_code_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="674" parent="324" name="fk_d_upu_district_id">
+      <ColNames>d_district_id</ColNames>
+      <RefTableName>districts</RefTableName>
+      <RefColNames>district_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="675" parent="324" name="fk_ag_upu_age_group_id">
+      <ColNames>ag_age_group_id</ColNames>
+      <RefTableName>age_groups</RefTableName>
+      <RefColNames>age_group_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="676" parent="324" name="fk_g_upu_gender_id">
+      <ColNames>g_gender_id</ColNames>
+      <RefTableName>genders</RefTableName>
+      <RefColNames>gender_id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

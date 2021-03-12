@@ -17,16 +17,16 @@ public class Login {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
-    @Column(name = "LoginId", nullable = false)
+    @Column(name = "login_id", nullable = false)
     private long loginId;
 
-    @Column(name = "EmailAddress")
+    @Column(name = "email_address")
     private String emailAddress;
-    @Column(name = "PasswordHash")
+    @Column(name = "password_hash")
     private String passwordHash;
-    @Column(name = "asAccountStatusID")
+    @Column(name = "as_account_status_id")
     private long asAccountStatusId;
-    @Column(name = "aAccountID")
+    @Column(name = "a_account_id")
     private long aAccountId;
 
     /* Class Methods */
