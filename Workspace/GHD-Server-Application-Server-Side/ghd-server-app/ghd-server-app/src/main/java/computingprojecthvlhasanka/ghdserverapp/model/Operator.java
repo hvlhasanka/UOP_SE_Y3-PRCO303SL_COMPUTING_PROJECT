@@ -22,7 +22,6 @@ public class Operator {
 
     @Column(name = "a_account_id")
     private long aAccountId;
-
     @Column(name = "a_registered_by_admin_id")
     private long aRegisteredByAdminId;
 

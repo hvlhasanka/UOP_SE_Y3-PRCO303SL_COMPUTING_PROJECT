@@ -9,16 +9,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "accountPhoneNumbers")
+@Table(name = "account_phone_numbers")
 public class AccountPhoneNumber implements Serializable {
 
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
-
+    @Column(name = "a_account_id", nullable = false)
     private long aAccountId;
     @Id
-    @Column(name = "PhoneNumber", nullable = false)
+    @Column(name = "phone_number", nullable = false)
     private int phoneNumber;
 
     /* Class Methods */
