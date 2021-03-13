@@ -394,20 +394,24 @@
     s_severity_id TINYINT NOT NULL,
     cc_colour_code_id INT NOT NULL,
     current_country_status BOOLEAN NOT NULL,
+    o_assigned_by_operator_id MEDIUMINT NOT NULL,
+    o_assigned_by_account_id INT NOT NULL,
     CONSTRAINT pk_country_status_id PRIMARY KEY (country_status_id),
     CONSTRAINT fk_ss_cs_sitation_status_id FOREIGN KEY (ss_situation_status_id) REFERENCES situation_statuses(situation_status_id),
     CONSTRAINT fk_s_cs_severity_id FOREIGN KEY (s_severity_id) REFERENCES severities(severity_id),
-    CONSTRAINT fk_cc_cs_colour_code_id FOREIGN KEY (cc_colour_code_id) REFERENCES colour_codes(colour_code_id)
+    CONSTRAINT fk_cc_cs_colour_code_id FOREIGN KEY (cc_colour_code_id) REFERENCES colour_codes(colour_code_id),
+    CONSTRAINT fk_o_cs_operator_id FOREIGN KEY (o_assigned_by_operator_id) REFERENCES operators(operator_id),
+    CONSTRAINT fk_o_cs_a_account_id FOREIGN KEY (o_assigned_by_account_id) REFERENCES operators(a_account_id)
   )ENGINE=INNODB;
   
 -- AUTO INCREMENT STARTING POINT: TABLE 17 - country_statuses
   ALTER TABLE country_statuses AUTO_INCREMENT = 0000000001;
   
 -- INSERTING RECORDS: TABLE 17 - country_statuses
-  INSERT INTO country_statuses(ss_situation_status_id, s_severity_id, cc_colour_code_id, current_country_status)
+  INSERT INTO country_statuses(ss_situation_status_id, s_severity_id, cc_colour_code_id, current_country_status, o_assigned_by_operator_id, o_assigned_by_account_id)
   VALUES 
-  (001, 001, 0000000001, 0),
-  (002, 002, 0000000002, 1);
+  (001, 001, 0000000001, 0, 0000001, 0000000002),
+  (002, 002, 0000000002, 1, 0000001, 0000000002);
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -476,10 +480,10 @@
     login_activity_id INT NOT NULL AUTO_INCREMENT,
     login_date_time DATETIME DEFAULT current_timestamp,
     logout_date_time DATETIME,
-    as_account_activity_id TINYINT NOT NULL,
+    aa_account_activity_id TINYINT NOT NULL,
     l_login_id INT NOT NULL,
     CONSTRAINT pk_login_activity PRIMARY KEY (login_activity_id),
-    CONSTRAINT fk_aa_la_account_activity_id FOREIGN KEY (as_account_activity_id) REFERENCES account_activities(account_activity_id),
+    CONSTRAINT fk_aa_la_account_activity_id FOREIGN KEY (aa_account_activity_id) REFERENCES account_activities(account_activity_id),
     CONSTRAINT fk_l_la_login_id FOREIGN KEY (l_login_id) REFERENCES logins(login_id)
   )ENGINE=INNODB;
 
