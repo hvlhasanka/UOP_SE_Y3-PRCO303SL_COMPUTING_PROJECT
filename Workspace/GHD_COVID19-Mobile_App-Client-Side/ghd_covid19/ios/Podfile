@@ -12,6 +12,8 @@ target 'ghd_covid19' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'ghd_covid19Tests' do
     inherit! :complete
     # Pods for testing
