@@ -7,16 +7,26 @@
 
 .loginSection{
   min-height: 100vh;
-  width: 30%;
+  width: 25%;
   float: left;
   background-color: rgb(76, 160, 199);
 }
 
 .coverImageSection{
   min-height: 100vh;
-  width: 70%;
+  width: 75%;
   float: right;
-  background-color: rgb(177, 240, 251);
+  background-color: rgb(175, 238, 253);
+}
+
+.coverImageContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.coverImage{
+  width: 65%;
+  height: 65%;
 }
 
 .logoContainer{
@@ -46,4 +56,18 @@
 
 .innerLoginContainer{
   min-height: 200px;
+}
+
+.loginHeading{
+  padding-top: 4%;
+  padding-left: 10%;
+  padding-bottom: 1%;
+}
+
+.emailInputTextField{
+  padding-left: 10%;
+}
+
+.passwordInputTextField{
+  padding-left: 10%;
 }

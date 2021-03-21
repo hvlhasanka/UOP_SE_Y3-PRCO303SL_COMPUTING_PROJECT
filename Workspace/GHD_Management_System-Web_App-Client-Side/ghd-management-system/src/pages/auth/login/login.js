@@ -2,8 +2,10 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 
 import './login.css';
-import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
 import HeadingOne from '../../../components/heading-one/heading-one.js';
+import InputTextField from '../../../components/input-text-field/input-text-field.js';
+import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
+import coverImage from '../../../assets/cover-image/cover-image.jpg';
 
 const Login = () => {
 
@@ -12,7 +14,7 @@ const Login = () => {
       <div className="loginSection">
         {/* Logo Container */}
         <div className="logoContainer">
-          <img src={logo} alt="ghdManagementSystemLogo" className="ghdManagementSystemLogo" />
+          <img src={logo} alt="GHD Management System Logo" className="ghdManagementSystemLogo" />
         </div>
 
         {/* Login Container */}
@@ -23,13 +25,10 @@ const Login = () => {
                 <HeadingOne className="loginHeading" headingTitle="Login" />
               </Grid>
               <Grid item xs={12}>
-                email
+                <InputTextField className="emailInputTextField" inputTextFieldHeading="Email Address" />
               </Grid>
               <Grid item xs={12}>
-                password
-              </Grid>
-              <Grid item xs={12}>
-                password
+                <InputTextField className="passwordInputTextField" inputTextFieldHeading="Password" />
               </Grid>
             </Grid>
             
@@ -38,7 +37,9 @@ const Login = () => {
 
       </div>
       <div className="coverImageSection">
-
+        <div className="coverImageContainer">
+          <img src={coverImage} alt="Cover Image" className="coverImage" />
+        </div>
       </div>
     </div>
   );
