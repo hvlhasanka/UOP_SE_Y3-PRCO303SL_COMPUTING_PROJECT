@@ -25,10 +25,10 @@ const Login = () => {
                 <HeadingOne className="loginHeading" headingTitle="Login" />
               </Grid>
               <Grid item xs={12}>
-                <InputTextField className="emailInputTextField" inputTextFieldHeading="Email Address" />
+                <InputTextField className="emailInputTextField" inputTextFieldHeading="Email Address" materialIconName="shaded-mail" />
               </Grid>
               <Grid item xs={12}>
-                <InputTextField className="passwordInputTextField" inputTextFieldHeading="Password" />
+                <InputTextField className="passwordInputTextField" inputTextFieldHeading="Password" materialIconName="shaded-lock" />
               </Grid>
             </Grid>
             
