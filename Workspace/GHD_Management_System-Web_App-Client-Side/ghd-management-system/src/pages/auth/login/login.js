@@ -10,6 +10,8 @@ import EmailIcon from '@material-ui/icons/Email';
 import InfoIcon from '@material-ui/icons/Info';
 import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authLogin } from '../../../services/index';
 
 import './login.css';
 import HeadingOne from '../../../components/heading-one/heading-one.js';
@@ -17,11 +19,30 @@ import HeadingTwo from '../../../components/heading-two/heading-two.js';
 import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
 import coverImage from '../../../assets/cover-image/cover-image.jpg';
 
-const Login = () => {
+const Login = (props) => {
 
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  resetLoginForm = () => {
+    setEmailAddress("");
+    setPassword("");
+  }
+
+  validateUser = () => {
+    props.authLogin(emailAddress, password);
+
+    setTimeout(() => {
+      if(props.login.isLoggedIn){
+        return props.history.push("/");
+      }
+      else {
+        resetLoginForm();
+        setState
+      }
+    });
+  }
 
   useEffect(() => {
     
@@ -185,4 +206,16 @@ const Login = () => {
 
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    auth: state.login
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    authLogin: (emailAddress, password) => dispatch(authLogin(emailAddress, password))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
