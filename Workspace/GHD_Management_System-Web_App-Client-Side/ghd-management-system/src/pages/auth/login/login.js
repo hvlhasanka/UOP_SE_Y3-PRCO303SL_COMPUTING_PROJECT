@@ -14,22 +14,36 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import './login.css';
-import HeadingOne from '../../../components/heading-one/heading-one.js';
-import HeadingTwo from '../../../components/heading-two/heading-two.js';
 import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
 import coverImage from '../../../assets/cover-image/cover-image.jpg';
+import { 
+  HeadingOne, 
+  HeadingTwo, 
+  ReportSubmission,
+  AboutModal
+} from '../../../components';
 
 function Login(){
 
   const { register, handleSubmit, errors } = useForm();
   const [emailAddressValidated, setEmailAddressValidated] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showReportSubmissionSection, setShowReportSubmissionSection] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState(false);
 
   const onLoginFormSubmit = (formData) => {
     if(formData.emailAddress != ""){
       setEmailAddressValidated(true);
     }
     console.log(formData);
+  }
+
+  const openReportSubmission = () => {
+    setShowReportSubmissionSection(!showReportSubmissionSection);
+  }
+
+  const handleShowAboutModal = () => {
+    setShowAboutModal(!showAboutModal)
   }
 
   useEffect(() => {
@@ -64,7 +78,10 @@ function Login(){
                               <EmailIcon />
                             </Grid>
                             <Grid item xs={10}>
-                              <HeadingTwo className="login__input-text-field-heading" headingTitle="Email Address" />
+                              <HeadingTwo 
+                                className="login__input-text-field-heading" 
+                                headingTitle="Email Address" 
+                              />
                             </Grid>
                             <Grid item xs={1} className="login__right-material-icon" >
                               <Tooltip title="Provide registered email address" arrow>
@@ -85,8 +102,13 @@ function Login(){
                             name="emailAddress"
                             variant="outlined" 
                             type="email"
+                            error={errors.emailAddress ? true : false}
                             inputRef={register({
-                              required: "Email is required"
+                              required: "Email is required",
+                              pattern: {
+                                value: /[a-zA-Z0-9._%-]+[.ghd]+@[gmail.com]+/,
+                                message: "Email is invalid"
+                              }
                             })}
                           />
                         </Grid>
@@ -133,7 +155,10 @@ function Login(){
                                 <LockIcon />
                               </Grid>
                               <Grid item xs={10}>
-                                <HeadingTwo className="login__input-text-field-heading" headingTitle="Password" />
+                                <HeadingTwo 
+                                  className="login__input-text-field-heading" 
+                                  headingTitle="Password" 
+                                />
                               </Grid>
                               <Grid item xs={1} className="login__right-material-icon" >
                                 <Tooltip title="Provide account password" arrow>
@@ -154,6 +179,7 @@ function Login(){
                               name="password"
                               variant="outlined"
                               type={showPassword === true ? "text" : "password"} 
+                              error={errors.password ? true : false}
                               inputRef={register({
                                 required: "Password required",
                                 minLength: {
@@ -176,12 +202,15 @@ function Login(){
                                 className="login__password_visibility_button"
                                 onClick={() => setShowPassword(!showPassword)}
                               >
-                                {showPassword === true ? <VisibilityOff /> : <Visibility />}
+                                {showPassword === true ? <Visibility /> : <VisibilityOff />}
                               </Button>
                             </Tooltip>
                           </Grid>
                           <Grid item xs={12}>
-                            <Button className="login__forgot-password-button" style={{textTransform: 'none'}}>
+                            <Button 
+                              className="login__forgot-password-button" 
+                              style={{textTransform: 'none'}}
+                            >
                               <b>Forgot password?</b>
                             </Button>
                           </Grid>
@@ -219,7 +248,12 @@ function Login(){
                 
                 <div className="login__no-account">
                   <p>Don't have an account?
-                    <Button variant="outlined" className="login__forgot-password-button" style={{textTransform: 'none'}}>
+                    <Button 
+                      variant="outlined" 
+                      className="login__forgot-password-button" 
+                      style={{textTransform: 'none'}}
+                      onClick={() => openReportSubmission()}
+                    >
                       <b>Submit Report</b>
                     </Button>
                   </p>
@@ -231,7 +265,11 @@ function Login(){
                 <div className="login__footer-row">
                   <Grid container justify="center" spacing={2}>
                     <Grid item xs={3}>
-                    <Button variant="outlined" className="login__report_button">
+                    <Button 
+                      variant="outlined" 
+                      className="login__report_button"
+                      onClick={() => openReportSubmission()}
+                    >
                       <b>REPORT</b>
                     </Button>
                     </Grid>
@@ -242,9 +280,19 @@ function Login(){
                       
                     </Grid>
                     <Grid item xs={3}>
-                      <Button variant="outlined" className="login__about-button">
+
+                      <Button 
+                        variant="outlined" 
+                        className="login__about-button"
+                        onClick={() => handleShowAboutModal()}
+                      >
                         <b>ABOUT</b>
                       </Button>
+
+                      {showAboutModal && 
+                        <AboutModal />
+                      }
+
                     </Grid>
                   </Grid>
                 </div>
@@ -255,6 +303,10 @@ function Login(){
           </div>
         </div>
 
+        {showReportSubmissionSection &&
+          <ReportSubmission />
+        }
+
       </div>
 
       {/* Cover Image Container */}
@@ -263,7 +315,7 @@ function Login(){
           <img src={coverImage} alt="Cover Image" className="login__cover-image" />
         </Link>
       </div>
-
+      
     </div>
   );
 

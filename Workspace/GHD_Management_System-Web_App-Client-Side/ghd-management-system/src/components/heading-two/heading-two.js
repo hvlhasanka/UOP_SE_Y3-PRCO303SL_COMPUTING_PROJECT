@@ -4,11 +4,12 @@ import './heading-two.css';
 
 const HeadingTwo = ({
   headingTitle,
+  boldText,
   className
 }) => {
 
   return(
-    <h2 className={`headingTwo ${className}`}>{headingTitle}</h2>
+    <h2 className={`headingTwo ${className}`}>{headingTitle} <b>{boldText}</b></h2>
   );
 
 }
