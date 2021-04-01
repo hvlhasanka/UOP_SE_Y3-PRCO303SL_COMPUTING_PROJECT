@@ -2,7 +2,8 @@
 
 
 ### Credits -
-Images used in this application was taken from icons8.com.
+Images for the prototype were taken from icons8.com.
+Logo was taken from freepik.com.
 
 ### License -
 Copyright (c) 2021 H.V.L. Hasanka <br/>
