@@ -3,9 +3,9 @@ package com.computingprojecthvlhasanka.ghdserverapp.auth.service;
 import java.util.Arrays;
 import java.util.List;
 
-import com.computingprojecthvlhasanka.ghdserverapp.auth.model.DAOUser;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.model.UserDTO;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.UserRepository;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginEntity;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,17 +20,20 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
 
   @Autowired
-	private UserRepository userDao;
+	private LoginRepository userDao;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
   
+  /**
+   * Retrieving user record from the MySQL DB using the email address
+   */
   @Override
   public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
     List<SimpleGrantedAuthority> roles = null;
 
     // Retrieving the particular user's record from the MySQL DB using the request emailAddress
-    DAOUser user = userDao.findByEmailAddress(emailAddress);
+    LoginEntity user = userDao.findByEmailAddress(emailAddress);
 
     // Checking whether a user is available
     if (user != null) {
@@ -45,12 +48,17 @@ public class CustomUserDetailsService implements UserDetailsService {
   
   }
 
-  public DAOUser save(UserDTO user) {
-		DAOUser newUser = new DAOUser();
-		newUser.setEmailAddress(user.getEmailAddress());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		newUser.setRole(user.getRole());
-		return userDao.save(newUser);
+  /**
+   * Inserting a new record into the 'Logins' relation in the MySQL DB
+   */
+  public LoginEntity addLoginRecord(LoginModel user) {
+
+		LoginEntity newLoginRecord = new LoginEntity();
+		newLoginRecord.setEmailAddress(user.getEmailAddress());
+		newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
+		newLoginRecord.setRole(user.getRole());
+		return userDao.save(newLoginRecord);
+
 	}
 
 }

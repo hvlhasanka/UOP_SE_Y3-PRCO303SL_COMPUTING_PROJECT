@@ -1,3 +1,6 @@
+/**
+ * Model: AuthenticationRequest
+ */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.model;
 
 public class AuthenticationRequest {

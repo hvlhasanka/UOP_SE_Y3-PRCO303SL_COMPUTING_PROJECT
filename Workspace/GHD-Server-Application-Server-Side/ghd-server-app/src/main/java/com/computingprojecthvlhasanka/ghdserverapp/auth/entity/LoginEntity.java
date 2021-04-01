@@ -1,21 +1,19 @@
 /**
- * Model: Login
+ * Entity: Login
  * Database Relation: 'logins'
  */
 
-package com.computingprojecthvlhasanka.ghdserverapp.account.model;
+package com.computingprojecthvlhasanka.ghdserverapp.auth.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 
 @Entity
 @Table(name = "logins")
-public class Login {
+public class LoginEntity {
 
     /* Class Attributes */
     // Declaring private class attributes (variables)
@@ -25,19 +23,19 @@ public class Login {
 
     @Column(name = "email_address")
     private String emailAddress;
-    @Column(name = "password_hash")
-    private String passwordHash;
-    @Column(name = "as_account_status_id")
-    private long asAccountStatusId;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "role")
+    private String role;
 
-    @OneToOne(fetch = FetchType.LAZY,
-    cascade = CascadeType.ALL,
-    mappedBy = "login")
-    private Account account;
+    // @OneToOne(fetch = FetchType.LAZY,
+    // cascade = CascadeType.ALL,
+    // mappedBy = "login")
+    // private Account account;
 
     /* Class Methods */
     // Default constructor
-    public Login() { }
+    public LoginEntity() { }
 
     // Setters and Getters
     public long getLoginId() {
@@ -56,20 +54,20 @@ public class Login {
         this.emailAddress = emailAddress;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public long getAsAccountStatusId() {
-        return asAccountStatusId;
+    public String getRole() {
+        return this.role;
     }
 
-    public void setAsAccountStatusId(long asAccountStatusId) {
-        this.asAccountStatusId = asAccountStatusId;
+    public void setRole(String role) {
+        this.role = role;
     }
-
+    
 }

@@ -1,3 +1,6 @@
+/**
+ * Model: AuthenticationResponse
+ */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.model;
 
 public class AuthenticationResponse {

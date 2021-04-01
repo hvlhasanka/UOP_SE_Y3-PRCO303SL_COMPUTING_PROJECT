@@ -22,7 +22,7 @@ import io.jsonwebtoken.impl.DefaultClaims;
 
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationRequest;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationResponse;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.model.UserDTO;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.service.CustomUserDetailsService;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.util.JwtAuthUtil;
 
@@ -79,8 +79,8 @@ public class AuthenticationController {
    * @throws Exception
    */
   @RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.save(user));
+	public ResponseEntity<?> saveUser(@RequestBody LoginModel user) throws Exception {
+		return ResponseEntity.ok(userDetailsService.addLoginRecord(user));
 	}
 
   /**

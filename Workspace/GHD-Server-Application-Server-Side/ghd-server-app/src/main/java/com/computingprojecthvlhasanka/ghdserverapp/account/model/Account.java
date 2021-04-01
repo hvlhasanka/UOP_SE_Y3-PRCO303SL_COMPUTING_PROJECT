@@ -5,11 +5,7 @@
 
 package com.computingprojecthvlhasanka.ghdserverapp.account.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "accounts")
@@ -38,9 +34,9 @@ public class Account {
 //    @Column(name = "CreatedDateTime")
 //    private String createdDateTime;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "a_account_id", nullable = false)
-    private Login login;
+    // @OneToOne(fetch = FetchType.LAZY, optional = false)
+    // @JoinColumn(name = "a_account_id", nullable = false)
+    // private Login login;
 
     /* Class Methods */
     // Default constructor
