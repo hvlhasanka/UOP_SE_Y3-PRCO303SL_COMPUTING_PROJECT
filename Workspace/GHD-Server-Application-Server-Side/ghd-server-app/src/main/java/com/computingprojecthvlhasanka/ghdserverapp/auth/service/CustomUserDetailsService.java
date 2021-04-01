@@ -26,28 +26,28 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private PasswordEncoder bcryptEncoder;
   
   @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
     List<SimpleGrantedAuthority> roles = null;
 
-    // Retrieving the particular user's record from the MySQL DB using the request username
-    DAOUser user = userDao.findByUsername(username);
+    // Retrieving the particular user's record from the MySQL DB using the request emailAddress
+    DAOUser user = userDao.findByEmailAddress(emailAddress);
 
     // Checking whether a user is available
     if (user != null) {
       // Passing the available roles into an array
 			roles = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
-      // Returning the username, password, and role
-			return new User(user.getUsername(), user.getPassword(), roles);
+      // Returning the email address, password, and role
+			return new User(user.getEmailAddress(), user.getPassword(), roles);
 		}
 
-    // Complied if the username is not found in the MySQL DB
-		throw new UsernameNotFoundException("User not found with the name: " + username);
+    // Complied if the email address is not found in the MySQL DB
+		throw new UsernameNotFoundException("User not found with the name: " + emailAddress);
   
   }
 
   public DAOUser save(UserDTO user) {
 		DAOUser newUser = new DAOUser();
-		newUser.setUsername(user.getUsername());
+		newUser.setEmailAddress(user.getEmailAddress());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 		newUser.setRole(user.getRole());
 		return userDao.save(newUser);

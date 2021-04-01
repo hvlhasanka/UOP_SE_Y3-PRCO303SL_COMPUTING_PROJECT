@@ -10,7 +10,7 @@ public class DAOUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column
-	private String username;
+	private String emailAddress;
 	@Column
 	private String password;
 	@Column
@@ -24,12 +24,12 @@ public class DAOUser {
 		this.role = role;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getPassword() {

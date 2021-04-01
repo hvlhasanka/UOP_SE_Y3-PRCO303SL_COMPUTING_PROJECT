@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<DAOUser, Long> {
 
-  // Defining custom database query to search a record by the username
-  DAOUser findByUsername(String username);
+  // Defining custom database query to search a record by the emailAddress
+  DAOUser findByEmailAddress(String emailAddress);
 }

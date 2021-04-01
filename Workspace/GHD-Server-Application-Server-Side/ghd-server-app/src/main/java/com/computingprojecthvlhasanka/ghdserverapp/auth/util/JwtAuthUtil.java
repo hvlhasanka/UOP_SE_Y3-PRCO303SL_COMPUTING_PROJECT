@@ -69,7 +69,7 @@ public class JwtAuthUtil {
   /**
    * Creating the structure of the jwt token -
    * Assigning the claims - payload contents
-   * Assigning the subject - user's username or key variable
+   * Assigning the subject - user's email address or key variable
    * Assigning jwt token created datatime in milliseconds
    * Assigning jwt token expiration datatime by incrementing the current datatime with the declared expiration milliseconds
    * Encrypting the newly created token using the HS512 algorithm and the declared secret key
@@ -120,7 +120,7 @@ public class JwtAuthUtil {
 	}
 	
   /**
-   * Extracting the username from the retrieved jwt token
+   * Extracting the email address from the retrieved jwt token
    * @param jwtToken
    * @return
    */
@@ -128,7 +128,7 @@ public class JwtAuthUtil {
     // Extracting the claims(payload) from the jwt token
 		Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken).getBody();
 
-    // Extracting the username or the key variable
+    // Extracting the email address or the key variable
 		return claims.getSubject();
 	}
 

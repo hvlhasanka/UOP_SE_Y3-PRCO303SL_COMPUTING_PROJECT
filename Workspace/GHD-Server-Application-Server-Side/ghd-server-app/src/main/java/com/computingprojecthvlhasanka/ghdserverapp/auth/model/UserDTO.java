@@ -1,7 +1,7 @@
 package com.computingprojecthvlhasanka.ghdserverapp.auth.model;
 
 public class UserDTO {
-	private String username;
+	private String emailAddress;
 	private String password;
 	private String role;
 
@@ -13,12 +13,12 @@ public class UserDTO {
 		this.role = role;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getPassword() {

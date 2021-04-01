@@ -51,7 +51,7 @@ public class AuthenticationController {
       throws Exception {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-        authenticationRequest.getUsername(), 
+        authenticationRequest.getEmailAddress(), 
         authenticationRequest.getPassword()
         )
       );
@@ -61,8 +61,8 @@ public class AuthenticationController {
       throw new Exception("INVALID_CREDENTIALS", e);
     }
 
-    // Retrieving the username and creating the user details
-    final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+    // Retrieving the email address and creating the user details
+    final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmailAddress());
 
     // Creating the jwt token by passing the user details
     final String token = jwtAuthTokenUtil.generateJwtToken(userDetails);
