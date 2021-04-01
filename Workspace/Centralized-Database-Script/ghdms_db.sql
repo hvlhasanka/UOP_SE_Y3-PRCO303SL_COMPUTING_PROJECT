@@ -451,9 +451,9 @@
 -- INSERTING RECORDS: TABLE 19 - logins
   INSERT INTO logins(email_address, password_hash, as_account_status_id, a_account_id) 
   VALUES 
-  ('lucasanderson.ghd@gmail.com', '', 001, 0000000001), -- User Type: Administrator   |   Password:   
-  ('andrewwilcom.ghd@gmail.com', '', 001, 0000000002), -- User Type: Operator   |   Password:           
-  ('jackcooper24@gmail.com', '', 001, 0000000003); -- User Type: Registered Public User   |   Password:      
+  ('lucasanderson.ghd@gmail.com', '444', 001, 0000000001), -- User Type: Administrator   |   Password:   
+  ('andrewwilcom.ghd@gmail.com', '444', 001, 0000000002), -- User Type: Operator   |   Password:           
+  ('jackcooper24@gmail.com', '444', 001, 0000000003); -- User Type: Registered Public User   |   Password:      
 
 -- |------------------------------------------------------------------------------------------------|
 
