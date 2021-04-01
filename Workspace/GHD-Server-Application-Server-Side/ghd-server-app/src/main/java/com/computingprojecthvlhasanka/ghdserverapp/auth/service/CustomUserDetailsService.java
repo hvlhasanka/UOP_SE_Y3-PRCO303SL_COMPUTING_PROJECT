@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
 
   @Autowired
-	private LoginRepository userDao;
+	private LoginRepository loginRepository;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
@@ -33,14 +33,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     List<SimpleGrantedAuthority> roles = null;
 
     // Retrieving the particular user's record from the MySQL DB using the request emailAddress
-    LoginEntity user = userDao.findByEmailAddress(emailAddress);
+    LoginEntity loginEntity = loginRepository.findByEmailAddress(emailAddress);
 
     // Checking whether a user is available
-    if (user != null) {
+    if (loginEntity != null) {
       // Passing the available roles into an array
-			roles = Arrays.asList(new SimpleGrantedAuthority(user.getRole()));
+			roles = Arrays.asList(new SimpleGrantedAuthority(loginEntity.getRole()));
       // Returning the email address, password, and role
-			return new User(user.getEmailAddress(), user.getPassword(), roles);
+			return new User(loginEntity.getEmailAddress(), loginEntity.getPassword(), roles);
 		}
 
     // Complied if the email address is not found in the MySQL DB
@@ -57,7 +57,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		newLoginRecord.setEmailAddress(user.getEmailAddress());
 		newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
 		newLoginRecord.setRole(user.getRole());
-		return userDao.save(newLoginRecord);
+		return loginRepository.save(newLoginRecord);
 
 	}
 

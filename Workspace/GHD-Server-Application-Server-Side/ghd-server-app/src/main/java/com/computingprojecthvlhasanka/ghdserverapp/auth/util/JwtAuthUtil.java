@@ -56,11 +56,14 @@ public class JwtAuthUtil {
 
     Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
 
-		if (roles.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-			claims.put("isAdmin", true);
+		if (roles.contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))) {
+			claims.put("isAdministrator", true);
 		}
-		if (roles.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-			claims.put("isUser", true);
+		if (roles.contains(new SimpleGrantedAuthority("ROLE_OPERATOR"))) {
+			claims.put("isOperator", true);
+		}
+    if (roles.contains(new SimpleGrantedAuthority("ROLE_REGISTERED_PUBLIC_USER"))) {
+			claims.put("isRegisteredPublicUser", true);
 		}
 
 		return doGenerateJwtToken(claims, userDetails.getUsername());
@@ -95,9 +98,11 @@ public class JwtAuthUtil {
    * @return
    */
   public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
+
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + jwtRefreshExpirationMilliseconds))
 				.signWith(SignatureAlgorithm.HS512, secretKey).compact();
+
 	}
 
   /**
@@ -107,15 +112,21 @@ public class JwtAuthUtil {
    */
   public boolean validateJwtToken(String authJwtToken) {
 		try {
+
 			// Validating jwt token
 			Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authJwtToken);
 			return true;
+
 		} catch (SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException jwtTokenTamperingException) {
+     
       // Checking for the particular exceptions
       throw new BadCredentialsException("INVALID_CREDENTIALS-JWT_TOKEN_INVALID", jwtTokenTamperingException);
+
 		} catch (ExpiredJwtException jwtTokenExpiredException) {
+
       // Checking whether the retrieved jwt token has expired according the assigned expiration timestamp
 			throw jwtTokenExpiredException;
+
 		}
 	}
 	
@@ -124,7 +135,7 @@ public class JwtAuthUtil {
    * @param jwtToken
    * @return
    */
-	public String getUsernameFromJwtToken(String jwtToken) {
+	public String getEmailAddressFromJwtToken(String jwtToken) {
     // Extracting the claims(payload) from the jwt token
 		Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken).getBody();
 
@@ -138,21 +149,31 @@ public class JwtAuthUtil {
    * @return
    */
 	public List<SimpleGrantedAuthority> getRolesFromJwtToken(String authJwtToken) {
+
     // Variable declaration | Initialization - to store user roles
 		List<SimpleGrantedAuthority> userRoles = null;
+
     // Extracting the claims(payload) from the jwt token
 		Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authJwtToken).getBody();
+
     // Extracting the boolean values of the assigned user role claims
-		Boolean isAdmin = claims.get("isAdmin", Boolean.class);
-		Boolean isUser = claims.get("isUser", Boolean.class);
+		Boolean isAdministrator = claims.get("isAdministrator", Boolean.class);
+		Boolean isOperator = claims.get("isOperator", Boolean.class);
+		Boolean isRegisteredPublicUser = claims.get("isRegisteredPublicUser", Boolean.class);
+
     // Checking the instance of the user roles and assigning the 'userRoles' variable
-		if (isAdmin != null && isAdmin == true) {
-			userRoles = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		if (isAdministrator != null && isAdministrator == true) {
+			userRoles = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"));
 		}
-		if (isUser != null && isUser == true) {
-			userRoles = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+		if (isOperator != null && isOperator == true) {
+			userRoles = Arrays.asList(new SimpleGrantedAuthority("ROLE_OPERATOR"));
 		}
+    if (isRegisteredPublicUser != null && isRegisteredPublicUser == true) {
+			userRoles = Arrays.asList(new SimpleGrantedAuthority("ROLE_REGISTERED_PUBLIC_USER"));
+		}
+
 		return userRoles;
+
 	}
 
 }

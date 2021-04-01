@@ -48,7 +48,7 @@ public class CustomJwtAuthenticationFilter extends OncePerRequestFilter {
 
           // Creating a new user details object by passing
           // the email address, password and user role
-          UserDetails userDetails = new User(jwtTokenUtil.getUsernameFromJwtToken(jwtToken), "",
+          UserDetails userDetails = new User(jwtTokenUtil.getEmailAddressFromJwtToken(jwtToken), "",
               jwtTokenUtil.getRolesFromJwtToken(jwtToken));
 
           // Creating a UsernamePasswordAuthenticationToken object by passing the newly created 'userDetails'
