@@ -3,15 +3,15 @@
  */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.model;
 
-public class AuthenticationResponse {
+public class AuthenticationResponseModel {
 
   private String jwtToken;
 
-  public AuthenticationResponse(String jwtToken) {
+  public AuthenticationResponseModel(String jwtToken) {
     this.jwtToken = jwtToken;
   }
 
-  public AuthenticationResponse() {
+  public AuthenticationResponseModel() {
   }
 
   public String getJwtToken() {

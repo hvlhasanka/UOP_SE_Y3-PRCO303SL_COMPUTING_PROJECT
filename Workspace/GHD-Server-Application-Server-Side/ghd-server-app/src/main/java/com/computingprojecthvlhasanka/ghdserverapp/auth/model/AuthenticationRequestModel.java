@@ -3,18 +3,17 @@
  */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.model;
 
-public class AuthenticationRequest {
+public class AuthenticationRequestModel {
 
   private String emailAddress;
   private String password;
 
-  public AuthenticationRequest(String emailAddress, String password) {
+  public AuthenticationRequestModel(String emailAddress, String password) {
     this.emailAddress = emailAddress;
     this.password = password;
   }
 
-  public AuthenticationRequest() {
-  }
+  public AuthenticationRequestModel() { }
 
   public String getEmailAddress() {
     return emailAddress;

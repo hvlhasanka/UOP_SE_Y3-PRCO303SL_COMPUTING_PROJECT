@@ -6,9 +6,10 @@
 package com.computingprojecthvlhasanka.ghdserverapp.auth.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import javax.persistence.Column;
 
 @Entity
@@ -18,6 +19,7 @@ public class LoginEntity {
     /* Class Attributes */
     // Declaring private class attributes (variables)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "login_id", nullable = false)
     private long loginId;
 
@@ -28,14 +30,16 @@ public class LoginEntity {
     @Column(name = "role")
     private String role;
 
-    // @OneToOne(fetch = FetchType.LAZY,
-    // cascade = CascadeType.ALL,
-    // mappedBy = "login")
-    // private Account account;
-
     /* Class Methods */
     // Default constructor
     public LoginEntity() { }
+
+    // Parameterized constructor
+    public LoginEntity(String emailAddress, String password, String role) {
+        this.emailAddress = emailAddress;
+        this.password = password;
+        this.role = role;
+    }
 
     // Setters and Getters
     public long getLoginId() {
