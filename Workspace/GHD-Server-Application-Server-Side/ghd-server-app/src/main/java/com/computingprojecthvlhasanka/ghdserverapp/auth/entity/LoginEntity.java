@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
+
+import com.computingprojecthvlhasanka.ghdserverapp.account.entity.AccountEntity;
+
 import javax.persistence.Column;
 
 @Entity
@@ -29,16 +31,21 @@ public class LoginEntity {
 
     @Column(name = "email_address")
     private String emailAddress;
+
     @Column(name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "login_role_id")
     private LoginRoleEntity loginRole;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "as_account_status_id")
     private AccountStatusEntity accountStatus;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "a_account_id")
+    private AccountEntity account;
 
     /* Class Methods */
     // Default constructor

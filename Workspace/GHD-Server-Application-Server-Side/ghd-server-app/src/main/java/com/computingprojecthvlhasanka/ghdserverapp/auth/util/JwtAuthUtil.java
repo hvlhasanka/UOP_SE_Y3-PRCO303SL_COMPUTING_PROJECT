@@ -56,6 +56,7 @@ public class JwtAuthUtil {
 
     Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
 
+    // Defining user role to the claims to pass through the jwt token
 		if (roles.contains(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"))) {
 			claims.put("isAdministrator", true);
 		}
@@ -66,6 +67,7 @@ public class JwtAuthUtil {
 			claims.put("isRegisteredPublicUser", true);
 		}
 
+    // Defining account status to the claims to pass through the jwt token
     if(accountStatus == "DISABLED"){
       claims.put("accountStatus", "DISABLED");
     }

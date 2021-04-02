@@ -3,16 +3,23 @@
  * Database Relation: 'accountTypes'
  */
 
-package com.computingprojecthvlhasanka.ghdserverapp.account.model;
+package com.computingprojecthvlhasanka.ghdserverapp.account.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "accountTypes")
-public class AccountType {
+public class AccountTypeEntity {
 
     /* Class Attributes */
     // Declaring private class attributes (variables)
@@ -20,12 +27,19 @@ public class AccountType {
     @Column(name = "AccountTypeId", nullable = false)
     private long accountTypeId;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "AccountType")
-    private String accountType;
+    private AccountTypeEnum accountType;
+
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.EAGER, 
+    mappedBy = "accountType")
+    @PrimaryKeyJoinColumn
+    private AccountEntity account;
 
     /* Class Methods */
     // Default constructor
-    public AccountType() { }
+    public AccountTypeEntity() { }
 
     // Setters and Getters
     public long getAccountTypeId() {
@@ -36,11 +50,11 @@ public class AccountType {
         this.accountTypeId = accountTypeId;
     }
 
-    public String getAccountType() {
+    public AccountTypeEnum getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountTypeEnum accountType) {
         this.accountType = accountType;
     }
 

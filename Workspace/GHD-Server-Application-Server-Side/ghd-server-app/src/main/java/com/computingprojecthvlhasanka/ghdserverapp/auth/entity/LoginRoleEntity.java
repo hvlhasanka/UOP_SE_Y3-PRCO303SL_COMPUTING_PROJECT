@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -36,7 +35,6 @@ public class LoginRoleEntity {
 
   @JsonBackReference
   @OneToOne(fetch = FetchType.EAGER, 
-  cascade = CascadeType.ALL, 
   mappedBy = "loginRole")
   @PrimaryKeyJoinColumn
   private LoginEntity login;

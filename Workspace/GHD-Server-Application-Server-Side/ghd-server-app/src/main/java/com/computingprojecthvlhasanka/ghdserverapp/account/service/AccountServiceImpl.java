@@ -1,6 +1,6 @@
 package com.computingprojecthvlhasanka.ghdserverapp.account.service;
 
-import com.computingprojecthvlhasanka.ghdserverapp.account.model.Account;
+import com.computingprojecthvlhasanka.ghdserverapp.account.entity.AccountEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.account.repository.AccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +17,25 @@ public class AccountServiceImpl implements AccountService {
 
     // POST - Saving a new account
     @Override
-    public Account saveAccount(Account account) {
+    public AccountEntity saveAccount(AccountEntity account) {
         return accountRepository.save(account);
     }
 
     // POST - Saving a list of accounts
     @Override
-    public List<Account> saveAccounts(List<Account> accounts) {
+    public List<AccountEntity> saveAccounts(List<AccountEntity> accounts) {
         return accountRepository.saveAll(accounts);
     }
 
     // GET - Retrieving all accounts
     @Override
-    public List<Account> getAllAccounts() {
+    public List<AccountEntity> getAllAccounts() {
         return accountRepository.findAll();
     }
 
     // GET - Retrieving an account according to the 'AccountID'
     @Override
-    public Account getAccountByAccountId(long accountId) {
+    public AccountEntity getAccountByAccountId(long accountId) {
         return accountRepository.findById(accountId).orElse(null);
     }
 

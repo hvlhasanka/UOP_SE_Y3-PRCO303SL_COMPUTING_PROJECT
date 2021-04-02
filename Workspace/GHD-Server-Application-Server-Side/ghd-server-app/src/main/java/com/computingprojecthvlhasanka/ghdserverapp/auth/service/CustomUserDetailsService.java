@@ -10,7 +10,6 @@ import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEnum;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.LoginRepository;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.LoginRoleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -69,6 +68,9 @@ public class CustomUserDetailsService implements UserDetailsService {
   
   }
 
+  /**
+   * Checking the user's account status
+   */
   public String checkAccountStatus(String emailAddress){
 
     String accountStatus = null;

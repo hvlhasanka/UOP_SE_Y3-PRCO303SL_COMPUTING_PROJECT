@@ -1,6 +1,6 @@
 package com.computingprojecthvlhasanka.ghdserverapp.account.service;
 
-import com.computingprojecthvlhasanka.ghdserverapp.account.model.Account;
+import com.computingprojecthvlhasanka.ghdserverapp.account.entity.AccountEntity;
 
 import org.springframework.stereotype.Service;
 
@@ -11,16 +11,16 @@ import java.util.List;
 public interface AccountService {
 
     // POST - Saving a new account
-    Account saveAccount(Account account);
+    AccountEntity saveAccount(AccountEntity account);
 
     // POST - Saving a list of accounts
-    List<Account> saveAccounts(List<Account> accounts);
+    List<AccountEntity> saveAccounts(List<AccountEntity> accounts);
 
     // GET - Retrieving all accounts
-    List<Account> getAllAccounts();
+    List<AccountEntity> getAllAccounts();
 
     // GET - Retrieving an account according to the 'AccountID'
-    Account getAccountByAccountId(long accountId);
+    AccountEntity getAccountByAccountId(long accountId);
 
     // GET - Retrieving accounts according to the 'LastName'
    // List<Account> getAccountsByLastName(String lastName);
