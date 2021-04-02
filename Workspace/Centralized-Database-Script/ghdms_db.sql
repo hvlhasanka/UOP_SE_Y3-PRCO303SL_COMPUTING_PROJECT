@@ -437,9 +437,10 @@
   CREATE TABLE logins(
     login_id INT NOT NULL AUTO_INCREMENT,
     email_address VARCHAR(250) NOT NULL UNIQUE,
-    password_hash VARCHAR(150) NOT NULL,
-    as_account_status_id TINYINT NOT NULL,
-    a_account_id INT NOT NULL,
+    password VARCHAR(150) NOT NULL,
+    role VARCHAR(30) NOT NULL,
+    as_account_status_id TINYINT,
+    a_account_id INT,
     CONSTRAINT pk_login PRIMARY KEY (login_id),
     CONSTRAINT fk_as_l_account_status_id FOREIGN KEY (as_account_status_id) REFERENCES account_statuses(account_status_id),
     CONSTRAINT fk_a_l_account_id FOREIGN KEY (a_account_id) REFERENCES accounts(account_id)
@@ -449,11 +450,11 @@
   ALTER TABLE logins AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 19 - logins
-  INSERT INTO logins(email_address, password_hash, as_account_status_id, a_account_id) 
+  INSERT INTO logins(email_address, password, role, as_account_status_id, a_account_id, ) 
   VALUES 
-  ('lucasanderson.ghd@gmail.com', '444', 001, 0000000001), -- User Type: Administrator   |   Password:   
-  ('andrewwilcom.ghd@gmail.com', '444', 001, 0000000002), -- User Type: Operator   |   Password:           
-  ('jackcooper24@gmail.com', '444', 001, 0000000003); -- User Type: Registered Public User   |   Password:      
+  ('lucasanderson.ghd@gmail.com', '$2y$10$kw0RlRCWYswnDkMMCLo1WOETGLa2pNNTai.Up4A2xgeNo1MvxG7dS', "ROLE_ADMINISTRATOR", 001, 0000000001),    -- User Type: Administrator          |   Password: $lUcasaNdeSon432
+  ('andrewwilcom.ghd@gmail.com', '$2y$10$677MQa6CaFp4HrOGpcXVHedilhf2wUm67pDdJOlnqheowsmHnJK0u', "ROLE_OPERATOR", 001, 0000000002),          -- User Type: Operator               |   Password: aNdrew95WilSon#         
+  ('jackcooper24@gmail.com', '$2y$10$eZzk9Wo34I80IN730yxeZuEuNKGYPr2bCdY5afIo42gGh6UymfVVq', "ROLE_REGISTERED_PUBLIC_USER", 001, 0000000003) -- User Type: Registered Public User |   Password: Cooper28$jAck     
 
 -- |------------------------------------------------------------------------------------------------|
 

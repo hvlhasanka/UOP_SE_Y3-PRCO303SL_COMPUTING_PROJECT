@@ -6,10 +6,14 @@
 package com.computingprojecthvlhasanka.ghdserverapp.auth.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 @Entity
@@ -27,18 +31,21 @@ public class LoginEntity {
     private String emailAddress;
     @Column(name = "password")
     private String password;
-    @Column(name = "role")
-    private String role;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "login_role_id")
+    private LoginRoleEntity loginRole;
 
     /* Class Methods */
     // Default constructor
     public LoginEntity() { }
 
     // Parameterized constructor
-    public LoginEntity(String emailAddress, String password, String role) {
+    public LoginEntity(String emailAddress, String password, LoginRoleEntity loginRole) {
+        super();
         this.emailAddress = emailAddress;
         this.password = password;
-        this.role = role;
+        this.loginRole = loginRole;
     }
 
     // Setters and Getters
@@ -66,12 +73,12 @@ public class LoginEntity {
         this.password = password;
     }
 
-    public String getRole() {
-        return this.role;
+    public LoginRoleEntity getLoginRole() {
+        return this.loginRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setLoginRole(LoginRoleEntity loginRole) {
+        this.loginRole = loginRole;
     }
     
 }
