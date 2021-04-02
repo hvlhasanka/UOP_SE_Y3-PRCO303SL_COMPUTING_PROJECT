@@ -29,12 +29,12 @@
 -- INSERTING RECORDS: TABLE 1 - name_prefixes
   INSERT INTO name_prefixes(name_prefix)  
   VALUES
-  ("Sir."),
-  ("Mr."),
-  ("Miss."),
-  ("Ms."),
-  ("Mrs."),
-  ("Dr.");
+  ("SIR"),
+  ("MR"),
+  ("MISS."),
+  ("MS"),
+  ("MRS"),
+  ("DR");
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -51,10 +51,10 @@
 -- INSERTING RECORDS: TABLE 2 - account_types
   INSERT INTO account_types(account_type)
   VALUES 
-  ('Administrator'),
-  ('Operator'),
-  ('Registered Public User'),
-  ('Unregistered Public User');
+  ('ADMINISTRATOR'),
+  ('OPERATOR'),
+  ('REGISTERED_PUBLIC_USER'),
+  ('UNREGISTERED_PUBLIC_USER');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -211,10 +211,10 @@
 -- INSERTING RECORDS: TABLE 9 - genders
   INSERT INTO genders(gender) 
   VALUES 
-  ('Male'),
-  ('Female'),
-  ('Other'),
-  ('Rather Not Mention');
+  ('MALE'),
+  ('FEMALE'),
+  ('OTHER'),
+  ('RATHER NOT MENTION');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -447,8 +447,8 @@
 -- INSERTING RECORDS: TABLE 19 - account_statuses
   INSERT INTO account_statuses(account_status) 
   VALUES 
-  ('Enabled'),
-  ('Disabled');
+  ('ENABLED'),
+  ('DISABLED');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -602,9 +602,9 @@
 -- INSERTING RECORDS: TABLE 25 - submitted_user_types
   INSERT INTO submitted_user_types(user_type) 
   VALUES 
-  ('Operator'),
-  ('Registered Public User'),
-  ('Operator Forwarded Registered Public User');
+  ('OPERATOR'),
+  ('REGISTERED_PUBLIC_USER'),
+  ('OPERATOR_FORWARDED_REGISTERED_PUBLIC_USER');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -769,8 +769,8 @@
 -- INSERTING RECORDS: TABLE 32 - report_types
   INSERT INTO report_types(report_type) 
   VALUES 
-  ('Enduring Severe Symptoms'),
-  ('PCR Test Disease Positive');
+  ('ENDURING_SEVERE_SYMPTOMS'),
+  ('PCR_TEST_DISEASE_POSITIVE');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -832,8 +832,8 @@
 -- INSERTING RECORDS: TABLE 35 - health_detail_categories
   INSERT INTO health_detail_categories(category) 
   VALUES 
-  ('Health Guidelines'),
-  ('Curfew Announcement');
+  ('HEALTH_GUIDELINES'),
+  ('CURFEW_ANNOUNCEMENT');
 
 -- |------------------------------------------------------------------------------------------------|
 
