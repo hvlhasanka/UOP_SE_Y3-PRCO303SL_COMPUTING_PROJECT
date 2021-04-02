@@ -415,17 +415,36 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 18 - account_statuses
+-- CREATING TABLE: TABLE 18 - login_roles
+  CREATE TABLE login_roles(
+    role_id TINYINT NOT NULL AUTO_INCREMENT,
+    role VARCHAR(30) NOT NULL,
+    CONSTRAINT pk_login_role PRIMARY KEY (role_id)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 18 - login_roles
+  ALTER TABLE login_roles AUTO_INCREMENT = 001;
+  
+-- INSERTING RECORDS: TABLE 19 - login_roles
+  INSERT INTO login_roles(role) 
+  VALUES 
+  ('ROLE_ADMINISTRATOR'),
+  ('ROLE_OPERATOR'),
+  ('ROLE_REGISTERED_PUBLIC_USER');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 19 - account_statuses
   CREATE TABLE account_statuses(
     account_status_id TINYINT NOT NULL AUTO_INCREMENT,
     account_status VARCHAR(10) NOT NULL,
     CONSTRAINT pk_account_status PRIMARY KEY (account_status_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 18 - account_statuses
+-- AUTO INCREMENT STARTING POINT: TABLE 19 - account_statuses
   ALTER TABLE account_statuses AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 18 - account_statuses
+-- INSERTING RECORDS: TABLE 19 - account_statuses
   INSERT INTO account_statuses(account_status) 
   VALUES 
   ('Enabled'),
@@ -438,10 +457,11 @@
     login_id INT NOT NULL AUTO_INCREMENT,
     email_address VARCHAR(250) NOT NULL UNIQUE,
     password VARCHAR(150) NOT NULL,
-    role VARCHAR(30) NOT NULL,
+    lr_login_role_id TINYINT,
     as_account_status_id TINYINT,
     a_account_id INT,
     CONSTRAINT pk_login PRIMARY KEY (login_id),
+    CONSTRAINT fk_as_l_login_role_id FOREIGN KEY (lr_login_role_id) REFERENCES login_roles(role_id),
     CONSTRAINT fk_as_l_account_status_id FOREIGN KEY (as_account_status_id) REFERENCES account_statuses(account_status_id),
     CONSTRAINT fk_a_l_account_id FOREIGN KEY (a_account_id) REFERENCES accounts(account_id)
   )ENGINE=INNODB;
@@ -450,11 +470,11 @@
   ALTER TABLE logins AUTO_INCREMENT = 0000000001;
 
 -- INSERTING RECORDS: TABLE 19 - logins
-  INSERT INTO logins(email_address, password, role, as_account_status_id, a_account_id, ) 
+  INSERT INTO logins(email_address, password, as_account_status_id, a_account_id) 
   VALUES 
-  ('lucasanderson.ghd@gmail.com', '$2y$10$kw0RlRCWYswnDkMMCLo1WOETGLa2pNNTai.Up4A2xgeNo1MvxG7dS', "ROLE_ADMINISTRATOR", 001, 0000000001),    -- User Type: Administrator          |   Password: $lUcasaNdeSon432
-  ('andrewwilcom.ghd@gmail.com', '$2y$10$677MQa6CaFp4HrOGpcXVHedilhf2wUm67pDdJOlnqheowsmHnJK0u', "ROLE_OPERATOR", 001, 0000000002),          -- User Type: Operator               |   Password: aNdrew95WilSon#         
-  ('jackcooper24@gmail.com', '$2y$10$eZzk9Wo34I80IN730yxeZuEuNKGYPr2bCdY5afIo42gGh6UymfVVq', "ROLE_REGISTERED_PUBLIC_USER", 001, 0000000003) -- User Type: Registered Public User |   Password: Cooper28$jAck     
+  ('lucasanderson.ghd@gmail.com', '$2y$10$kw0RlRCWYswnDkMMCLo1WOETGLa2pNNTai.Up4A2xgeNo1MvxG7dS', 001, 0000000001), -- User Type: Administrator          |   Password: $lUcasaNdeSon432
+  ('andrewwilcom.ghd@gmail.com', '$2y$10$677MQa6CaFp4HrOGpcXVHedilhf2wUm67pDdJOlnqheowsmHnJK0u', 001, 0000000002),  -- User Type: Operator               |   Password: aNdrew95WilSon#         
+  ('jackcooper24@gmail.com', '$2y$10$eZzk9Wo34I80IN730yxeZuEuNKGYPr2bCdY5afIo42gGh6UymfVVq', 001, 0000000003);      -- User Type: Registered Public User |   Password: Cooper28$jAck     
 
 -- |------------------------------------------------------------------------------------------------|
 
