@@ -1,3 +1,7 @@
+/**
+ * Enum: LoginRoleEnum
+ * Linked Database Relation: 'login_roles'
+ */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.entity;
 
 public enum LoginRoleEnum {

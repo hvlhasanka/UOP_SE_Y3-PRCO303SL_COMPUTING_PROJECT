@@ -1,6 +1,6 @@
 /**
- * Entity: LoginRoleEntity
- * Database Relation: 'login_roles'
+ * Entity: AccountStatusEntity
+ * Database Relation: 'account_status_entity'
  */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.entity;
 
@@ -20,52 +20,53 @@ import javax.persistence.Column;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "login_roles")
-public class LoginRoleEntity {
+@Table(name = "account_statuses")
+public class AccountStatusEntity {
 
   /* Class Attributes */
   // Declaring private class attributes (variables)
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "role_id", nullable = false)
-  private long roleId;
+  @Column(name = "account_status_id", nullable = false)
+  private long accountStatusId;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "role")
-  private LoginRoleEnum role;
+  @Column(name = "account_status")
+  private AccountStatusEnum accountStatus;
 
   @JsonBackReference
   @OneToOne(fetch = FetchType.EAGER, 
   cascade = CascadeType.ALL, 
-  mappedBy = "loginRole")
+  mappedBy = "accountStatus")
   @PrimaryKeyJoinColumn
   private LoginEntity login;
 
   /* Class Methods */
   // Default constructor
-  public LoginRoleEntity() { }
+  public AccountStatusEntity() { }
 
   // Parameterized constructor
-  public LoginRoleEntity(LoginRoleEnum role, LoginEntity login) {
-    this.role = role;
+  public AccountStatusEntity(long accountStatusId, AccountStatusEnum accountStatus, LoginEntity login) {
+    this.accountStatusId = accountStatusId;
+    this.accountStatus = accountStatus;
     this.login = login;
   }
 
   // Setters and Getters
-  public long getRoleId() {
-    return this.roleId;
+  public long getAccountStatusId() {
+    return this.accountStatusId;
   }
 
-  public void setRoleId(long roleId) {
-    this.roleId = roleId;
+  public void setAccountStatusId(long accountStatusId) {
+    this.accountStatusId = accountStatusId;
   }
 
-  public LoginRoleEnum getRole() {
-    return this.role;
+  public AccountStatusEnum getAccountStatus() {
+    return this.accountStatus;
   }
 
-  public void setRole(LoginRoleEnum role) {
-    this.role = role;
+  public void setAccountStatus(AccountStatusEnum accountStatus) {
+    this.accountStatus = accountStatus;
   }
 
   public LoginEntity getLogin() {

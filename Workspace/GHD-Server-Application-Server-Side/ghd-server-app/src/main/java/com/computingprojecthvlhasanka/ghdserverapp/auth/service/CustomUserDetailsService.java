@@ -3,6 +3,8 @@ package com.computingprojecthvlhasanka.ghdserverapp.auth.service;
 import java.util.Arrays;
 import java.util.List;
 
+import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.AccountStatusEntity;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.AccountStatusEnum;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEnum;
@@ -46,8 +48,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     if (loginEntity != null) {
       // Passing the available roles into an array
 			roles = Arrays.asList(new SimpleGrantedAuthority(String.valueOf(loginRoleEntity.getRole())));
+
       // Returning the email address, password, and role
 			return new User(loginEntity.getEmailAddress(), loginEntity.getPassword(), roles);
+
 		}
 
     /**
@@ -65,6 +69,27 @@ public class CustomUserDetailsService implements UserDetailsService {
   
   }
 
+  public String checkAccountStatus(String emailAddress){
+
+    String accountStatus = null;
+
+    // Retrieving the particular user's record from the MySQL DB using the request emailAddress
+    LoginEntity loginEntity = loginRepository.findByEmailAddress(emailAddress);
+
+    // Retrieving the user account status by passing user's login record to the accountStatus entity
+    AccountStatusEntity accountStatusEntity = loginEntity.getAccountStatus();
+
+    if(String.valueOf(accountStatusEntity.getAccountStatus()) == "DISABLED"){
+      accountStatus = "DISABLED";
+    }
+    else{
+      accountStatus = "ENABLED";
+    }
+
+    return accountStatus;
+
+  }
+
   /**
    * Inserting a new record into the 'Logins' relation in the MySQL DB
    */
@@ -75,11 +100,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 		newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
 
     LoginRoleEntity newLoginRecordRole = new LoginRoleEntity();
-
     LoginRoleEnum loginRoleEnum = LoginRoleEnum.valueOf(user.getRole());
 
     newLoginRecordRole.setRole(loginRoleEnum);
+
+    AccountStatusEntity newLoginRecordAccountStatus = new AccountStatusEntity();
+    AccountStatusEnum accountStatusEnum = AccountStatusEnum.valueOf(user.getAccountStatus());
+
+    newLoginRecordAccountStatus.setAccountStatus(accountStatusEnum);
     newLoginRecord.setLoginRole(newLoginRecordRole);
+    newLoginRecord.setAccountStatus(newLoginRecordAccountStatus);
     
 		return loginRepository.save(newLoginRecord);
 

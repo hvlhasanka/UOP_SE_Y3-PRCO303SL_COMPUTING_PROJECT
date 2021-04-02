@@ -1,7 +1,6 @@
 /**
  * Model: Login
  */
-
 package com.computingprojecthvlhasanka.ghdserverapp.auth.model;
 
 public class LoginModel {
@@ -11,6 +10,7 @@ public class LoginModel {
     private String emailAddress;
     private String password;
     private String role;
+    private String accountStatus;
 
     /* Class Methods */
     // Default constructor
@@ -38,6 +38,14 @@ public class LoginModel {
   
     public void setRole(String role) {
       this.role = role;
+    }
+
+    public String getAccountStatus() {
+        return this.accountStatus;
+    }
+
+    public void setAccountStatus(String accountStatus) {
+        this.accountStatus = accountStatus;
     }
 
 }

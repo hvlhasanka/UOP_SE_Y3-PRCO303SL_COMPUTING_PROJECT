@@ -1,5 +1,5 @@
 /**
- * Entity: Login
+ * Entity: LoginEntity
  * Database Relation: 'logins'
  */
 
@@ -36,16 +36,20 @@ public class LoginEntity {
     @JoinColumn(name = "login_role_id")
     private LoginRoleEntity loginRole;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "as_account_status_id")
+    private AccountStatusEntity accountStatus;
+
     /* Class Methods */
     // Default constructor
     public LoginEntity() { }
 
     // Parameterized constructor
-    public LoginEntity(String emailAddress, String password, LoginRoleEntity loginRole) {
-        super();
+    public LoginEntity(String emailAddress, String password, LoginRoleEntity loginRole, AccountStatusEntity accountStatus) {
         this.emailAddress = emailAddress;
         this.password = password;
         this.loginRole = loginRole;
+        this.accountStatus = accountStatus;
     }
 
     // Setters and Getters
@@ -79,6 +83,14 @@ public class LoginEntity {
 
     public void setLoginRole(LoginRoleEntity loginRole) {
         this.loginRole = loginRole;
+    }
+
+    public AccountStatusEntity getAccountStatus() {
+        return this.accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatusEntity accountStatus) {
+        this.accountStatus = accountStatus;
     }
     
 }

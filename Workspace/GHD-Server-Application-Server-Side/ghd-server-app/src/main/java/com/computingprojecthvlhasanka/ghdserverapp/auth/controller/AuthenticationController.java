@@ -33,7 +33,7 @@ public class AuthenticationController {
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private CustomUserDetailsService userDetailsService;
+  private CustomUserDetailsService customUserDetailsService;
 
   @Autowired
   private JwtAuthUtil jwtAuthTokenUtil;
@@ -62,10 +62,13 @@ public class AuthenticationController {
     }
 
     // Retrieving the email address and creating the user details
-    final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmailAddress());
+    final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getEmailAddress());
+
+    // Checking the account status
+    final String accountStatus = customUserDetailsService.checkAccountStatus(authenticationRequest.getEmailAddress());
 
     // Creating the jwt token by passing the user details
-    final String token = jwtAuthTokenUtil.generateJwtToken(userDetails);
+    final String token = jwtAuthTokenUtil.generateJwtToken(userDetails, accountStatus);
 
     // Retuning jwt token to the client-side with the response status code 200
     return ResponseEntity.ok(new AuthenticationResponseModel(token));
@@ -80,7 +83,7 @@ public class AuthenticationController {
    */
   @RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody LoginModel user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.addLoginRecord(user));
+		return ResponseEntity.ok(customUserDetailsService.addLoginRecord(user));
 	}
 
   /**

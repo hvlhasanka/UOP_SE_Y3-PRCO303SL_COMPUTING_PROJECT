@@ -50,7 +50,7 @@ public class JwtAuthUtil {
    * @param userDetails
    * @return
    */
-  public String generateJwtToken(UserDetails userDetails) {
+  public String generateJwtToken(UserDetails userDetails, String accountStatus) {
     // Claims are the contents within the payload in the data packet
     Map<String, Object> claims = new HashMap<>();
 
@@ -65,6 +65,13 @@ public class JwtAuthUtil {
     if (roles.contains(new SimpleGrantedAuthority("ROLE_REGISTERED_PUBLIC_USER"))) {
 			claims.put("isRegisteredPublicUser", true);
 		}
+
+    if(accountStatus == "DISABLED"){
+      claims.put("accountStatus", "DISABLED");
+    }
+    else{
+      claims.put("accountStatus", "ENABLED");
+    }
 
 		return doGenerateJwtToken(claims, userDetails.getUsername());
   }
