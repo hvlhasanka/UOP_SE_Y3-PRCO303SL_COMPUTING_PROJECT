@@ -7,12 +7,8 @@ package com.computingprojecthvlhasanka.ghdserverapp.auth.service;
 import java.util.Arrays;
 import java.util.List;
 
-import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.AccountStatusEntity;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.AccountStatusEnum;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEntity;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEnum;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +17,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,9 +24,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
   @Autowired
 	private LoginRepository loginRepository;
-
-	@Autowired
-	private PasswordEncoder bcryptEncoder;
   
   /**
    * Retrieving user record from the MySQL DB using the email address
@@ -60,30 +52,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 		throw new UsernameNotFoundException("User not found with the email address: " + emailAddress);
   
   }
-
-  /**
-   * Inserting a new record into the 'Logins' relation in the MySQL DB
-   */
-  public LoginEntity addLoginRecord(LoginModel user) {
-
-		LoginEntity newLoginRecord = new LoginEntity();
-		newLoginRecord.setEmailAddress(user.getEmailAddress());
-		newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
-
-    LoginRoleEntity newLoginRecordRole = new LoginRoleEntity();
-    LoginRoleEnum loginRoleEnum = LoginRoleEnum.valueOf(user.getRole());
-
-    newLoginRecordRole.setRole(loginRoleEnum);
-
-    AccountStatusEntity newLoginRecordAccountStatus = new AccountStatusEntity();
-    AccountStatusEnum accountStatusEnum = AccountStatusEnum.valueOf(user.getAccountStatus());
-
-    newLoginRecordAccountStatus.setAccountStatus(accountStatusEnum);
-    newLoginRecord.setLoginRole(newLoginRecordRole);
-    newLoginRecord.setAccountStatus(newLoginRecordAccountStatus);
-    
-		return loginRepository.save(newLoginRecord);
-
-	}
 
 }

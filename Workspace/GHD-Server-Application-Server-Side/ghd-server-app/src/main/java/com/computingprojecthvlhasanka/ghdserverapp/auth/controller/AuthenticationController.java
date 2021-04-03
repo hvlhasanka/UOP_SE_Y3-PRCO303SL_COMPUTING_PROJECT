@@ -25,6 +25,7 @@ import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationResp
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.service.AccountStatusServiceImpl;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.service.CustomUserDetailsService;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.service.LoginServiceImpl;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.util.JwtAuthUtil;
 
 @RestController
@@ -35,6 +36,9 @@ public class AuthenticationController {
 
   @Autowired
   private CustomUserDetailsService customUserDetailsService;
+
+  @Autowired
+  private LoginServiceImpl loginServiceImpl;
 
   @Autowired
   private AccountStatusServiceImpl accountStatusServiceImpl;
@@ -87,7 +91,7 @@ public class AuthenticationController {
    */
   @RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody LoginModel user) throws Exception {
-		return ResponseEntity.ok(customUserDetailsService.addLoginRecord(user));
+		return ResponseEntity.ok(loginServiceImpl.addLoginRecord(user));
 	}
 
   /**

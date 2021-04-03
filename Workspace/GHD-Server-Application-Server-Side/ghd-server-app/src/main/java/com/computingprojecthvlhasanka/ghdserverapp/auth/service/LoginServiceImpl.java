@@ -13,6 +13,8 @@ import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,30 +26,50 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
+
+  @Autowired
+  private AccountStatusServiceImpl accountStatusServiceImpl;
+
+  @Autowired
+  private LoginRoleServiceImpl loginRoleServiceImpl;
   
   /**
    * Inserting a new record into the 'Logins' relation in the MySQL DB
    */
   @Override
-  public LoginEntity addLoginRecord(LoginModel user) {
+  public LoginEntity addLoginRecord(LoginModel user){
+ 
+    // Creating a new 'LoginEntity' instance
+    LoginEntity newLoginRecord = new LoginEntity();
 
-		LoginEntity newLoginRecord = new LoginEntity();
-		newLoginRecord.setEmailAddress(user.getEmailAddress());
-		newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
+    // Assigning emailAddress field
+    newLoginRecord.setEmailAddress(user.getEmailAddress());
 
-    LoginRoleEntity newLoginRecordRole = new LoginRoleEntity();
-    LoginRoleEnum loginRoleEnum = LoginRoleEnum.valueOf(user.getRole());
-
-    newLoginRecordRole.setRole(loginRoleEnum);
-
-    AccountStatusEntity newLoginRecordAccountStatus = new AccountStatusEntity();
-    AccountStatusEnum accountStatusEnum = AccountStatusEnum.valueOf(user.getAccountStatus());
-
-    newLoginRecordAccountStatus.setAccountStatus(accountStatusEnum);
-    newLoginRecord.setLoginRole(newLoginRecordRole);
-    newLoginRecord.setAccountStatus(newLoginRecordAccountStatus);
+    // Assigning password field
+    newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
     
-		return loginRepository.save(newLoginRecord);
+    // 
+    LoginRoleEnum loginRoleEnum = LoginRoleEnum.valueOf(user.getRole());
+    LoginRoleEntity newLoginRecordRole = loginRoleServiceImpl.retrieveByRole(loginRoleEnum);
+    
+    // Creating a new 'AccountStatusEnum' instance and initialized the enum value of account status
+    AccountStatusEnum accountStatusEnum = AccountStatusEnum.valueOf(user.getAccountStatus());
+    // Creating a new 'AccountStatusEntity' instance and initialized a accountStatus record by passing the accountStatus enum value
+    AccountStatusEntity newLoginRecordAccountStatus = accountStatusServiceImpl.retrieveByAccountStatus(accountStatusEnum);
+
+    // Assigning role to 'newLoginRecord' instance
+    newLoginRecord.setLoginRole(newLoginRecordRole);
+    // Assigning account status to 'newLoginRecord' instance
+    newLoginRecord.setAccountStatus(newLoginRecordAccountStatus);
+
+		try{
+      // Inserting a new record into the relevant relations and returning the newly created fields
+      return loginRepository.save(newLoginRecord);
+    }
+    catch(DataIntegrityViolationException emailExists){
+      // Checking the exisitance of the passed email address
+      throw new BadCredentialsException("Email Address Already Exists", emailExists);
+    }
 
 	}
 

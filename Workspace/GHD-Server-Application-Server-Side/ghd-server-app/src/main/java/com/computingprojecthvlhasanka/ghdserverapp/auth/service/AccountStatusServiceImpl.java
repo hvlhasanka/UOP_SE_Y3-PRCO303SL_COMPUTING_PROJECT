@@ -5,6 +5,7 @@
 package com.computingprojecthvlhasanka.ghdserverapp.auth.service;
 
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.AccountStatusEntity;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.AccountStatusEnum;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.AccountStatusRepository;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.repository.LoginRepository;
@@ -14,12 +15,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AccountStatusServiceImpl implements AccountStatusService {
-  
-  @Autowired
-  private AccountStatusRepository accountStatusRepository;
 
   @Autowired
   private LoginRepository loginRepository;
+
+  @Autowired
+  private AccountStatusRepository accountStatusEntity;
 
   /**
    * Checking the user's account status
@@ -42,6 +43,14 @@ public class AccountStatusServiceImpl implements AccountStatusService {
     }
 
     return accountStatus;
+  }
+
+  /**
+   * Retrieving record for the account status 
+   */
+  @Override
+  public AccountStatusEntity retrieveByAccountStatus(AccountStatusEnum accountStatus){
+    return accountStatusEntity.findByAccountStatus(accountStatus);
   }
 
 }
