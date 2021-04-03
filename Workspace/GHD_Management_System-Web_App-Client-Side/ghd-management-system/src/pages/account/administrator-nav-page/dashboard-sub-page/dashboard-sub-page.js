@@ -6,7 +6,7 @@ const DashboardSubPage = () => {
 
   return(
     <div className='dashboard-sub-page'>
-admin-dash
+      Admin - Dashboard
     </div>
   );
 

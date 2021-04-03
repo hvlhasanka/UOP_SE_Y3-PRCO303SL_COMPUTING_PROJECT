@@ -6,7 +6,7 @@ const OperatorAccountsSubPage = () => {
 
   return(
     <div className='operator-accounts-sub-page'>
-
+      Admin - Operator Accounts
     </div>
   );
 

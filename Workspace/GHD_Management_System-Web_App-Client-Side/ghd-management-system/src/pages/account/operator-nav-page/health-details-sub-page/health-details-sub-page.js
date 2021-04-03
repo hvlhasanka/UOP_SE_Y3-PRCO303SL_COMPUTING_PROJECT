@@ -6,7 +6,7 @@ const HealthDetailsSubPage = () => {
 
   return(
     <div className='health-details-sub-page'>
-
+      Operator - Health Details
     </div>
   );
 

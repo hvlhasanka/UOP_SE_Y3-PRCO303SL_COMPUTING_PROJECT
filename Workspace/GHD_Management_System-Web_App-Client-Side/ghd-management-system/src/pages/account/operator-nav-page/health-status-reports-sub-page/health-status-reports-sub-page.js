@@ -6,7 +6,7 @@ const HealthStatusReportsSubPage = () => {
 
   return(
     <div className='health-status-reports-sub-page'>
-
+      Operator - Health Status
     </div>
   );
 

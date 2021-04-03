@@ -6,7 +6,7 @@ const ProfileSubPage = () => {
 
   return(
     <div className='profile-sub-page'>
-
+      Operator - Profile
     </div>
   );
 

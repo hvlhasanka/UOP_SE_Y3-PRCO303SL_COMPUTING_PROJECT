@@ -6,7 +6,7 @@ const FeedbackReportsSubPage = () => {
 
   return(
     <div className='feedback-reports-sub-page'>
-
+      Admin - Feedback Reports
     </div>
   );
 
