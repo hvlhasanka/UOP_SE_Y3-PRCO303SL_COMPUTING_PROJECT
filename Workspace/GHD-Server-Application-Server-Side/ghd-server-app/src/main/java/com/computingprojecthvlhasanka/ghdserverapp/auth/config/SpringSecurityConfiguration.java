@@ -55,7 +55,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure (HttpSecurity http) throws Exception {
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/").hasAnyRole("REGISTER_PUBLIC_USER", "OPERATOR","ADMINISTRATOR")
+		.authorizeRequests().antMatchers("/ghd/api-v1/").hasAnyRole("REGISTER_PUBLIC_USER", "OPERATOR","ADMINISTRATOR")
 		.antMatchers("/authenticate", "/register").permitAll().anyRequest().authenticated()
 		// If any exception occur
 		.and().exceptionHandling()

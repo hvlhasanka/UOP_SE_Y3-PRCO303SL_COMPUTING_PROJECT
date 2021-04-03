@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import com.computingprojecthvlhasanka.ghdserverapp.account.entity.AccountEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 @Entity
@@ -35,17 +36,17 @@ public class LoginEntity {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "login_role_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "lr_login_role_id")
     private LoginRoleEntity loginRole;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "as_account_status_id")
     private AccountStatusEntity accountStatus;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "a_account_id")
-    private AccountEntity account;
+    // @OneToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "a_account_id")
+    // private AccountEntity account;
 
     /* Class Methods */
     // Default constructor

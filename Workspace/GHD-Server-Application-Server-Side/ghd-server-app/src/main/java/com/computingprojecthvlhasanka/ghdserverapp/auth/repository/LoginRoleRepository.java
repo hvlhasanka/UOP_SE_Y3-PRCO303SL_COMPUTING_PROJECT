@@ -1,3 +1,6 @@
+/**
+ * Repository: LoginRoleRepository
+ */
 package com.computingprojecthvlhasanka.ghdserverapp.auth.repository;
 
 import com.computingprojecthvlhasanka.ghdserverapp.auth.entity.LoginRoleEntity;

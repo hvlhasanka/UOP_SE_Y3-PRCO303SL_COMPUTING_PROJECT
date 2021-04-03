@@ -23,6 +23,7 @@ import io.jsonwebtoken.impl.DefaultClaims;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationRequestModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationResponseModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.service.AccountStatusServiceImpl;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.service.CustomUserDetailsService;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.util.JwtAuthUtil;
 
@@ -34,6 +35,9 @@ public class AuthenticationController {
 
   @Autowired
   private CustomUserDetailsService customUserDetailsService;
+
+  @Autowired
+  private AccountStatusServiceImpl accountStatusServiceImpl;
 
   @Autowired
   private JwtAuthUtil jwtAuthTokenUtil;
@@ -65,7 +69,7 @@ public class AuthenticationController {
     final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getEmailAddress());
 
     // Checking the account status
-    final String accountStatus = customUserDetailsService.checkAccountStatus(authenticationRequest.getEmailAddress());
+    final String accountStatus = accountStatusServiceImpl.checkAccountStatus(authenticationRequest.getEmailAddress());
 
     // Creating the jwt token by passing the user details
     final String token = jwtAuthTokenUtil.generateJwtToken(userDetails, accountStatus);

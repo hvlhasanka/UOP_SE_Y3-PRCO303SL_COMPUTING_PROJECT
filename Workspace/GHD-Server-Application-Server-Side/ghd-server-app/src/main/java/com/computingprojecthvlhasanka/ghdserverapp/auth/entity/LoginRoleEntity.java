@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -33,20 +34,13 @@ public class LoginRoleEntity {
   @Column(name = "role")
   private LoginRoleEnum role;
 
-  @JsonBackReference
-  @OneToOne(fetch = FetchType.EAGER, 
-  mappedBy = "loginRole")
-  @PrimaryKeyJoinColumn
-  private LoginEntity login;
-
   /* Class Methods */
   // Default constructor
   public LoginRoleEntity() { }
 
   // Parameterized constructor
-  public LoginRoleEntity(LoginRoleEnum role, LoginEntity login) {
+  public LoginRoleEntity(LoginRoleEnum role) {
     this.role = role;
-    this.login = login;
   }
 
   // Setters and Getters
@@ -64,14 +58,6 @@ public class LoginRoleEntity {
 
   public void setRole(LoginRoleEnum role) {
     this.role = role;
-  }
-
-  public LoginEntity getLogin() {
-    return this.login;
-  }
-
-  public void setLogin(LoginEntity login) {
-    this.login = login;
   }
 
 }
