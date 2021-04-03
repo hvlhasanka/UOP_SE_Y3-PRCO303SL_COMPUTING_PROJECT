@@ -2,11 +2,17 @@ import React from 'react';
 
 import './dashboard-sub-page.css';
 
+import AdministratorNavPage from '../administrator-nav-page';
+
 const DashboardSubPage = () => {
 
   return(
     <div className='dashboard-sub-page'>
-      Admin - Dashboard
+      
+      <AdministratorNavPage>
+        ADMIN
+      </AdministratorNavPage>
+
     </div>
   );
 
