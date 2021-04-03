@@ -50,7 +50,7 @@ public class JwtAuthUtil {
    * @param userDetails
    * @return
    */
-  public String generateJwtToken(UserDetails userDetails, String accountStatus) {
+  public String generateJwtToken(UserDetails userDetails, String accountStatus, Long accountId) {
     // Claims are the contents within the payload in the data packet
     Map<String, Object> claims = new HashMap<>();
 
@@ -73,6 +73,11 @@ public class JwtAuthUtil {
     }
     else{
       claims.put("accountStatus", "ENABLED");
+    }
+
+    // Defining accountId to the claims to pass through the jwt token
+    if(accountId != null){
+      claims.put("accountId", accountId);
     }
 
 		return doGenerateJwtToken(claims, userDetails.getUsername());

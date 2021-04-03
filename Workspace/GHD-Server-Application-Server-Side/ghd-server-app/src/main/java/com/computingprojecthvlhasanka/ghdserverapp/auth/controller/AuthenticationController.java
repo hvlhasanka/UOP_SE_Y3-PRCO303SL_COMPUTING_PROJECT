@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.impl.DefaultClaims;
 
+import com.computingprojecthvlhasanka.ghdserverapp.account.service.AccountServiceImpl;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationRequestModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationResponseModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
@@ -42,6 +43,9 @@ public class AuthenticationController {
 
   @Autowired
   private AccountStatusServiceImpl accountStatusServiceImpl;
+
+  @Autowired
+  private AccountServiceImpl AccountServiceImpl;
 
   @Autowired
   private JwtAuthUtil jwtAuthTokenUtil;
@@ -75,8 +79,11 @@ public class AuthenticationController {
     // Checking the account status
     final String accountStatus = accountStatusServiceImpl.checkAccountStatus(authenticationRequest.getEmailAddress());
 
+    // Retrieving the account ID
+    final Long accountId = AccountServiceImpl.getAccountIdByLoginEmailAddress(authenticationRequest.getEmailAddress());
+
     // Creating the jwt token by passing the user details
-    final String token = jwtAuthTokenUtil.generateJwtToken(userDetails, accountStatus);
+    final String token = jwtAuthTokenUtil.generateJwtToken(userDetails, accountStatus, accountId);
 
     // Retuning jwt token to the client-side with the response status code 200
     return ResponseEntity.ok(new AuthenticationResponseModel(token));

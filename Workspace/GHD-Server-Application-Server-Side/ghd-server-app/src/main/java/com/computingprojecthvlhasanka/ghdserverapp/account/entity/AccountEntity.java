@@ -64,6 +64,14 @@ public class AccountEntity {
     }
 
     // Setters and Getters
+    public long getAccountId() {
+        return this.accountId;
+    }
+
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
+    }
+    
     public NamePrefixEntity getNamePrefix() {
         return this.namePrefix;
     }

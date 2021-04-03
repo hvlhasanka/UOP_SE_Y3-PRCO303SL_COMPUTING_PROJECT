@@ -48,13 +48,14 @@ public class LoginServiceImpl implements LoginService {
     // Assigning password field
     newLoginRecord.setPassword(bcryptEncoder.encode(user.getPassword()));
     
-    // 
+    // Creating a new 'loginRoleEnum' instance and initialize the enum value of role
     LoginRoleEnum loginRoleEnum = LoginRoleEnum.valueOf(user.getRole());
+    // Creating a new 'newLoginRecordRole' instance and initialize a role record by passing the role enum value
     LoginRoleEntity newLoginRecordRole = loginRoleServiceImpl.retrieveByRole(loginRoleEnum);
     
-    // Creating a new 'AccountStatusEnum' instance and initialized the enum value of account status
+    // Creating a new 'AccountStatusEnum' instance and initialize the enum value of account status
     AccountStatusEnum accountStatusEnum = AccountStatusEnum.valueOf(user.getAccountStatus());
-    // Creating a new 'AccountStatusEntity' instance and initialized a accountStatus record by passing the accountStatus enum value
+    // Creating a new 'AccountStatusEntity' instance and initialize a accountStatus record by passing the accountStatus enum value
     AccountStatusEntity newLoginRecordAccountStatus = accountStatusServiceImpl.retrieveByAccountStatus(accountStatusEnum);
 
     // Assigning role to 'newLoginRecord' instance

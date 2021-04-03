@@ -44,20 +44,23 @@ public class LoginEntity {
     @JoinColumn(name = "as_account_status_id")
     private AccountStatusEntity accountStatus;
 
-    // @OneToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "a_account_id")
-    // private AccountEntity account;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "a_account_id")
+    private AccountEntity account;
+
+    
 
     /* Class Methods */
     // Default constructor
     public LoginEntity() { }
 
     // Parameterized constructor
-    public LoginEntity(String emailAddress, String password, LoginRoleEntity loginRole, AccountStatusEntity accountStatus) {
+    public LoginEntity(String emailAddress, String password, LoginRoleEntity loginRole, AccountStatusEntity accountStatus, AccountEntity account) {
         this.emailAddress = emailAddress;
         this.password = password;
         this.loginRole = loginRole;
         this.accountStatus = accountStatus;
+        this.account = account;
     }
 
     // Setters and Getters
@@ -99,6 +102,14 @@ public class LoginEntity {
 
     public void setAccountStatus(AccountStatusEntity accountStatus) {
         this.accountStatus = accountStatus;
+    }
+
+    public AccountEntity getAccount() {
+        return this.account;
+    }
+
+    public void setAccount(AccountEntity account) {
+        this.account = account;
     }
     
 }
