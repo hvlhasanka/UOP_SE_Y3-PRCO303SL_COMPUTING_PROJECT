@@ -8,7 +8,9 @@ const ProfileSubPage = () => {
   return(
     <div className='profile-sub-page'>
       <NavPageSidebar>
-        Admin - Profile
+        <div className="profile-content-card">
+          Admin - Profile
+        </div>
       </NavPageSidebar>
     </div>
   );

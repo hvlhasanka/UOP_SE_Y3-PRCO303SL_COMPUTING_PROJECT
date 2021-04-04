@@ -37,6 +37,7 @@
 
 .page-sidebar-header-main{
   margin-top: 5%;
+  margin-left: 2%;
   width: 90%;
   height: 120px;
   position: relative;
@@ -56,6 +57,7 @@
 
 .page-sidebar-header-sub{
   margin-top: 5%;
+  margin-left: 2%;
   width: 90%;
   height: 80px;
   position: relative;
@@ -131,6 +133,7 @@
 .page-sidebar-sub-page-list .page-sidebar-sub-page-button{
   margin: 0;
   margin-top: 5%;
+  margin-left: 2%;
   margin-bottom: 5%;
   width: 90%;
   height: 60px;

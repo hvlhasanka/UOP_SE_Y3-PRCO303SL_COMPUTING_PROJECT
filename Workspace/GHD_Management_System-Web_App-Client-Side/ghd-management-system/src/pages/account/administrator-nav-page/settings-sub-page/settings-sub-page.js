@@ -8,7 +8,9 @@ const SettingsSubPage = () => {
   return(
     <div className='settings-sub-page'>
       <NavPageSidebar>
-        Admin - Settings
+        <div className="settings-content-card">
+          Admin - Settings
+        </div>
       </NavPageSidebar>
     </div>
   );

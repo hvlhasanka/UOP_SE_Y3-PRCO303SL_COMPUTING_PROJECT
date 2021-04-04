@@ -8,7 +8,9 @@ const OperatorAccountsSubPage = () => {
   return(
     <div className='operator-accounts-sub-page'>
       <NavPageSidebar>
-        ADMIN -  - Operator Accounts
+        <div className="operator-accounts-content-card">
+          ADMIN - Operator Accounts
+        </div>
       </NavPageSidebar>
     </div>
   );

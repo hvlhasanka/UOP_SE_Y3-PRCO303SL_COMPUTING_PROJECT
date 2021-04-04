@@ -8,7 +8,9 @@ const FeedbackReportsSubPage = () => {
   return(
     <div className='feedback-reports-sub-page'>
       <NavPageSidebar>
-        ADMIN - Feedback Reports
+        <div className="feedback-reports-content-card">
+          ADMIN - Feedback Reports
+        </div>
       </NavPageSidebar>
     </div>
   );
