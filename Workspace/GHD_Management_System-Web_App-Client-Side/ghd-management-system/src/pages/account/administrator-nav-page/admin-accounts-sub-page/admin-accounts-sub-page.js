@@ -7,7 +7,7 @@ const AdminAccountsSubPage = () => {
 
   return(
     <div className='admin-accounts-sub-page'>
-      <NavPageSidebar>
+      <NavPageSidebar sidebarRoleType="administrator">
         <div className="admin-accounts-content-card">
           ADMIN - Admin Accounts
         </div>

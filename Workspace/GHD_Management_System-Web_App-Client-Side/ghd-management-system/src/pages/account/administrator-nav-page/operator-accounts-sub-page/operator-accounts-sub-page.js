@@ -7,7 +7,7 @@ const OperatorAccountsSubPage = () => {
 
   return(
     <div className='operator-accounts-sub-page'>
-      <NavPageSidebar>
+      <NavPageSidebar sidebarRoleType="administrator">
         <div className="operator-accounts-content-card">
           ADMIN - Operator Accounts
         </div>

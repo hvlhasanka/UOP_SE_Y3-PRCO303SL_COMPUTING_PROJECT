@@ -14,11 +14,10 @@ import {
 } from './nav-page-sidebar-data/index';
 import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
 
-const NavPageSidebar = ({ children }) => {
+const NavPageSidebar = ({ sidebarRoleType, children }) => {
 
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
-  const [accountRole, setAccountRole] = useState("Administrator");
 
   const retrieveCurrentDateTime = () => {
     let currentDateTime = new Date();
@@ -55,7 +54,7 @@ const NavPageSidebar = ({ children }) => {
               <div className="header-sub-top-row">
                 <div className="top-row-left-column">
                   <p className="account-role-text">
-                    {accountRole == "Administrator" ? `ADMINISTRATOR` : `OPERATOR` }
+                    {sidebarRoleType == "administrator" ? `ADMINISTRATOR` : `OPERATOR` }
                   </p>
                 </div>
                 <div className="top-row-right-column">
@@ -76,7 +75,7 @@ const NavPageSidebar = ({ children }) => {
             <div className="page-sub-page-section-one">
               <ul>
                 {
-                  (accountRole == "Administrator" ? AdminSidebarSectionOne : OperatorSidebarSectionOne).map((val, key) => {
+                  (sidebarRoleType == "administrator" ? AdminSidebarSectionOne : OperatorSidebarSectionOne).map((val, key) => {
                     return (
                       <Link to={val.url} className="page-sidebar-sub-page-link">
                         <li 
@@ -96,7 +95,7 @@ const NavPageSidebar = ({ children }) => {
             <div className="page-sidebar-sub-page-section-two">
               <ul>
                 {
-                  (accountRole == "Administrator" ? AdminSidebarSectionTwo : OperatorSidebarSectionTwo).map((val, key) => {
+                  (sidebarRoleType == "administrator" ? AdminSidebarSectionTwo : OperatorSidebarSectionTwo).map((val, key) => {
                     return (
                       <Link to={val.url} className="page-sidebar-sub-page-link">
                         <li 

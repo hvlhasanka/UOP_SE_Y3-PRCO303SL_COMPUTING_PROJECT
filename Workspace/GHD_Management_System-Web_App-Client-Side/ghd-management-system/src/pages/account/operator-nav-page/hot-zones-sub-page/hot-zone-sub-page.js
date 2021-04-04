@@ -1,12 +1,17 @@
 import React from 'react';
 
 import './hot-zone-sub-page.css';
+import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 
 const HotZonesSubPage = () => {
 
   return(
     <div className='hot-zone-sub-page'>
-      Admin - Hot Zone
+      <NavPageSidebar sidebarRoleType="operator">
+        <div className="hot-zone-content-card">
+          Operator - Hot Zone
+        </div>
+      </NavPageSidebar>
     </div>
   );
 
