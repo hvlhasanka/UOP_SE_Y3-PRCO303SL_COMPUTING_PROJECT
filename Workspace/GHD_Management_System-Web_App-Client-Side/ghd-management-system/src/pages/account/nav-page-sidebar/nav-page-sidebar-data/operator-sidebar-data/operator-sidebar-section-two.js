@@ -7,12 +7,12 @@ const OperatorSidebarSectionTwo = [
   {
     title: "PROFILE",
     icon: <PersonPinIcon fontSize="large"  />,
-    url: "/admin/profile"
+    url: "/operator/profile"
   },
   {
     title: "SETTINGS",
     icon: <SettingsApplicationsIcon fontSize="large"  />,
-    url: "/admin/settings"
+    url: "/operator/settings"
   }
 ];
 

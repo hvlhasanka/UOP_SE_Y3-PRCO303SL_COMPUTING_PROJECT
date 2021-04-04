@@ -96,7 +96,7 @@
 .account-status-indicator{
   width: 20px;
   height: 20px;
-  background-color: #4ae27d;
+  background-color: #16c54b;
   border-radius: 10px;
   position: relative;
   left: 50%;
@@ -125,7 +125,7 @@
   font-size: 20px;
   letter-spacing: 1px;
   position: relative;
-  left: 20%;
+  left: 12%;
 }
 
 .page-sidebar-sub-page-list .page-sidebar-sub-page-button{
@@ -150,14 +150,37 @@
   border-radius: 10px;
 }
 
+.page-sidebar-sub-page-list .page-sidebar-logout-button{
+  margin: 0;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 90%;
+  height: 60px;
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #070b26;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+
+
 .page-sidebar-sub-page-list #page-sidebar-sub-page-active{
-  background-color: #1a84fb;
+  background: linear-gradient(to left, #03bde7 , #3a7bd5);
   color: #ffffff;
-  padding: 1%;
+  padding: 1.5%;
 }
 
 .page-sidebar-sub-page-list .page-sidebar-sub-page-button:hover{
-  background-color: #1a84fb;
+  background: linear-gradient(to left, #03bde7 , #3a7bd5);
   cursor: pointer; 
   color: #ffffff;
 }

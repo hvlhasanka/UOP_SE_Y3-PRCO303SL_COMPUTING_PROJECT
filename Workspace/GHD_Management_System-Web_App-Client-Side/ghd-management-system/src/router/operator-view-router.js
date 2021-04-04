@@ -18,7 +18,7 @@ function OperatorViewRouter({ match }) {
           <Route path={`${match.url}/dashboard`} component={DashboardSubPage} />
           <Route path={`${match.url}/health-details`} component={HealthDetailsSubPage} />
           <Route path={`${match.url}/health-status-reports`} component={HealthStatusReportsSubPage} />
-          <Route path={`${match.url}/hot-zone`} component={HotZoneSubPages} />
+          <Route path={`${match.url}/hot-zones`} component={HotZoneSubPages} />
           <Route path={`${match.url}/profile`} component={ProfileSubPage} />
           <Route path={`${match.url}/settings`} component={SettingsSubPage} />
           <Redirect from={`${match.url}`} to={`${match.url}/dashboard`} />

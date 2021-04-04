@@ -3,28 +3,44 @@ import React, {
   useState
 } from 'react';
 import { Link } from 'react-router-dom';
-
-import './administrator-nav-page.css';
-import { 
-  AdminSidebarSectionOne,
-  AdminSidebarSectionTwo
-} from './nav-page-sidebar-data/index';
-import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const AdministratorNavPage = ({ children }) => {
+import './nav-page-sidebar.css';
+import { 
+  AdminSidebarSectionOne,
+  AdminSidebarSectionTwo,
+  OperatorSidebarSectionOne,
+  OperatorSidebarSectionTwo
+} from './nav-page-sidebar-data/index';
+import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
+
+const NavPageSidebar = ({ children }) => {
 
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const [accountRole, setAccountRole] = useState("Administrator");
 
   const retrieveCurrentDateTime = () => {
     let currentDateTime = new Date();
     setCurrentDate(currentDateTime.getDate() + " / " + currentDateTime.getMonth()+1 + " / " + currentDateTime.getFullYear());
-    setCurrentTime(currentDateTime.getHours() + " : " + currentDateTime.getMinutes() + " " + (currentDateTime.getHours >= 12 ? "PM" : "AM"));
+    setCurrentTime(
+      ((currentDateTime.getHours()).toString().length == "2" ? currentDateTime.getHours() : "0" + currentDateTime.getHours()) + " : " + 
+      ((currentDateTime.getMinutes()).toString().length == "2" ? currentDateTime.getMinutes() : "0" + currentDateTime.getMinutes()) + " " + 
+      (currentDateTime.getHours >= 12 ? "PM" : "AM"));
   }
 
   useEffect(() => {
+    // Retrieving current date and time for the initial render
     retrieveCurrentDateTime();
+    // Creating an interval which is recalled every 30 seconds
+    const timer = setInterval(() => { 
+      // Retrieving current date and time every 30 seconds
+      retrieveCurrentDateTime();
+    }, 30 * 1000);
+    return() => {
+      // Clearing interval to clear timer
+      clearInterval(timer);
+    }
   }, [])
 
   return(
@@ -37,18 +53,20 @@ const AdministratorNavPage = ({ children }) => {
             </div>
             <div className="page-sidebar-header-sub">
               <div className="header-sub-top-row">
-                <div class="top-row-left-column">
-                  <p className="account-role-text">ADMINISTRATOR</p>
+                <div className="top-row-left-column">
+                  <p className="account-role-text">
+                    {accountRole == "Administrator" ? `ADMINISTRATOR` : `OPERATOR` }
+                  </p>
                 </div>
-                <div class="top-row-right-column">
+                <div className="top-row-right-column">
                   <div className="account-status-indicator"></div>
                 </div>
               </div>
               <div className="header-sub-bottom-row">
-                <div class="bottom-row-left-column">
+                <div className="bottom-row-left-column">
                   <p className="current-date-time-text">{ currentDate }</p>
                 </div>
-                <div class="bottom-row-right-column">
+                <div className="bottom-row-right-column">
                   <p className="current-date-time-text">{ currentTime }</p>
                 </div>
               </div>
@@ -58,12 +76,12 @@ const AdministratorNavPage = ({ children }) => {
             <div className="page-sub-page-section-one">
               <ul>
                 {
-                  AdminSidebarSectionOne.map((val, key) => {
+                  (accountRole == "Administrator" ? AdminSidebarSectionOne : OperatorSidebarSectionOne).map((val, key) => {
                     return (
                       <Link to={val.url} className="page-sidebar-sub-page-link">
                         <li 
                           id={ window.location.pathname == val.url ? "page-sidebar-sub-page-active" : ""}
-                          key={key} 
+                          key={ key } 
                           className="page-sidebar-sub-page-button"
                         >
                           <div id="page-sidebar-icon">{ val.icon }</div>
@@ -78,12 +96,12 @@ const AdministratorNavPage = ({ children }) => {
             <div className="page-sidebar-sub-page-section-two">
               <ul>
                 {
-                  AdminSidebarSectionTwo.map((val, key) => {
+                  (accountRole == "Administrator" ? AdminSidebarSectionTwo : OperatorSidebarSectionTwo).map((val, key) => {
                     return (
                       <Link to={val.url} className="page-sidebar-sub-page-link">
                         <li 
                           id={ window.location.pathname == val.url ? "page-sidebar-sub-page-active" : ""}
-                          key={key} 
+                          key={ key } 
                           className="page-sidebar-sub-page-button"
                         >
                           <div id="page-sidebar-icon">{ val.icon }</div>
@@ -100,7 +118,7 @@ const AdministratorNavPage = ({ children }) => {
                 <Link to="" className="page-sidebar-sub-page-link">
                   <li 
                     id="page-sidebar-logout"
-                    className="page-sidebar-sub-page-button"
+                    className="page-sidebar-sub-page-button page-sidebar-logout-button"
                   >
                     <div id="page-sidebar-icon">
                       <div className="page-sidebar-title-logout-icon">
@@ -126,4 +144,4 @@ const AdministratorNavPage = ({ children }) => {
 
 }
 
-export default AdministratorNavPage;
+export default NavPageSidebar;

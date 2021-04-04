@@ -1,12 +1,15 @@
 import React from 'react';
 
 import './operator-accounts-sub-page.css';
+import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 
 const OperatorAccountsSubPage = () => {
 
   return(
     <div className='operator-accounts-sub-page'>
-      Admin - Operator Accounts
+      <NavPageSidebar>
+        ADMIN -  - Operator Accounts
+      </NavPageSidebar>
     </div>
   );
 

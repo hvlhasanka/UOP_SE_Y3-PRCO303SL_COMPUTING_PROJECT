@@ -9,22 +9,22 @@ const OperatorSidebarSectionOne = [
   {
     title: "DASHBOARD",
     icon: <DashboardIcon fontSize="large" />,
-    url: "/admin/dashboard"
+    url: "/operator/dashboard"
   },
   {
-    title: "FEEDBACK REPORTS",
+    title: "HEALTH DETAILS",
     icon: <FeedbackIcon fontSize="large"  />,
-    url: "/admin/feedback-reports"
+    url: "/operator/health-details"
   },
   {
-    title: "OPERATOR ACCOUNTS",
+    title: "HEALTH STATUS REPORTS",
     icon: <AccountBoxIcon fontSize="large"  />,
-    url: "/admin/operator-accounts"
+    url: "/operator/health-status-reports"
   },
   {
-    title: "ADMIN ACCOUNTS",
+    title: "HOT ZONES",
     icon: <AccountCircleIcon fontSize="large"  />,
-    url: "/admin/admin-accounts"
+    url: "/operator/hot-zones"
   }
 ];
 

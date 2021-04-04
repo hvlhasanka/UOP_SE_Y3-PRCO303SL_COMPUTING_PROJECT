@@ -1,12 +1,15 @@
 import React from 'react';
 
 import './settings-sub-page.css';
+import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 
 const SettingsSubPage = () => {
 
   return(
     <div className='settings-sub-page'>
-      Admin - Settings
+      <NavPageSidebar>
+        Admin - Settings
+      </NavPageSidebar>
     </div>
   );
 

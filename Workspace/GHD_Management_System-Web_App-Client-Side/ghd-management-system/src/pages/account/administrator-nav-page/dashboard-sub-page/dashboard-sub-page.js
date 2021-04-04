@@ -2,17 +2,17 @@ import React from 'react';
 
 import './dashboard-sub-page.css';
 
-import AdministratorNavPage from '../administrator-nav-page';
+import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 
 const DashboardSubPage = () => {
 
   return(
     <div className='dashboard-sub-page'>
-      
-      <AdministratorNavPage>
-        ADMIN
-      </AdministratorNavPage>
+      <NavPageSidebar>
+        
+        ADMIN - Dashboard
 
+      </NavPageSidebar>
     </div>
   );
 
