@@ -92,7 +92,7 @@ public class CustomJwtAuthenticationFilter extends OncePerRequestFilter {
 
   /**
    * Extracting current payload details from the current jwt token claims and forwarding to the new jwt token
-   * @param ex
+   * @param expiredJwtTokenException
    * @param request
    */
   private void onRefreshJwtToken(ExpiredJwtException expiredJwtTokenException, HttpServletRequest request) {

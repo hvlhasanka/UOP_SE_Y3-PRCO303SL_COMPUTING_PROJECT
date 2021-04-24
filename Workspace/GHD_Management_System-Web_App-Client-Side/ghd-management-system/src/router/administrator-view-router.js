@@ -8,6 +8,7 @@ import AdminAccountsSubPage from '../pages/account/administrator-nav-page/admin-
 import ProfileSubPage from '../pages/account/administrator-nav-page/profile-sub-page/profile-sub-page';
 import SettingsSubPage from '../pages/account/administrator-nav-page/settings-sub-page/settings-sub-page';
 import PageNotFound from '../pages/error/page-not-found/page-not-found';
+import Login from '../pages/auth/login/login';
 
 function AdministratorViewRouter({ match }) {
 

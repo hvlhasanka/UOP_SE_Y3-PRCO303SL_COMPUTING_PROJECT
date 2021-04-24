@@ -4,6 +4,8 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { useHistory } from "react-router"
+import { Redirect } from "react-router"
 
 import './nav-page-sidebar.css';
 import { 
@@ -16,16 +18,18 @@ import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
 
 const NavPageSidebar = ({ sidebarRoleType, children }) => {
 
+  const routeHistory = useHistory();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
 
   const retrieveCurrentDateTime = () => {
     let currentDateTime = new Date();
-    setCurrentDate(currentDateTime.getDate() + " / " + currentDateTime.getMonth()+1 + " / " + currentDateTime.getFullYear());
-    setCurrentTime(
-      ((currentDateTime.getHours()).toString().length == "2" ? currentDateTime.getHours() : "0" + currentDateTime.getHours()) + " : " + 
-      ((currentDateTime.getMinutes()).toString().length == "2" ? currentDateTime.getMinutes() : "0" + currentDateTime.getMinutes()) + " " + 
-      (currentDateTime.getHours >= 12 ? "PM" : "AM"));
+    setCurrentTime(currentDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    setCurrentDate(currentDateTime.toLocaleString('default', { day: '2-digit', month: 'short', year: 'numeric' }));
+  }
+
+  const handleLogout = () => {
+    return <Redirect to="/login" />
   }
 
   useEffect(() => {
@@ -63,10 +67,10 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
               </div>
               <div className="header-sub-bottom-row">
                 <div className="bottom-row-left-column">
-                  <p className="current-date-time-text">{ currentDate }</p>
+                  <p className="current-date-time-text">{ currentTime }</p>
                 </div>
                 <div className="bottom-row-right-column">
-                  <p className="current-date-time-text">{ currentTime }</p>
+                  <p className="current-date-time-text">{ currentDate }</p>
                 </div>
               </div>
             </div>
@@ -114,7 +118,7 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
             </div>
             <div className="page-sidebar-sub-page-section-three">
               <ul>
-                <Link to="" className="page-sidebar-sub-page-link">
+                <Link onClick={() => handleLogout()} to="" className="page-sidebar-sub-page-link">
                   <li 
                     id="page-sidebar-logout"
                     className="page-sidebar-sub-page-button page-sidebar-logout-button"

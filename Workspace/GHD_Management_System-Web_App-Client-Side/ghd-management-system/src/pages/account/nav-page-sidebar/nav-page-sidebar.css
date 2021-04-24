@@ -113,13 +113,13 @@
 
 .bottom-row-left-column{
   height: 100%;
-  width: 60%;
+  width: 40%;
   float: left;
 }
 
 .bottom-row-right-column{
   height: 100%;
-  width: 40%;
+  width: 60%;
   float: right;
 }
 

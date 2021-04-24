@@ -23,20 +23,46 @@ import {
   HeadingOne, 
   HeadingTwo
 } from '../../../components';
+import authService from '../../../services/auth/auth-service';
+import jwt from 'jwt-decode';
+import { useHistory } from "react-router"
 
-function Login(){
+const Login = () => {
 
+  const routeHistory = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [emailAddressValidated, setEmailAddressValidated] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showReportSubmission, setShowReportSubmission] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
-
-  const onLoginFormSubmit = (formData) => {
+  const [showChangePasswordEmailAddressForm, setShowChangePasswordEmailAddressForm] = useState(false);
+  
+  const onLoginFormSubmit = async (formData) => {
     if(formData.emailAddress != ""){
       setEmailAddressValidated(true);
     }
-    console.log(formData);
+
+    if(emailAddressValidated) {
+      try {
+        const responseLeaseDetails = await authService
+          .validateLoginCredentials(formData.emailAddress, formData.password)
+          .then(response => {
+            const jwtToken = response.data.jwtToken;
+            localStorage.setItem("token", jwtToken);
+            const decoded = jwt(jwtToken);
+
+            if(decoded.isAdministrator && decoded.accountStatus == "ENABLED"){
+              routeHistory.push("/admin");
+            }
+            else if(decoded.isOperator && decoded.accountStatus == "ENABLED"){
+              routeHistory.push("/operator");
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  
   }
 
   const handleReportSubmission = () => {
@@ -47,6 +73,10 @@ function Login(){
     setShowAboutModal(!showAboutModal)
   }
 
+  const handleShowChangePasswordEmailAddressForm = () => {
+    setShowChangePasswordEmailAddressForm(!showChangePasswordEmailAddressForm)
+  }
+    
   useEffect(() => {
     
   }, []);
@@ -125,7 +155,8 @@ function Login(){
                           variant="outlined" 
                           color="primary" 
                           className="login__login-button"
-                          type="submit">
+                          type="submit"
+                        >
                           <b>NEXT</b>
                         </Button>
                       </div>
@@ -211,6 +242,7 @@ function Login(){
                             <Button 
                               className="login__forgot-password-button" 
                               style={{textTransform: 'none'}}
+                              onClick={() => handleShowChangePasswordEmailAddressForm()}
                             >
                               <b>Forgot password?</b>
                             </Button>
@@ -457,6 +489,76 @@ function Login(){
                       className="report__submit-button"
                       type="submit">
                       <b>SUBMIT</b>
+                    </Button>
+
+                  </Grid>
+                </Grid>  
+              </form>
+            </div>
+          </div>
+        }
+
+        {showChangePasswordEmailAddressForm &&
+          <div className="report__main-container">
+            <div className="report__container">
+              <form>
+                <Grid container justify="center" spacing={2}>
+                  <Grid item xs={12}>  
+
+                    <Grid container justify="center" spacing={2}>
+                      <Grid item xs={2}>  
+                        <Button
+                          type="button" 
+                          className="report__section-close-button"
+                          variant="outlined"
+                          onClick={() => handleShowChangePasswordEmailAddressForm()}
+                        >
+                          <CloseIcon />
+                        </Button>
+                      </Grid>
+                      <Grid item xs={10}>  
+                        <HeadingTwo headingTitle="CHANGE PASSWORD" />
+                      </Grid>
+                    </Grid> 
+                  
+                  </Grid>
+                  <Grid item xs={12}>  
+                    
+                    <Grid container justify="center" spacing={2}>
+                      <Grid item xs={12}>  
+                        <div>
+                          Provide account email address to change password. A verification pin code will be send.
+                        </div>
+                      </Grid>
+                    </Grid> 
+
+                  </Grid>
+                  <Grid item xs={12}>  
+                    
+                    <Grid container justify="center" spacing={2}>
+                      <Grid item xs={12}>  
+                        <p className="report__item-heading">Account Email Address</p>
+                      </Grid>
+                      <Grid item xs={12}>  
+                        <TextField 
+                          id="text-field-subject" 
+                          className="text-field report__subject" 
+                          name="subject"
+                          variant="outlined" 
+                          type="text"
+                        />
+                      </Grid>
+                    </Grid> 
+
+                  </Grid>
+                  <Grid item xs={12}>  
+                    
+                    <Button 
+                      variant="outlined" 
+                      color="primary" 
+                      className="report__submit-button"
+                      type="submit">
+                      <b>SEND EMAIL</b>
                     </Button>
 
                   </Grid>

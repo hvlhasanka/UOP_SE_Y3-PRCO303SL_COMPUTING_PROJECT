@@ -6,7 +6,7 @@ const PageNotFound = () => {
 
   return(
     <div className='page-not-found'>
-404 - PAGE NOT FOUND
+      404 - PAGE NOT FOUND
     </div>
   );
 
