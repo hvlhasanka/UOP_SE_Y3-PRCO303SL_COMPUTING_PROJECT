@@ -9,7 +9,9 @@ const DashboardSubPage = () => {
     <div className='dashboard-sub-page'>
       <NavPageSidebar sidebarRoleType="administrator">
         <div className="dashboard-content-card">
-          ADMIN - Dashboard
+          <p>
+            ADMIN - Dashboard
+          </p>
         </div>
       </NavPageSidebar>
     </div>

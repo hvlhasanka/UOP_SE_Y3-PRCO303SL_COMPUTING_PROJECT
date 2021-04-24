@@ -16,12 +16,13 @@ function AdministratorViewRouter({ match }) {
     <Router>
       <div className="GHD-Management-System-Administrator">
         <Switch>
-          <Route path={`${match.url}/dashboard`} component={DashboardSubPage} />
-          <Route path={`${match.url}/feedback-reports`} component={FeedbackReportsSubPage} />
-          <Route path={`${match.url}/operator-accounts`} component={OperatorAccountsSubPage} />
-          <Route path={`${match.url}/admin-accounts`} component={AdminAccountsSubPage} />
-          <Route path={`${match.url}/profile`} component={ProfileSubPage} />
-          <Route path={`${match.url}/settings`} component={SettingsSubPage} />
+          <Route path={"/login"} component={ Login } />
+          <Route path={`${match.url}/dashboard`} component={ DashboardSubPage } />
+          <Route path={`${match.url}/feedback-reports`} component={ FeedbackReportsSubPage } />
+          <Route path={`${match.url}/operator-accounts`} component={ OperatorAccountsSubPage } />
+          <Route path={`${match.url}/admin-accounts`} component={ AdminAccountsSubPage } />
+          <Route path={`${match.url}/profile`} component={ ProfileSubPage } />
+          <Route path={`${match.url}/settings`} component={ SettingsSubPage } />
           <Redirect from={`${match.url}`} to={`${match.url}/dashboard`} />
           <Route component={ PageNotFound } />
         </Switch>

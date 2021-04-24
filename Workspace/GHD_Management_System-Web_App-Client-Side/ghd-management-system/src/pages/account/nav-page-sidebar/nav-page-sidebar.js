@@ -4,8 +4,6 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { useHistory } from "react-router"
-import { Redirect } from "react-router"
 
 import './nav-page-sidebar.css';
 import { 
@@ -14,11 +12,10 @@ import {
   OperatorSidebarSectionOne,
   OperatorSidebarSectionTwo
 } from './nav-page-sidebar-data/index';
-import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
+import logo from '../../../assets/logo/GHD-Management-System-Logo-Transparent-Background.png';
 
 const NavPageSidebar = ({ sidebarRoleType, children }) => {
 
-  const routeHistory = useHistory();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
 
@@ -26,10 +23,6 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
     let currentDateTime = new Date();
     setCurrentTime(currentDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     setCurrentDate(currentDateTime.toLocaleString('default', { day: '2-digit', month: 'short', year: 'numeric' }));
-  }
-
-  const handleLogout = () => {
-    return <Redirect to="/login" />
   }
 
   useEffect(() => {
@@ -118,7 +111,7 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
             </div>
             <div className="page-sidebar-sub-page-section-three">
               <ul>
-                <Link onClick={() => handleLogout()} to="" className="page-sidebar-sub-page-link">
+                <Link to="/login" className="page-sidebar-sub-page-link">
                   <li 
                     id="page-sidebar-logout"
                     className="page-sidebar-sub-page-button page-sidebar-logout-button"
