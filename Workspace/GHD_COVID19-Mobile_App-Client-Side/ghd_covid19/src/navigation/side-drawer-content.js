@@ -8,47 +8,48 @@ import {
   Title,
   Avatar,
   Caption,
-  Paragraph,
   Drawer,
-  Text,
-  TouchableRipple,
-  Switch
+  Text
 } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomeScreen from '../screens/public-screens/home/home.screen';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons';
+import SimpleLineIconsIcon from 'react-native-vector-icons/SimpleLineIcons';
+import AntDesignIconsIcon from 'react-native-vector-icons/AntDesign';
+import MaterialIconsIcon from 'react-native-vector-icons/MaterialIcons';
+import OcticonsIcon from 'react-native-vector-icons/Octicons';
 
 const ProfileIcon = require("../assets/images/side-drawer-navigation/profile-icon.png");
 
 const SideDrawerContent = (props) => {
   return (
     <View style={styles.sideDrawerContainer}>
+
+      <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
+        <View style={styles.userDetailsContainer}>
+          <Avatar.Image 
+            source={ProfileIcon}
+            size={55}
+          />
+          <View style={styles.userDetailsBlock}>
+            <Title style={styles.userName}>
+              Lucas Anderson
+            </Title>
+            <Caption style={styles.userEmailAddress}>
+              lucas.anderson@gmail.com
+            </Caption>
+          </View>
+        </View>
+      </TouchableOpacity>
+
       <DrawerContentScrollView {...props}>
         <View style={styles.sideDrawerContent}>
           <View>
-
-            <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
-              <View style={styles.userDetailsContainer}>
-                <Avatar.Image 
-                  source={ProfileIcon}
-                  size={55}
-                />
-                <View style={styles.userDetailsBlock}>
-                  <Title style={styles.userName}>
-                    Lucas Anderson
-                  </Title>
-                  <Caption style={styles.userEmailAddress}>
-                    lucas.anderson@gmail.com
-                  </Caption>
-                </View>
-              </View>
-            </TouchableOpacity>
 
             <Drawer.Section style={[ styles.drawerButtonsSection]}>
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <AntDesignIconsIcon 
+                      name="home"
                       color={ color }
                       size={ size }
                     />
@@ -68,15 +69,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Home')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <IoniconsIcon 
+                      name="notifications-outline"
                       color={ color }
                       size={ size }
                     />
@@ -96,15 +97,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Notifications')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <IoniconsIcon 
+                      name="person-outline"
                       color={ color }
                       size={ size }
                     />
@@ -124,15 +125,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Profile')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <MaterialIconsIcon 
+                      name="connect-without-contact"
                       color={ color }
                       size={ size }
                     />
@@ -152,15 +153,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('EmergencyContact')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <OcticonsIcon 
+                      name="report"
                       color={ color }
                       size={ size }
                     />
@@ -180,15 +181,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Report')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <IoniconsIcon 
+                      name="help-outline"
                       color={ color }
                       size={ size }
                     />
@@ -208,15 +209,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Help')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <OcticonsIcon 
+                      name="settings"
                       color={ color }
                       size={ size }
                     />
@@ -236,15 +237,15 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Settings')}
               />
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
-                    <Icon 
-                      name="home-outline"
+                    <IoniconsIcon 
+                      name="information-circle-outline"
                       color={ color }
                       size={ size }
                     />
@@ -264,7 +265,8 @@ const SideDrawerContent = (props) => {
                   );
                 }}
                 inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#00000"
+                inactiveTintColor="#000000"
+                activeBackgroundColor="#000"
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('About')}
               />
@@ -276,7 +278,7 @@ const SideDrawerContent = (props) => {
         <DrawerItem 
           icon={({ color, size }) => {
             return (
-              <Icon 
+              <SimpleLineIconsIcon 
                 name="logout"
                 color={ color }
                 size={ size }
@@ -297,7 +299,7 @@ const SideDrawerContent = (props) => {
             );
           }}
           inactiveBackgroundColor="#FFD8D8"
-          inactiveTintColor="#00000"
+          inactiveTintColor="#000000"
           style={{ borderRadius: 10 }}
           onPress={() => {}}
         />
@@ -320,6 +322,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 5,
     marginLeft: 5,
+    marginBottom: 5,
     backgroundColor: "#E1EDFF",
     padding: 10
   },
@@ -338,11 +341,9 @@ const styles = StyleSheet.create({
     lineHeight: 14,
   },
   drawerButtonsSection: {
-    marginTop: 15
+    marginTop: 10
   },
   bottomDrawerButtonSection: {
-    borderTopColor: '#f4f4f4',
-    borderTopWidth: 1,
     marginBottom: 15
   }
 });

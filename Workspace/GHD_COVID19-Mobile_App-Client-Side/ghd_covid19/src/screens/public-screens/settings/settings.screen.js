@@ -10,7 +10,8 @@ const SettingsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={{ color: 'black' }}>
-        Settings Screen
+        Settings Screen {"\n"}
+        Toggle Proximity Alert
       </Text>
     </View>
   );
