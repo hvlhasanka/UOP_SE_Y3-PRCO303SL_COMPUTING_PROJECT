@@ -13,8 +13,13 @@ import HealthDetailsTabScreen from '../screens/public-screens/health-details-tab
 import HealthStatusReportsTabScreen from '../screens/public-screens/health-status-reports-tab/health-status-reports-tab.screen';
 import HotZonesTabScreen from '../screens/public-screens/hot-zones-tab/hot-zones-tab.screen';
 
+
 const BottomTabNav = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
+const CovidStatsStack = createStackNavigator();
+const HealthDetailsStack = createStackNavigator();
+const HealthStatusReportsStack = createStackNavigator();
+const HotZonesStack = createStackNavigator();
 
 const HomeStackScreen = ({ navigation }) => {
   return (
@@ -27,7 +32,7 @@ const HomeStackScreen = ({ navigation }) => {
     >
       <HomeStack.Screen 
         name="Home" 
-        component={HomeScreen} 
+        component={ HomeScreen } 
         options={{
           title: "HOME",
           headerLeft: () => (
@@ -44,6 +49,123 @@ const HomeStackScreen = ({ navigation }) => {
     </HomeStack.Navigator>
   );
 };
+
+const CovidStatsStackScreen = ({ navigation }) => {
+  return (
+    <CovidStatsStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#ededed"
+        }
+      }}
+    >
+      <CovidStatsStack.Screen 
+        name="Home" 
+        component={ CovidStatsTabScreen } 
+        options={{
+          title: "COVID STATS",
+          headerLeft: () => (
+            <IoniconsIcon.Button 
+              name="menu" 
+              size={35} 
+              backgroundColor="#ededed" 
+              color="#000000"
+              onPress={() => navigation.openDrawer()}
+            ></IoniconsIcon.Button>
+          )
+        }}
+      />
+    </CovidStatsStack.Navigator>
+  );
+};
+
+const HealthDetailsStackScreen = ({ navigation }) => {
+  return (
+    <HealthDetailsStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#ededed"
+        }
+      }}
+    >
+      <HealthDetailsStack.Screen 
+        name="HealthDetails" 
+        component={ HealthDetailsTabScreen } 
+        options={{
+          title: "HEALTH DETAILS",
+          headerLeft: () => (
+            <IoniconsIcon.Button 
+              name="menu" 
+              size={35} 
+              backgroundColor="#ededed" 
+              color="#000000"
+              onPress={() => navigation.openDrawer()}
+            ></IoniconsIcon.Button>
+          )
+        }}
+      />
+    </HealthDetailsStack.Navigator>
+  );
+};
+
+const HealthStatusReportsStackScreen = ({ navigation }) => {
+  return (
+    <HealthStatusReportsStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#ededed"
+        }
+      }}
+    >
+      <HealthStatusReportsStack.Screen 
+        name="HealthStatusReports" 
+        component={ HealthStatusReportsTabScreen } 
+        options={{
+          title: "HEALTH STATUS REPORTS",
+          headerLeft: () => (
+            <IoniconsIcon.Button 
+              name="menu" 
+              size={35} 
+              backgroundColor="#ededed" 
+              color="#000000"
+              onPress={() => navigation.openDrawer()}
+            ></IoniconsIcon.Button>
+          )
+        }}
+      />
+    </HealthStatusReportsStack.Navigator>
+  );
+};
+
+const HotZonesStackScreen = ({ navigation }) => {
+  return (
+    <HotZonesStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#ededed"
+        }
+      }}
+    >
+      <HotZonesStack.Screen 
+        name="HotZones" 
+        component={ HotZonesTabScreen } 
+        options={{
+          title: "HOT ZONES",
+          headerLeft: () => (
+            <IoniconsIcon.Button 
+              name="menu" 
+              size={35} 
+              backgroundColor="#ededed" 
+              color="#000000"
+              onPress={() => navigation.openDrawer()}
+            ></IoniconsIcon.Button>
+          )
+        }}
+      />
+    </HotZonesStack.Navigator>
+  );
+};
+
 
 const BottomTabNavigation = () => {
   return (
@@ -81,7 +203,7 @@ const BottomTabNavigation = () => {
       />
       <BottomTabNav.Screen 
         name="COVID Stats" 
-        component={ CovidStatsTabScreen } 
+        component={ CovidStatsStackScreen } 
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{ alignContent: "center", justifyContent: "center" }}>
@@ -97,7 +219,7 @@ const BottomTabNavigation = () => {
       />
       <BottomTabNav.Screen 
         name="Health Details" 
-        component={ HealthDetailsTabScreen } 
+        component={ HealthDetailsStackScreen } 
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{ alignContent: "center", justifyContent: "center" }}>
@@ -113,7 +235,7 @@ const BottomTabNavigation = () => {
       />
       <BottomTabNav.Screen 
         name="Health Status Reports" 
-        component={ HealthStatusReportsTabScreen } 
+        component={ HealthStatusReportsStackScreen } 
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{ alignContent: "center", justifyContent: "center" }}>
@@ -129,7 +251,7 @@ const BottomTabNavigation = () => {
       />
       <BottomTabNav.Screen 
         name="Hot Zones" 
-        component={ HotZonesTabScreen } 
+        component={ HotZonesStackScreen } 
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{ alignContent: "center", justifyContent: "center" }}>
