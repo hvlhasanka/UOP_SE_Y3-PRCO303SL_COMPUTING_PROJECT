@@ -2,8 +2,14 @@ import React, {
   useEffect, 
   useState
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './nav-page-sidebar.css';
 import { 
@@ -16,14 +22,24 @@ import logo from '../../../assets/logo/GHD-Management-System-Logo-Transparent-Ba
 
 const NavPageSidebar = ({ sidebarRoleType, children }) => {
 
+  const sideBarHistory = useHistory();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const [logoutModal, setLogoutModal] = useState(false);
 
   const retrieveCurrentDateTime = () => {
     let currentDateTime = new Date();
     setCurrentTime(currentDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
     setCurrentDate(currentDateTime.toLocaleString('default', { day: '2-digit', month: 'short', year: 'numeric' }));
   }
+
+  const logoutUser = () => {
+    sideBarHistory.push('/login');
+  }
+
+  const handleLogoutModal = () => {
+    setLogoutModal(!logoutModal);
+  };
 
   useEffect(() => {
     // Retrieving current date and time for the initial render
@@ -111,7 +127,7 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
             </div>
             <div className="page-sidebar-sub-page-section-three">
               <ul>
-                <Link to="/login" className="page-sidebar-sub-page-link">
+                <div onClick={() => handleLogoutModal()} className="page-sidebar-sub-page-link">
                   <li 
                     id="page-sidebar-logout"
                     className="page-sidebar-sub-page-button page-sidebar-logout-button"
@@ -125,8 +141,31 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
                       <p className="page-sidebar-title-logout-text">LOGOUT</p>
                     </div>
                   </li>
-                </Link>
+                </div>
               </ul>
+
+              <Dialog
+                open={logoutModal}
+                onClose={handleLogoutModal}
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Confirmation"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    This action will log you out from the GHD Management System, do you want to continue?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleLogoutModal} color="primary">
+                    Cancel
+                  </Button>
+                  <Button onClick={logoutUser} color="primary" autoFocus>
+                    Continue
+                  </Button>
+                </DialogActions>
+              </Dialog>
+
             </div>
           </div>
         </div>
