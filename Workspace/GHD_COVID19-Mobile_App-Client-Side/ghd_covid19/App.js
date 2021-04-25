@@ -16,22 +16,47 @@ import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './src/screens/public-screens/home/home.screen';
+import ReportScreen from './src/screens/public-screens/report/report.screen';
+import HelpScreen from './src/screens/public-screens/help/help.screen';
+import EmergencyContactScreen from './src/screens/public-screens/emergency-contact/emergency-contact.screen';
+import SettingsScreen from './src/screens/public-screens/settings/settings.screen';
+import AboutScreen from './src/screens/public-screens/about/about.screen';
 
-const NotificationsScreen = () => {
+const HomeStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const HomeStackScreen = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ color: 'black' }}>
-        Home Screen
-      </Text>
-    </View>
+    <HomeStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#ffffff"
+        }
+      }}
+    >
+      <HomeStack.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        options={{
+          title: "Home",
+          headerLeft: () => (
+            <Icon.Button 
+              name="menu" 
+              size={25} 
+              backgroundColor="#ffffff" 
+              color="#000000"
+              onPress={() => navigation.openDrawer()}
+            ></Icon.Button>
+          )
+        }}
+      />
+    </HomeStack.Navigator>
   );
 };
 
-
-const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 
 const App = () => {
 
@@ -42,12 +67,13 @@ const App = () => {
   return (
   <NavigationContainer>
     <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="Home" component={HomeStackScreen} />
+        <Drawer.Screen name="Report" component={ReportScreen} />
+        <Drawer.Screen name="Help" component={HelpScreen} />
+        <Drawer.Screen name="Emergency Contact" component={EmergencyContactScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
-    {/* <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator> */}
   </NavigationContainer>
   );
 };
