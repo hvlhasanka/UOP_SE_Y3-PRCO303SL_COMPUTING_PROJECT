@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import { Badge } from 'react-native-paper';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -26,7 +27,7 @@ const HomeStackScreen = ({ navigation }) => {
     <HomeStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#3573E1",
         }
       }}
     >
@@ -35,14 +36,48 @@ const HomeStackScreen = ({ navigation }) => {
         component={ HomeScreen } 
         options={{
           title: "HOME",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#3573E1" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
+            </View>
+          ),
+          headerRight: () => (
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View style={{ marginRight: 5 }}>
+                <IoniconsIcon.Button
+                  name="chatbubbles-outline"
+                  size={35}
+                  backgroundColor="#3573E1"
+                  color="#ffffff"
+                  onPress={() => {}}
+                ></IoniconsIcon.Button>
+              </View>
+              <View style={{ position: "absolute", right: 75, top: 5 }}>
+                <Badge>4</Badge>
+              </View>
+              <View>
+                <IoniconsIcon.Button
+                  name="notifications-outline"
+                  size={35}
+                  backgroundColor="#3573E1"
+                  color="#ffffff"
+                  onPress={() => {}}
+                ></IoniconsIcon.Button>
+              </View>
+              <View style={{ position: "absolute", right: 10, top: 5 }}>
+                <Badge>10</Badge>
+              </View>
+            </View>
           )
         }}
       />
