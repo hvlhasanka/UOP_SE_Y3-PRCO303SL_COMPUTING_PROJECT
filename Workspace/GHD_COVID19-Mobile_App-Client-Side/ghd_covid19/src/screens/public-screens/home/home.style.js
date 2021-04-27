@@ -4,12 +4,7 @@ const styles =  StyleSheet.create({
   container: { 
     flex: 1, 
     flexDirection: "column",
-    backgroundColor: "#ededed"
-  },
-  headerContent: {
-    height: "45%",
-    width: "100%",
-    backgroundColor: "#3573E1"
+    backgroundColor: "#608CDB"
   },
   submitEmergencyHealthReportButton: {
     backgroundColor: "#E1355D",
@@ -53,12 +48,9 @@ const styles =  StyleSheet.create({
     textAlign: "center"
   },
   floatingBlock: {
-    flex: 1,
     flexDirection: "row",
     width: "90%",
     height: 140,
-    position: "absolute",
-    top: "32%",
     alignItems: "center",
     justifyContent: "center",
     marginLeft: "5%",
@@ -94,12 +86,9 @@ const styles =  StyleSheet.create({
     height: "10%",
   },
   healthStatusReportBlock: {
-    flex: 1,
     flexDirection: "row",
     width: "90%",
     height: 140,
-    position: "absolute",
-    top: "57%",
     marginLeft: "5%",
     marginRight: "5%",
     marginTop: 15,
@@ -113,21 +102,15 @@ const styles =  StyleSheet.create({
     letterSpacing: 1.1
   },
   covidStatsBlock: {
-    flex: 1,
     flexDirection: "row",
     width: "90%",
     height: 140,
-    position: "absolute",
-    top: "80%",
     marginLeft: "5%",
     marginRight: "5%",
     marginBottom: 100,
     marginTop: 15,
     backgroundColor: "#ffffff",
     borderRadius: 10
-  },
-  contentScroll: {
-    flex: 1
   },
   blockShadow: {
     shadowColor: "#000",

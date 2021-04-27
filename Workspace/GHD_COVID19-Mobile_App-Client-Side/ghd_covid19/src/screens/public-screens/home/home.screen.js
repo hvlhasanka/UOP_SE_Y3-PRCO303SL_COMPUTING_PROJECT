@@ -16,36 +16,34 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       
-        <View style={styles.headerContent}>
-          <TouchableOpacity>
-            <Text style={[styles.submitEmergencyHealthReportButton, styles.blockShadow]}>
-              SUBMIT EMERGENCY{"\n"}HEALTH STATUS REPORT
-            </Text>
-          </TouchableOpacity>
+      <ScrollView>
+        <TouchableOpacity>
+          <Text style={[styles.submitEmergencyHealthReportButton, styles.blockShadow]}>
+            SUBMIT EMERGENCY{"\n"}HEALTH STATUS REPORT
+          </Text>
+        </TouchableOpacity>
 
-          <View style={[styles.countrySituationBlock, styles.blockShadow]}>
-            <View>
-              <IoniconsIcon 
-                name="people-outline" style={styles.situationIcon}>
-              </IoniconsIcon>
-            </View>
-            <View>
-              <Text style={styles.situationText}>
-                Positive Cases Rising Rapidly
-              </Text>
-            </View>
+        <View style={[styles.countrySituationBlock, styles.blockShadow]}>
+          <View>
+            <IoniconsIcon 
+              name="people-outline" style={styles.situationIcon}>
+            </IoniconsIcon>
           </View>
-
+          <View>
+            <Text style={styles.situationText}>
+              Positive Cases Rising Rapidly
+            </Text>
+          </View>
         </View>
 
         <View style={styles.floatingBlock}>
-          <View style={styles.floatingSection}>
+          <View style={[styles.floatingSection, styles.blockShadow]}>
             <Text style={styles.floatingText}>CONTACT TRACING</Text>
             <MaterialCommunityIconsIcon 
               name="contactless-payment" style={styles.floatingIcon}>
             </MaterialCommunityIconsIcon>
           </View>
-          <View style={styles.floatingSection}>
+          <View style={[styles.floatingSection, styles.blockShadow]}>
             <Text style={styles.floatingText}>PROXIMITY ALERT</Text>
             <FeatherIcon 
               name="check-circle" style={styles.floatingIcon}>
@@ -53,19 +51,19 @@ const HomeScreen = () => {
           </View>
         </View>
         
-        <View style={styles.healthStatusReportBlock}>
+        <View style={[styles.healthStatusReportBlock, styles.blockShadow]}>
           <Text style={styles.blockText}>
             HEALTH STATUS REPORT
           </Text>
         </View>
 
-        <View style={styles.covidStatsBlock}>
+        <View style={[styles.covidStatsBlock, styles.blockShadow]}>
           <Text style={styles.blockText}>
             COVID19 Statistics
           </Text>
         </View>
+      </ScrollView>
       
-
     </View>
   );
 };
