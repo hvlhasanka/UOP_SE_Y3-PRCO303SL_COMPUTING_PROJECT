@@ -42,13 +42,13 @@ const HomeStackScreen = ({ navigation }) => {
           headerLeft: () => (
             <View>
               <StatusBar backgroundColor="#3573E1" />
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#3573E1" 
-              color="#ffffff"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#3573E1" 
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
             </View>
           ),
           headerRight: () => (
@@ -90,23 +90,29 @@ const CovidStatsStackScreen = ({ navigation }) => {
     <CovidStatsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#3573E1",
         }
       }}
     >
       <CovidStatsStack.Screen 
-        name="Home" 
+        name="Home"
         component={ CovidStatsTabScreen } 
         options={{
           title: "COVID STATS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#3573E1"
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
+            </View>
           )
         }}
       />
@@ -119,7 +125,7 @@ const HealthDetailsStackScreen = ({ navigation }) => {
     <HealthDetailsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#3573E1",
         }
       }}
     >
@@ -128,14 +134,20 @@ const HealthDetailsStackScreen = ({ navigation }) => {
         component={ HealthDetailsTabScreen } 
         options={{
           title: "HEALTH DETAILS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#3573E1"
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
+            </View>
           )
         }}
       />
@@ -148,23 +160,29 @@ const HealthStatusReportsStackScreen = ({ navigation }) => {
     <HealthStatusReportsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#3573E1",
         }
       }}
     >
       <HealthStatusReportsStack.Screen 
-        name="HealthStatusReports" 
+        name="HealthStatusReports"
         component={ HealthStatusReportsTabScreen } 
         options={{
           title: "HEALTH STATUS REPORTS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#3573E1" 
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
+            </View>
           )
         }}
       />
@@ -177,7 +195,7 @@ const HotZonesStackScreen = ({ navigation }) => {
     <HotZonesStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#3573E1",
         }
       }}
     >
@@ -186,14 +204,20 @@ const HotZonesStackScreen = ({ navigation }) => {
         component={ HotZonesTabScreen } 
         options={{
           title: "HOT ZONES",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#3573E1" 
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
+            </View>
           )
         }}
       />
