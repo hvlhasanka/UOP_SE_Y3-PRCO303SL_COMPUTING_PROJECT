@@ -2,10 +2,10 @@ import React from 'react';
 
 import './heading-one.css';
 
-const HeadingOne = ({
+function HeadingOne({
   headingTitle,
   className
-}) => {
+}) {
 
   return(
     <h1 className={`headingOne ${className}`}>{headingTitle}</h1>

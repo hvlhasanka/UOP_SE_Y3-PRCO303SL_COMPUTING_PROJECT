@@ -1,1 +1,18 @@
 /* Style sheet for Profile Sub Page */
+
+.profile-sub-page{
+  width: 100vw;
+  height: 100vh;
+  background-color: #070b26;
+}
+
+.profile-content-card{
+  height: 97%;
+  width: 98%;
+  background-color: #f1f1f1;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+}

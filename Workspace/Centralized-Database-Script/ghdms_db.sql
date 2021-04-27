@@ -29,12 +29,12 @@
 -- INSERTING RECORDS: TABLE 1 - name_prefixes
   INSERT INTO name_prefixes(name_prefix)  
   VALUES
-  ("Sir."),
-  ("Mr."),
-  ("Miss."),
-  ("Ms."),
-  ("Mrs."),
-  ("Dr.");
+  ("SIR"),
+  ("MR"),
+  ("MISS."),
+  ("MS"),
+  ("MRS"),
+  ("DR");
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -51,10 +51,10 @@
 -- INSERTING RECORDS: TABLE 2 - account_types
   INSERT INTO account_types(account_type)
   VALUES 
-  ('Administrator'),
-  ('Operator'),
-  ('Registered Public User'),
-  ('Unregistered Public User');
+  ('ADMINISTRATOR'),
+  ('OPERATOR'),
+  ('REGISTERED_PUBLIC_USER'),
+  ('UNREGISTERED_PUBLIC_USER');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -81,7 +81,7 @@
   VALUES 
   (001, 'Lucas', 'Andy', 'Anderson', 001),
   (002, 'Andrew', '', 'Wilson', 002),
-  (003, 'Jack', 'Sammy', 'Cooper', 003),
+  (006, 'Jack', 'Sammy', 'Cooper', 003),
   (004, 'Sarah', 'Sam', 'Wellington', 004);
 
 -- |------------------------------------------------------------------------------------------------|
@@ -211,10 +211,10 @@
 -- INSERTING RECORDS: TABLE 9 - genders
   INSERT INTO genders(gender) 
   VALUES 
-  ('Male'),
-  ('Female'),
-  ('Other'),
-  ('Rather Not Mention');
+  ('MALE'),
+  ('FEMALE'),
+  ('OTHER'),
+  ('RATHER NOT MENTION');
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -415,59 +415,80 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 18 - account_statuses
+-- CREATING TABLE: TABLE 18 - login_roles
+  CREATE TABLE login_roles(
+    role_id TINYINT NOT NULL AUTO_INCREMENT,
+    role VARCHAR(30) NOT NULL,
+    CONSTRAINT pk_login_role PRIMARY KEY (role_id)
+  )ENGINE=INNODB;
+  
+-- AUTO INCREMENT STARTING POINT: TABLE 18 - login_roles
+  ALTER TABLE login_roles AUTO_INCREMENT = 001;
+  
+-- INSERTING RECORDS: TABLE 19 - login_roles
+  INSERT INTO login_roles(role) 
+  VALUES 
+  ('ROLE_ADMINISTRATOR'),
+  ('ROLE_OPERATOR'),
+  ('ROLE_REGISTERED_PUBLIC_USER');
+
+-- |------------------------------------------------------------------------------------------------|
+
+-- CREATING TABLE: TABLE 19 - account_statuses
   CREATE TABLE account_statuses(
     account_status_id TINYINT NOT NULL AUTO_INCREMENT,
     account_status VARCHAR(10) NOT NULL,
     CONSTRAINT pk_account_status PRIMARY KEY (account_status_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 18 - account_statuses
+-- AUTO INCREMENT STARTING POINT: TABLE 19 - account_statuses
   ALTER TABLE account_statuses AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 18 - account_statuses
+-- INSERTING RECORDS: TABLE 19 - account_statuses
   INSERT INTO account_statuses(account_status) 
   VALUES 
-  ('Enabled'),
-  ('Disabled');
+  ('ENABLED'),
+  ('DISABLED');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 19 - logins
+-- CREATING TABLE: TABLE 20 - logins
   CREATE TABLE logins(
     login_id INT NOT NULL AUTO_INCREMENT,
     email_address VARCHAR(250) NOT NULL UNIQUE,
-    password_hash VARCHAR(150) NOT NULL,
-    as_account_status_id TINYINT NOT NULL,
-    a_account_id INT NOT NULL,
+    password VARCHAR(150) NOT NULL,
+    lr_login_role_id TINYINT,
+    as_account_status_id TINYINT,
+    a_account_id INT,
     CONSTRAINT pk_login PRIMARY KEY (login_id),
+    CONSTRAINT fk_as_l_login_role_id FOREIGN KEY (lr_login_role_id) REFERENCES login_roles(role_id),
     CONSTRAINT fk_as_l_account_status_id FOREIGN KEY (as_account_status_id) REFERENCES account_statuses(account_status_id),
     CONSTRAINT fk_a_l_account_id FOREIGN KEY (a_account_id) REFERENCES accounts(account_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 19 - logins
+-- AUTO INCREMENT STARTING POINT: TABLE 20 - logins
   ALTER TABLE logins AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 19 - logins
-  INSERT INTO logins(email_address, password_hash, as_account_status_id, a_account_id) 
+-- INSERTING RECORDS: TABLE 20 - logins
+  INSERT INTO logins(email_address, password, lr_login_role_id, as_account_status_id, a_account_id) 
   VALUES 
-  ('lucasanderson.ghd@gmail.com', '', 001, 0000000001), -- User Type: Administrator   |   Password:   
-  ('andrewwilcom.ghd@gmail.com', '', 001, 0000000002), -- User Type: Operator   |   Password:           
-  ('jackcooper24@gmail.com', '', 001, 0000000003); -- User Type: Registered Public User   |   Password:      
+  ('lucasanderson.ghd@gmail.com', '$2y$10$kw0RlRCWYswnDkMMCLo1WOETGLa2pNNTai.Up4A2xgeNo1MvxG7dS', 1, 001, 0000000001), -- User Type: Administrator          |   Password: $lUcasaNdeSon432
+  ('andrewwilcom.ghd@gmail.com', '$2y$10$677MQa6CaFp4HrOGpcXVHedilhf2wUm67pDdJOlnqheowsmHnJK0u', 2, 001, 0000000002),  -- User Type: Operator               |   Password: aNdrew95WilSon#         
+  ('jackcooper24@gmail.com', '$2y$10$eZzk9Wo34I80IN730yxeZuEuNKGYPr2bCdY5afIo42gGh6UymfVVq', 3, 001, 0000000003);      -- User Type: Registered Public User |   Password: Cooper28$jAck     
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 20 - account_activities
+-- CREATING TABLE: TABLE 21 - account_activities
   CREATE TABLE account_activities(
     account_activity_id TINYINT NOT NULL AUTO_INCREMENT,
     account_activity VARCHAR(10) NOT NULL,
     CONSTRAINT pk_account_activity PRIMARY KEY (account_activity_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 20 - account_activities
+-- AUTO INCREMENT STARTING POINT: TABLE 21 - account_activities
   ALTER TABLE account_activities AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 20 - account_activities
+-- INSERTING RECORDS: TABLE 21 - account_activities
   INSERT INTO account_activities(account_activity) 
   VALUES 
   ('ONLINE'),
@@ -475,7 +496,7 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 21 - login_activities
+-- CREATING TABLE: TABLE 22 - login_activities
   CREATE TABLE login_activities(
     login_activity_id INT NOT NULL AUTO_INCREMENT,
     login_date_time DATETIME DEFAULT current_timestamp,
@@ -487,17 +508,17 @@
     CONSTRAINT fk_l_la_login_id FOREIGN KEY (l_login_id) REFERENCES logins(login_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 21 - login_activities
+-- AUTO INCREMENT STARTING POINT: TABLE 22 - login_activities
   ALTER TABLE login_activities AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 21 - login_activities
+-- INSERTING RECORDS: TABLE 22 - login_activities
 --   INSERT INTO login_activities(as_account_activity_id, l_login_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 22 - forgot_passwords
+-- CREATING TABLE: TABLE 23 - forgot_passwords
   CREATE TABLE forgot_passwords(
     recovery_id INT NOT NULL AUTO_INCREMENT,
     pin_code MEDIUMINT NOT NULL,
@@ -507,27 +528,27 @@
     CONSTRAINT fk_l_lp_login_id FOREIGN KEY (l_login_id) REFERENCES Logins(login_id) 
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 22 - forgot_passwords
+-- AUTO INCREMENT STARTING POINT: TABLE 23 - forgot_passwords
   ALTER TABLE forgot_passwords AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 22 - forgot_passwords
+-- INSERTING RECORDS: TABLE 23 - forgot_passwords
 --   INSERT INTO forgot_passwords() 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 23 - review_statuses
+-- CREATING TABLE: TABLE 24 - review_statuses
   CREATE TABLE review_statuses(
     review_status_id TINYINT NOT NULL AUTO_INCREMENT,
     review_status VARCHAR(10) NOT NULL,
     CONSTRAINT pk_review_status PRIMARY KEY (review_status_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 23 - review_statuses
+-- AUTO INCREMENT STARTING POINT: TABLE 24 - review_statuses
   ALTER TABLE review_statuses AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 23 - review_statuses
+-- INSERTING RECORDS: TABLE 24 - review_statuses
   INSERT INTO review_statuses(review_status) 
   VALUES 
   ('PENDING'),
@@ -535,7 +556,7 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 24 - feedback_reports
+-- CREATING TABLE: TABLE 25 - feedback_reports
   CREATE TABLE feedback_reports(
     report_id INT NOT NULL AUTO_INCREMENT, 
     report_subject VARCHAR(150) NOT NULL, 
@@ -558,36 +579,36 @@
     CONSTRAINT fk_a_fr_reviewed_by_account_id FOREIGN KEY (a_reviewed_by_account_id) REFERENCES operators(a_account_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 24 - feedback_reports
+-- AUTO INCREMENT STARTING POINT: TABLE 25 - feedback_reports
   ALTER TABLE feedback_reports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 24 - feedback_reports
+-- INSERTING RECORDS: TABLE 25 - feedback_reports
 --   INSERT INTO feedback_reports() 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 25 - submitted_user_types
+-- CREATING TABLE: TABLE 26 - submitted_user_types
   CREATE TABLE submitted_user_types(
     user_type_id TINYINT NOT NULL AUTO_INCREMENT,
     user_type VARCHAR(100) NOT NULL,
     CONSTRAINT pk_user_type_id PRIMARY KEY (user_type_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 25 - submitted_user_types
+-- AUTO INCREMENT STARTING POINT: TABLE 26 - submitted_user_types
   ALTER TABLE submitted_user_types AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 25 - submitted_user_types
+-- INSERTING RECORDS: TABLE 26 - submitted_user_types
   INSERT INTO submitted_user_types(user_type) 
   VALUES 
-  ('Operator'),
-  ('Registered Public User'),
-  ('Operator Forwarded Registered Public User');
+  ('OPERATOR'),
+  ('REGISTERED_PUBLIC_USER'),
+  ('OPERATOR_FORWARDED_REGISTERED_PUBLIC_USER');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 26 - internal_feedback_reports
+-- CREATING TABLE: TABLE 27 - internal_feedback_reports
   CREATE TABLE internal_feedback_reports(
     internal_report_id INT NOT NULL AUTO_INCREMENT,
     fr_report_id INT NOT NULL,
@@ -605,17 +626,17 @@
     CONSTRAINT fk_o_ifr_published_account_id FOREIGN KEY (o_published_account_id) REFERENCES operators(a_account_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 26 - internal_feedback_reports
+-- AUTO INCREMENT STARTING POINT: TABLE 27 - internal_feedback_reports
   ALTER TABLE internal_feedback_reports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 26 - internal_feedback_reports
+-- INSERTING RECORDS: TABLE 27 - internal_feedback_reports
 --   INSERT INTO internal_feedback_reports() 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 27 - external_feedback_reports
+-- CREATING TABLE: TABLE 28 - external_feedback_reports
   CREATE TABLE external_feedback_reports(
     external_report_id INT NOT NULL AUTO_INCREMENT,
     fr_report_id INT NOT NULL,
@@ -628,17 +649,17 @@
     CONSTRAINT fk_upu_efr_published_account_id FOREIGN KEY (upu_published_account_id) REFERENCES unregistered_public_users(a_account_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 27 - external_feedback_reports
+-- AUTO INCREMENT STARTING POINT: TABLE 28 - external_feedback_reports
   ALTER TABLE external_feedback_reports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 27 - external_feedback_reports
+-- INSERTING RECORDS: TABLE 28 - external_feedback_reports
 --   INSERT INTO external_feedback_reports() 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 28 - health_status_reports
+-- CREATING TABLE: TABLE 29 - health_status_reports
   CREATE TABLE health_status_reports(
     report_id INT NOT NULL AUTO_INCREMENT,
     report_description VARCHAR(150) NOT NULL,
@@ -661,17 +682,17 @@
     CONSTRAINT fk_o_hsr_reviewed_by_account_id FOREIGN KEY (o_reviewed_by_account_id) REFERENCES operators(a_account_id)
   )ENGINE=INNODB;
   
--- AUTO INCREMENT STARTING POINT: TABLE 28 - health_status_reports
+-- AUTO INCREMENT STARTING POINT: TABLE 29 - health_status_reports
   ALTER TABLE health_status_reports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 28 - health_status_reports
+-- INSERTING RECORDS: TABLE 29 - health_status_reports
 --   INSERT INTO health_status_reports() 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 29 - symptoms
+-- CREATING TABLE: TABLE 30 - symptoms
   CREATE TABLE symptoms(
     symptom_id MEDIUMINT NOT NULL AUTO_INCREMENT,
     symptom VARCHAR(150) NOT NULL,
@@ -679,10 +700,10 @@
     CONSTRAINT pk_symptom PRIMARY KEY (symptom_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 29 - symptoms
+-- AUTO INCREMENT STARTING POINT: TABLE 30 - symptoms
   ALTER TABLE symptoms AUTO_INCREMENT = 0000001;
 
--- INSERTING RECORDS: TABLE 29 - symptoms
+-- INSERTING RECORDS: TABLE 30 - symptoms
   INSERT INTO symptoms(symptom, symptom_category) 
   VALUES 
   ('Fewer', 'Common Symptom'),
@@ -701,7 +722,7 @@
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 30 - health_status_report_symptoms
+-- CREATING TABLE: TABLE 31 - health_status_report_symptoms
   CREATE TABLE health_status_report_symptoms(
     hsr_report_id INT NOT NULL,
     s_symptom_id MEDIUMINT NOT NULL,
@@ -710,14 +731,14 @@
     CONSTRAINT fk_s_hsrs_dymptom_id FOREIGN KEY (s_symptom_id) REFERENCES symptoms(symptom_id)
   )ENGINE=INNODB;
 
--- INSERTING RECORDS: TABLE 30 - health_status_report_symptoms
+-- INSERTING RECORDS: TABLE 31 - health_status_report_symptoms
 --   INSERT INTO health_status_report_symptoms(hsr_report_id, s_symptom_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 31 - standard_health_status_reports
+-- CREATING TABLE: TABLE 32 - standard_health_status_reports
   CREATE TABLE standard_health_status_reports(
 	standard_report_id INT NOT NULL AUTO_INCREMENT,
     hsr_report_id INT NOT NULL,
@@ -725,35 +746,35 @@
     CONSTRAINT fk_hsr_shsr_report_id FOREIGN KEY (hsr_report_id) REFERENCES health_status_reports(report_id)
   )ENGINE=INNODB;
   
--- AUTO INCREMENT STARTING POINT: TABLE 31 - standard_health_status_reports
+-- AUTO INCREMENT STARTING POINT: TABLE 32 - standard_health_status_reports
   ALTER TABLE standard_health_status_reports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 31 - standard_health_status_reports
+-- INSERTING RECORDS: TABLE 32 - standard_health_status_reports
 --   INSERT INTO standard_health_status_reports(standard_report_id, hsr_report_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 32 - report_types
+-- CREATING TABLE: TABLE 33 - report_types
   CREATE TABLE report_types(
 	report_type_id TINYINT NOT NULL AUTO_INCREMENT,
     report_type VARCHAR(100) NOT NULL,
     CONSTRAINT pk_report_type PRIMARY KEY (report_type_id)
   )ENGINE=INNODB;
   
--- AUTO INCREMENT STARTING POINT: TABLE 32 - report_types
+-- AUTO INCREMENT STARTING POINT: TABLE 33 - report_types
   ALTER TABLE report_types AUTO_INCREMENT = 001;
 
--- INSERTING RECORDS: TABLE 32 - report_types
+-- INSERTING RECORDS: TABLE 33 - report_types
   INSERT INTO report_types(report_type) 
   VALUES 
-  ('Enduring Severe Symptoms'),
-  ('PCR Test Disease Positive');
+  ('ENDURING_SEVERE_SYMPTOMS'),
+  ('PCR_TEST_DISEASE_POSITIVE');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 33 - emergency_health_status_reports
+-- CREATING TABLE: TABLE 34 - emergency_health_status_reports
   CREATE TABLE emergency_health_status_reports(
 	emergency_report_id INT NOT NULL AUTO_INCREMENT,
     hsr_report_id INT NOT NULL,
@@ -765,17 +786,17 @@
     CONSTRAINT fk_s_eshr_severity_id FOREIGN KEY (s_severity_id) REFERENCES severities(severity_id)
   )ENGINE=INNODB;
 
--- AUTO INCREMENT STARTING POINT: TABLE 33 - emergency_health_status_reports
+-- AUTO INCREMENT STARTING POINT: TABLE 34 - emergency_health_status_reports
   ALTER TABLE emergency_health_status_reports AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 33 - emergency_health_status_reports
+-- INSERTING RECORDS: TABLE 34 - emergency_health_status_reports
 --   INSERT INTO emergency_health_status_reports(hsr_report_id, rt_report_type_id, s_severity_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 34 - responses
+-- CREATING TABLE: TABLE 35 - responses
   CREATE TABLE responses(
 	reponse_id INT NOT NULL AUTO_INCREMENT,
     message VARCHAR(250) NOT NULL,
@@ -788,35 +809,35 @@
     CONSTRAINT fk_hsr_r_report_id FOREIGN KEY (hsr_report_id) REFERENCES health_status_reports(report_id)
   )ENGINE=INNODB;
   
-  -- AUTO INCREMENT STARTING POINT: TABLE 34 - responses
+  -- AUTO INCREMENT STARTING POINT: TABLE 35 - responses
   ALTER TABLE responses AUTO_INCREMENT = 0000000001;
 
--- INSERTING RECORDS: TABLE 34 - responses
+-- INSERTING RECORDS: TABLE 35 - responses
 --   INSERT INTO responses(message, sent_email_address, fr_report_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 35 - health_detail_categories
+-- CREATING TABLE: TABLE 36 - health_detail_categories
   CREATE TABLE health_detail_categories(
     category_id TINYINT NOT NULL AUTO_INCREMENT,
     category VARCHAR(100) NOT NULL,
     CONSTRAINT pk_health_detail_category PRIMARY KEY (category_id)
   )ENGINE=INNODB;
   
--- AUTO INCREMENT STARTING POINT: TABLE 35 - health_detail_categories
+-- AUTO INCREMENT STARTING POINT: TABLE 36 - health_detail_categories
   ALTER TABLE health_detail_categories AUTO_INCREMENT = 001;
   
--- INSERTING RECORDS: TABLE 35 - health_detail_categories
+-- INSERTING RECORDS: TABLE 36 - health_detail_categories
   INSERT INTO health_detail_categories(category) 
   VALUES 
-  ('Health Guidelines'),
-  ('Curfew Announcement');
+  ('HEALTH_GUIDELINES'),
+  ('CURFEW_ANNOUNCEMENT');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 36 - health_details
+-- CREATING TABLE: TABLE 37 - health_details
   CREATE TABLE health_details(
     health_detail_id INT NOT NULL AUTO_INCREMENT,
     health_detail_heading VARCHAR(150) NOT NULL,
@@ -836,17 +857,17 @@
     CONSTRAINT fk_o_hd_published_account_id FOREIGN KEY (o_published_account_id) REFERENCES operators(a_account_id)
   )ENGINE=INNODB;
   
-  -- AUTO INCREMENT STARTING POINT: TABLE 36 - health_details
+  -- AUTO INCREMENT STARTING POINT: TABLE 37 - health_details
   ALTER TABLE health_details AUTO_INCREMENT = 0000000001;
   
--- INSERTING RECORDS: TABLE 36 - health_details
+-- INSERTING RECORDS: TABLE 37 - health_details
 --   INSERT INTO HealthDetails(health_detail_heading, health_detail_passage, hdc_category_id, o_published_operator_id, o_published_account_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 37 - health_detail_texts
+-- CREATING TABLE: TABLE 38 - health_detail_texts
   CREATE TABLE health_detail_texts(
     text_id INT NOT NULL AUTO_INCREMENT,
     text_heading VARCHAR(150) NOT NULL,
@@ -857,34 +878,34 @@
     CONSTRAINT fk_hd_hdt_health_detail_id FOREIGN KEY (hd_health_detail_id) REFERENCES health_details(health_detail_id)
   )ENGINE=INNODB;
   
-  -- AUTO INCREMENT STARTING POINT: TABLE 37 - health_detail_texts
+  -- AUTO INCREMENT STARTING POINT: TABLE 38 - health_detail_texts
   ALTER TABLE health_detail_texts AUTO_INCREMENT = 0000000001;
   
--- INSERTING RECORDS: TABLE 37 - health_detail_texts
+-- INSERTING RECORDS: TABLE 38 - health_detail_texts
 --   INSERT INTO health_detail_texts(text_heading, detail_text, text_section_sequence_number, hd_health_detail_id) 
 --   VALUES 
 --   ();
   
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 38 - hot_zone_categories
+-- CREATING TABLE: TABLE 39 - hot_zone_categories
   CREATE TABLE hot_zone_categories(
     category_id TINYINT NOT NULL AUTO_INCREMENT,
     category VARCHAR(150) NOT NULL,
     CONSTRAINT pk_hot_zone_category PRIMARY KEY (category_id)
   )ENGINE=INNODB;
   
--- AUTO INCREMENT STARTING POINT: TABLE 38 - hot_zone_categories
+-- AUTO INCREMENT STARTING POINT: TABLE 39 - hot_zone_categories
   ALTER TABLE hot_zone_categories AUTO_INCREMENT = 001;
   
--- INSERTING RECORDS: TABLE 38 - hot_zone_categories
+-- INSERTING RECORDS: TABLE 39 - hot_zone_categories
 --   INSERT INTO hot_zone_categories(category) 
 --   VALUES 
 --   ('');
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 39 - hot_zone_locations
+-- CREATING TABLE: TABLE 40 - hot_zone_locations
   CREATE TABLE hot_zone_locations(
     location_id INT NOT NULL AUTO_INCREMENT,
     zone_name VARCHAR(150) NOT NULL,
@@ -905,17 +926,17 @@
     CONSTRAINT fk_o_hzl_published_account_id FOREIGN KEY (o_published_account_id) REFERENCES operators(a_account_id)
   )ENGINE=INNODB;
   
-  -- AUTO INCREMENT STARTING POINT: TABLE 39 - hot_zone_locations
+  -- AUTO INCREMENT STARTING POINT: TABLE 40 - hot_zone_locations
   ALTER TABLE hot_zone_locations AUTO_INCREMENT = 0000000001;
   
--- INSERTING RECORDS: TABLE 39 - hot_zone_locations
+-- INSERTING RECORDS: TABLE 40 - hot_zone_locations
 --   INSERT INTO hot_zone_locations(zone_name, hzc_category_id, s_severity_id, o_published_operator_id, o_published_account_id) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 40 - hot_zone_location_latitudes
+-- CREATING TABLE: TABLE 41 - hot_zone_location_latitudes
   CREATE TABLE hot_zone_location_latitudes(
     hzl_location_id INT NOT NULL,
     latitude FLOAT NOT NULL,
@@ -924,14 +945,14 @@
     CONSTRAINT fk_hzl_zhlla_hzl_location_id FOREIGN KEY (hzl_location_id) REFERENCES hot_zone_locations(location_id)
   )ENGINE=INNODB;
   
--- INSERTING RECORDS: TABLE 40 - hot_zone_location_latitudes
+-- INSERTING RECORDS: TABLE 41 - hot_zone_location_latitudes
 --   INSERT INTO hot_zone_location_latitudes(hzl_location_id, latitude, sequence_order,) 
 --   VALUES 
 --   ();
 
 -- |------------------------------------------------------------------------------------------------|
 
--- CREATING TABLE: TABLE 41 - hot_zone_location_longitudes
+-- CREATING TABLE: TABLE 42 - hot_zone_location_longitudes
   CREATE TABLE hot_zone_location_longitudes(
     hzl_location_id INT NOT NULL,
     longitude FLOAT NOT NULL,
@@ -940,7 +961,7 @@
     CONSTRAINT fk_hzl_hzllo_hzl_location_id FOREIGN KEY (hzl_location_id) REFERENCES hot_zone_locations(location_id)
   )ENGINE=INNODB;
   
--- INSERTING RECORDS: TABLE 41 - hot_zone_location_longitudes
+-- INSERTING RECORDS: TABLE 42 - hot_zone_location_longitudes
 --   INSERT INTO hot_zone_location_longitudes(hzl_location_id, longitude, sequence_order) 
 --   VALUES 
 --   ();
