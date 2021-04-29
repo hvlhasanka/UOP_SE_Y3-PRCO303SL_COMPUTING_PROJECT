@@ -1,8 +1,8 @@
 /**
- * GHD Covid19 Stats Microservice
+ * GHD Server App
  * Model: DailyPCRTestingData
  */
-package com.computingprojecthvlhasanka.ghdcovid19statsservice.model;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.model;
 
 public class DailyPCRTestingData {
   

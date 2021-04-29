@@ -1,10 +1,6 @@
-package com.computingprojecthvlhasanka.ghdcovid19statsservice.resource;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.controller;
 
-/**
- * GHD Covid19 Stats Microservice
- * Controller: Covid19StatsResource
- */
-import com.computingprojecthvlhasanka.ghdcovid19statsservice.model.Covid19Stats;
+import com.computingprojecthvlhasanka.ghdserverapp.microservice.model.Covid19Stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,8 +11,8 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/latest-covid19-stats")
-public class Covid19StatsResource {
-
+public class Covid19StatsController {
+  
   /**
    * Retrieving the 'RestTemplate' instance from the main class 
    * using the 'Autowired' injection
@@ -27,15 +23,15 @@ public class Covid19StatsResource {
   /**
    * Retrieving the value from the 'application.properties' file 
    */
-  @Value("${hpb-health-covid19-stats-api-url}")
-  private String hpbHealthApiUrl;
+  @Value("${covid-19-stats-microservice-url}")
+  private String covid19StatsMicroServiceURL;
 
   /**
-   * Retrieving the external API data through the GET response
+   * Retrieving the microservice data through the GET response
    */
   @GetMapping(value = "")
   public Covid19Stats getCovid19Stats(){
-    Covid19Stats latestCovid19Stats = restTemplate.getForObject(hpbHealthApiUrl, Covid19Stats.class);
+    Covid19Stats latestCovid19Stats = restTemplate.getForObject(covid19StatsMicroServiceURL, Covid19Stats.class);
     return latestCovid19Stats;
   }
 

@@ -12,6 +12,10 @@ public class GhdCovid19StatsServiceApplication {
 		SpringApplication.run(GhdCovid19StatsServiceApplication.class, args);
 	}
 
+	/**
+	 * ADD BEAN ANNOTATION -
+	 * Create a new bean to create an 'RestTemplate' instance
+	 */
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
