@@ -32,7 +32,7 @@ const AboutScreen = () => {
           <Text style={styles.textTop}>
             <Text style={styles.textBold}>
               GHD Covid19
-            </Text> was developed by University of Plymouth Third Year Student, Mr. H.V.L.Hasanka.
+            </Text> was developed by University of Plymouth Third Year Student,{"\n"} Mr. H.V.L.Hasanka.
           </Text>
           <Text style={styles.textBottom}>
             Assignment Title: {" "}

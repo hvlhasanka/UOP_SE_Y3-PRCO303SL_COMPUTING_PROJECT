@@ -58,7 +58,7 @@ const ProfileStackScreen = ({ navigation }) => {
     <ProfileStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -67,14 +67,20 @@ const ProfileStackScreen = ({ navigation }) => {
         component={ ProfileScreen } 
         options={{
           title: "PROFILE",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#0B3359" 
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
+            </View>
           )
         }}
       />
