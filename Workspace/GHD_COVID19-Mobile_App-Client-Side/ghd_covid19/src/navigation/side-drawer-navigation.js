@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, StatusBar } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
@@ -202,7 +203,7 @@ const AboutStackScreen = ({ navigation }) => {
     <AboutStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -211,14 +212,20 @@ const AboutStackScreen = ({ navigation }) => {
         component={ AboutScreen } 
         options={{
           title: "ABOUT",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
-            <IoniconsIcon.Button 
-              name="menu" 
-              size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
-              onPress={() => navigation.openDrawer()}
-            ></IoniconsIcon.Button>
+            <View>
+              <StatusBar backgroundColor="#3573E1" />
+              <IoniconsIcon.Button 
+                name="menu" 
+                size={35} 
+                backgroundColor="#0B3359" 
+                color="#ffffff"
+                onPress={() => navigation.openDrawer()}
+              ></IoniconsIcon.Button>
+            </View>
           )
         }}
       />
