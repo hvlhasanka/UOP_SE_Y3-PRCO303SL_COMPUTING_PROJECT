@@ -1,9 +1,9 @@
-package com.computingprojecthvlhasanka.ghdcovid19statsservice.resource;
-
 /**
  * GHD Covid19 Stats Microservice
  * Controller: Covid19StatsResource
  */
+package com.computingprojecthvlhasanka.ghdcovid19statsservice.resource;
+
 import com.computingprojecthvlhasanka.ghdcovid19statsservice.model.Covid19Stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,14 @@ public class Covid19StatsResource {
   private RestTemplate restTemplate;
 
   /**
-   * Retrieving the value from the 'application.properties' file 
+   * Retrieving the value from the 'application.properties' file, 
+   * (environment variable)
    */
   @Value("${hpb-health-covid19-stats-api-url}")
   private String hpbHealthApiUrl;
 
   /**
-   * Retrieving the external API data through the GET response
+   * Retrieving the external API data (Covid19 Stats) through the GET response
    */
   @GetMapping(value = "")
   public Covid19Stats getCovid19Stats(){
