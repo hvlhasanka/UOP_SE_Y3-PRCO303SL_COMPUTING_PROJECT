@@ -1,3 +1,7 @@
+/**
+ * GHD Server App
+ * Controller: Covid19StatsController
+ */
 package com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.controller;
 
 import com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.model.Covid19Stats;
@@ -28,6 +32,7 @@ public class Covid19StatsController {
 
   /**
    * Retrieving the microservice data through the GET response
+   * (environment variable)
    */
   @GetMapping(value = "")
   public Covid19Stats getCovid19Stats(){

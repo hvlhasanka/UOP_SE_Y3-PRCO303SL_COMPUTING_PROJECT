@@ -1,8 +1,8 @@
 /**
- * GHD Health News Microservice
+ * GHD Server App
  * Model: SourceData
  */
-package com.computingprojecthvlhasanka.ghdhealthnewsservice.model;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.healthnewsdetails.model;
 
 public class SourceData {
 
@@ -20,6 +20,7 @@ public class SourceData {
     this.id = id;
     this.name = name;
   }
+  
   
   // Setters and Getters
   public String getId() {
