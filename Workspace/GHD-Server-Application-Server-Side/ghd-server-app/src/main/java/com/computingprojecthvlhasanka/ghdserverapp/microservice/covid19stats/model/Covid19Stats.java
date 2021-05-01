@@ -2,7 +2,7 @@
  * GHD Server App
  * Model: Covid19Stats
  */
-package com.computingprojecthvlhasanka.ghdserverapp.microservice.model;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.model;
 
 public class Covid19Stats {
   

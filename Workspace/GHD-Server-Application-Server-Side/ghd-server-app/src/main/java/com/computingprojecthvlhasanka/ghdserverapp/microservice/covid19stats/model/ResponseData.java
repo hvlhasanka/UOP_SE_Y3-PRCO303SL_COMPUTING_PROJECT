@@ -2,7 +2,7 @@
  * GHD Server App
  * Model: ResponseData
  */
-package com.computingprojecthvlhasanka.ghdserverapp.microservice.model;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.model;
 
 import java.util.List;
 

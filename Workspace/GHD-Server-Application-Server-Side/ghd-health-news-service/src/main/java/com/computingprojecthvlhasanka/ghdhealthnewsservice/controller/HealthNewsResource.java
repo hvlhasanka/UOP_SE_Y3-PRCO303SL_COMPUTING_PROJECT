@@ -2,7 +2,7 @@
  * GHD Health News Microservice
  * Controller: HealthNewsResource
  */
-package com.computingprojecthvlhasanka.ghdhealthnewsservice.resource;
+package com.computingprojecthvlhasanka.ghdhealthnewsservice.controller;
 
 import com.computingprojecthvlhasanka.ghdhealthnewsservice.model.HealthNews;
 

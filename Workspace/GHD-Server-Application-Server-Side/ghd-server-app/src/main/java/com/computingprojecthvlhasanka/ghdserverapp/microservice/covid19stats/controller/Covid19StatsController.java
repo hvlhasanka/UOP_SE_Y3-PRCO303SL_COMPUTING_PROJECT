@@ -1,6 +1,6 @@
-package com.computingprojecthvlhasanka.ghdserverapp.microservice.controller;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.controller;
 
-import com.computingprojecthvlhasanka.ghdserverapp.microservice.model.Covid19Stats;
+import com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.model.Covid19Stats;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

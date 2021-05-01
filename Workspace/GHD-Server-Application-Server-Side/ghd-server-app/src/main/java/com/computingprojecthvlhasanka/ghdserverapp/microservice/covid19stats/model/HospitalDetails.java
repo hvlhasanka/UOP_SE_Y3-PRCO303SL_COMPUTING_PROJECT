@@ -2,7 +2,7 @@
  * GHD Server App
  * Model: HospitalDetails
  */
-package com.computingprojecthvlhasanka.ghdserverapp.microservice.model;
+package com.computingprojecthvlhasanka.ghdserverapp.microservice.covid19stats.model;
 
 public class HospitalDetails {
   
