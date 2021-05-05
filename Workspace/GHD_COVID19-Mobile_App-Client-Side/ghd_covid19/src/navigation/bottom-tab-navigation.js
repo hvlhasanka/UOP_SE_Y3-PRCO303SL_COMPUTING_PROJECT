@@ -8,9 +8,9 @@ import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import HealthDetailsNavigation from './public-health-news-stack';
 import HomeScreen from '../screens/public-screens/home/home.screen';
 import CovidStatsTabScreen from '../screens/public-screens/covid-stats-tab/covid-stats-tab.screen';
-import HealthDetailsTabScreen from '../screens/public-screens/health-details-tab/health-details-tab.screen';
 import HealthStatusReportsTabScreen from '../screens/public-screens/health-status-reports-tab/health-status-reports-tab.screen';
 import HotZonesTabScreen from '../screens/public-screens/hot-zones-tab/hot-zones-tab.screen';
 
@@ -131,7 +131,7 @@ const HealthDetailsStackScreen = ({ navigation }) => {
     >
       <HealthDetailsStack.Screen 
         name="HealthDetails" 
-        component={ HealthDetailsTabScreen } 
+        component={ HealthDetailsNavigation } 
         options={{
           title: "HEALTH DETAILS",
           headerTitleStyle: {

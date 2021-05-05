@@ -4,14 +4,21 @@ import {
   View,
   ScrollView
 } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Title, Button, Paragraph } from 'react-native-paper';
 
 import styles from './health-details-tab.style';
 import HealthNewsService from '../../../services/public/health-news-service';
+import PublicHealthNewsNavigation from '../../../navigation/public-health-news-stack';
 
 const HealthDetailsTabScreen = ({ navigation }) => {
 
   const [healthNews, setHealthNews] = useState([]);
+
+  const character = {
+    name: 'Luke Skywalker',
+    home: 'Tatooine',
+    species: 'human'
+  }
 
   const retrieveHealthNewsDetails = async () => {
     try {
@@ -63,7 +70,7 @@ const HealthDetailsTabScreen = ({ navigation }) => {
                             <Paragraph>{ listOfHealthNews.description }</Paragraph>
                           </Card.Content>
                           <Card.Actions>
-                            <Button onPress={() => {console.log("test");}}>READ MORE</Button>
+                            <Button onPress={() => navigation.navigate("PublicHealthNews", { newsDetails: listOfHealthNews })}>READ MORE</Button>
                           </Card.Actions>
                         </Card>
                       </View>
