@@ -8,38 +8,30 @@ import { Card, Title, Button, Paragraph } from 'react-native-paper';
 
 import styles from './health-details-tab.style';
 import HealthNewsService from '../../../services/public/health-news-service';
-import PublicHealthNewsNavigation from '../../../navigation/public-health-news-stack';
+
 
 const HealthDetailsTabScreen = ({ navigation }) => {
 
   const [healthNews, setHealthNews] = useState([]);
 
-  const character = {
-    name: 'Luke Skywalker',
-    home: 'Tatooine',
-    species: 'human'
-  }
-
   const retrieveHealthNewsDetails = async () => {
     try {
-      const responseLeaseDetails = await HealthNewsService
+      const responseHealthNewsDetails = await HealthNewsService
         .getHealthNewsDetails()
         .then(response => {
-          console.log(response.data);
           setHealthNews(response.data.articles);
         });
     } catch (error) {
       console.log(error);
-      // TODO: SHOW ERROR MESSAGE
+      // TODO: SHOW LOAD ERROR MESSAGE
     }
   }
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       retrieveHealthNewsDetails().then(() => {
-        console.log(healthNews);
+        // AFTER RETRIEVING API DATA
       });
-      
     });
     return unsubscribe;
   }, [navigation]);
