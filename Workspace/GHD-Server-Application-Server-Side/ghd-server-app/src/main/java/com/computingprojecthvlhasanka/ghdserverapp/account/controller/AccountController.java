@@ -1,6 +1,6 @@
 package com.computingprojecthvlhasanka.ghdserverapp.account.controller;
 
-import com.computingprojecthvlhasanka.ghdserverapp.account.model.Account;
+import com.computingprojecthvlhasanka.ghdserverapp.account.entity.AccountEntity;
 import com.computingprojecthvlhasanka.ghdserverapp.account.service.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ public class AccountController {
     private AccountServiceImpl accountService;
 
     @GetMapping("/accounts")
-    public List<Account> findAllAccounts() {
+    public List<AccountEntity> findAllAccounts() {
         return accountService.getAllAccounts();
     }
 

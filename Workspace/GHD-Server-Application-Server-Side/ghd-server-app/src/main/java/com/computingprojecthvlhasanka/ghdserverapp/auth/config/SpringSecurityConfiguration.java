@@ -55,9 +55,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure (HttpSecurity http) throws Exception {
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/helloadmin").hasRole("ADMIN")
-		.antMatchers("/hellouser").hasAnyRole("USER","ADMIN")
-		.antMatchers("/authenticate", "/register").permitAll().anyRequest().authenticated()
+		.authorizeRequests().antMatchers("/").hasAnyRole("REGISTERED_PUBLIC_USER", "OPERATOR","ADMINISTRATOR")
+		.antMatchers(/* these routes will not be authenticated and check the validity of the bearer jwt token */
+			"/authenticate", 
+			"/register", 
+			"/latest-covid19-stats",
+			"/health-news-details"
+		).permitAll().anyRequest().authenticated()
 		// If any exception occur
 		.and().exceptionHandling()
 		// Handling unauthorized users

@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.impl.DefaultClaims;
 
-import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationRequest;
-import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationResponse;
+import com.computingprojecthvlhasanka.ghdserverapp.account.service.AccountServiceImpl;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationRequestModel;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.model.AuthenticationResponseModel;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.model.LoginModel;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.service.AccountStatusServiceImpl;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.service.CustomUserDetailsService;
+import com.computingprojecthvlhasanka.ghdserverapp.auth.service.LoginServiceImpl;
 import com.computingprojecthvlhasanka.ghdserverapp.auth.util.JwtAuthUtil;
 
 @RestController
@@ -33,7 +36,16 @@ public class AuthenticationController {
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private CustomUserDetailsService userDetailsService;
+  private CustomUserDetailsService customUserDetailsService;
+
+  @Autowired
+  private LoginServiceImpl loginServiceImpl;
+
+  @Autowired
+  private AccountStatusServiceImpl accountStatusServiceImpl;
+
+  @Autowired
+  private AccountServiceImpl AccountServiceImpl;
 
   @Autowired
   private JwtAuthUtil jwtAuthTokenUtil;
@@ -47,7 +59,7 @@ public class AuthenticationController {
    * @throws Exception
    */
   @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-  public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
+  public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequestModel authenticationRequest)
       throws Exception {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -62,13 +74,19 @@ public class AuthenticationController {
     }
 
     // Retrieving the email address and creating the user details
-    final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmailAddress());
+    final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getEmailAddress());
+
+    // Checking the account status
+    final String accountStatus = accountStatusServiceImpl.checkAccountStatus(authenticationRequest.getEmailAddress());
+
+    // Retrieving the account ID
+    final Long accountId = AccountServiceImpl.getAccountIdByLoginEmailAddress(authenticationRequest.getEmailAddress());
 
     // Creating the jwt token by passing the user details
-    final String token = jwtAuthTokenUtil.generateJwtToken(userDetails);
+    final String token = jwtAuthTokenUtil.generateJwtToken(userDetails, accountStatus, accountId);
 
     // Retuning jwt token to the client-side with the response status code 200
-    return ResponseEntity.ok(new AuthenticationResponse(token));
+    return ResponseEntity.ok(new AuthenticationResponseModel(token));
   }
 
   /**
@@ -80,7 +98,7 @@ public class AuthenticationController {
    */
   @RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody LoginModel user) throws Exception {
-		return ResponseEntity.ok(userDetailsService.addLoginRecord(user));
+		return ResponseEntity.ok(loginServiceImpl.addLoginRecord(user));
 	}
 
   /**
@@ -104,7 +122,7 @@ public class AuthenticationController {
 
     // Returning the newly generated jwt token to the client-side with the response and
     // with a response status of 200
-		return ResponseEntity.ok(new AuthenticationResponse(jwtToken));
+		return ResponseEntity.ok(new AuthenticationResponseModel(jwtToken));
 	}
 
   /**
