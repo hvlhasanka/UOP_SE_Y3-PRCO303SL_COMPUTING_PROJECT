@@ -2,7 +2,7 @@
  * GHD Covid19 Stats Microservice
  * Controller: Covid19StatsResource
  */
-package com.computingprojecthvlhasanka.ghdcovid19statsservice.resource;
+package com.computingprojecthvlhasanka.ghdcovid19statsservice.controller;
 
 import com.computingprojecthvlhasanka.ghdcovid19statsservice.model.Covid19Stats;
 
