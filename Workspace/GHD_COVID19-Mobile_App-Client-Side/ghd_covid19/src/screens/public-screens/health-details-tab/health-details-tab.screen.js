@@ -41,7 +41,6 @@ const HealthDetailsTabScreen = ({ navigation }) => {
       setErrorMessageBox(false);
       setLoadingSpinner(true);
       retrieveHealthNewsDetails().then(() => {
-        // AFTER RETRIEVING API DATA
         console.log(healthNews);
       });
     });
@@ -65,13 +64,13 @@ const HealthDetailsTabScreen = ({ navigation }) => {
               <View style={styles.loadingSpinnerBlock}>
                 <LottieView source={ loadingSpinnerJSON } autoPlay loop style={styles.loadingSpinner} />
               </View>
-          : 
+            : 
             (
               errorMessageBox === true ?
                 <ErrorMessageBlock />
               :
                 <ScrollView horizontal={true}
-                  showsHorizontalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}
                 >
                   <View style={styles.healthNewsBlock}>
                     {

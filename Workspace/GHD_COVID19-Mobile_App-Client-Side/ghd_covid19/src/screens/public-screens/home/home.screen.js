@@ -3,7 +3,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,6 +14,24 @@ import styles from './home.style';
 
 
 const HomeScreen = () => {
+
+  // 'Coming Soon' Alert Box Implementation
+  const comingSoonAlertBox = () =>
+    Alert.alert(
+      "ALERT",
+      "Feature Coming Soon",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { 
+          text: "OK", onPress: () => console.log("OK Pressed") 
+        }
+      ]
+    );
+
   return (
     <View style={styles.container}>
       
@@ -37,18 +56,18 @@ const HomeScreen = () => {
         </View>
 
         <View style={styles.floatingBlock}>
-          <View style={[styles.floatingSection, styles.blockShadow]}>
+          <TouchableOpacity onPress={() => comingSoonAlertBox()} style={[styles.floatingSection, styles.blockShadow]}>
             <Text style={styles.floatingText}>CONTACT TRACING</Text>
             <MaterialCommunityIconsIcon 
               name="contactless-payment" style={styles.floatingIcon}>
             </MaterialCommunityIconsIcon>
-          </View>
-          <View style={[styles.floatingSection, styles.blockShadow]}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => comingSoonAlertBox()} style={[styles.floatingSection, styles.blockShadow]}>
             <Text style={styles.floatingText}>PROXIMITY ALERT</Text>
             <FeatherIcon 
               name="check-circle" style={styles.floatingIcon}>
             </FeatherIcon>
-          </View>
+          </TouchableOpacity>
         </View>
         
         <View style={[styles.healthStatusReportBlock, styles.blockShadow]}>
@@ -59,8 +78,70 @@ const HomeScreen = () => {
 
         <View style={[styles.covidStatsBlock, styles.blockShadow]}>
           <Text style={styles.blockText}>
-            COVID19 Statistics
+            LOCAL COVID19 STATISTICS
           </Text>
+          <ScrollView horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+          >
+            <View style={styles.covidStatsTileBlock}>
+              <View style={[styles.covidStatsTile, {
+                backgroundColor: "#1687a7"
+              }]}>
+                <View style={styles.covidStatsTileHeader}>
+                  <Text style={styles.covidStatsTileValue}>
+                    22
+                  </Text>
+                </View>
+                <View style={styles.covidStatsTileFooter}>
+                  <Text style={styles.covidStatsTileHeading}>
+                    ACTIVE CASES
+                  </Text>
+                </View>
+              </View>
+              <View style={[styles.covidStatsTile, {
+                backgroundColor: "#1687a7"
+              }]}>
+                <View style={styles.covidStatsTileHeader}>
+                  <Text style={styles.covidStatsTileValue}>
+                    22
+                  </Text>
+                </View>
+                <View style={styles.covidStatsTileFooter}>
+                  <Text style={styles.covidStatsTileHeading}>
+                    RECOVERED CASES
+                  </Text>
+                </View>
+              </View>
+              <View style={[styles.covidStatsTile, {
+                backgroundColor: "#1687a7"
+              }]}>
+                <View style={styles.covidStatsTileHeader}>
+                  <Text style={styles.covidStatsTileValue}>
+                    22
+                  </Text>
+                </View>
+                <View style={styles.covidStatsTileFooter}>
+                  <Text style={styles.covidStatsTileHeading}>
+                    NO OF DEATHS
+                  </Text>
+                </View>
+              </View>
+              <View style={[styles.covidStatsTile, {
+                backgroundColor: "#1687a7"
+              }]}>
+                <View style={styles.covidStatsTileHeader}>
+                  <Text style={styles.covidStatsTileValue}>
+                    22
+                  </Text>
+                </View>
+                <View style={styles.covidStatsTileFooter}>
+                  <Text style={styles.covidStatsTileHeading}>
+                    TOTAL COVID CASES
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
         </View>
       </ScrollView>
       

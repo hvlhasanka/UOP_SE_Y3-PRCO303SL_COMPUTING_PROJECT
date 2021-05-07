@@ -102,7 +102,6 @@ const styles =  StyleSheet.create({
     letterSpacing: 1.1
   },
   covidStatsBlock: {
-    flexDirection: "row",
     width: "90%",
     height: 140,
     marginLeft: "5%",
@@ -112,7 +111,22 @@ const styles =  StyleSheet.create({
     backgroundColor: "#ffffff",
     borderRadius: 10
   },
-  blockShadow: {
+  covidStatsTileBlock: {
+    height: "85%",
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  covidStatsTile: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 140,
+    marginRight: 5,
+    borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -121,6 +135,40 @@ const styles =  StyleSheet.create({
     shadowOpacity: 0.37,
     shadowRadius: 7.49,
     elevation: 12,
+  },
+  covidStatsTileHeader: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  covidStatsTileFooter: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  covidStatsTileValue: {
+    fontSize: 20,
+    letterSpacing: 1,
+    color: "#ffffff"
+  },
+  covidStatsTileHeading: {
+    fontSize: 18,
+    letterSpacing: 1,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#ffffff"
+  },
+  blockShadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12
   }
 });
 

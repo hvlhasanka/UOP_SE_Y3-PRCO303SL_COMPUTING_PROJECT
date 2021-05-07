@@ -31,7 +31,6 @@ const CovidStatsTabScreen = ({ navigation }) => {
       setLoadingSpinner(false);
       setErrorMessageBox(true);
       console.log(error);
-      // TODO: SHOW LOAD ERROR MESSAGE
     }
   }
 
@@ -41,7 +40,6 @@ const CovidStatsTabScreen = ({ navigation }) => {
       setLoadingSpinner(true);
       setErrorMessageBox(false);
       retrieveLatestCovid19Stats().then(() => {
-        // AFTER RETRIEVING API DATA
         console.log(covid19Stats);
       });
     });
@@ -63,7 +61,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
         }
       </View>
       <View style={[styles.localStatsBlock, styles.blockShadow]}>
-        <Text style={styles.blockHeading}>Local Stats</Text>
+        <Text style={styles.blockHeading}>Local Statistics</Text>
         <View style={styles.tileBlock}>
           {
             loadingSpinner === true ?
@@ -134,7 +132,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={[styles.globalStatsBlock, styles.blockShadow]}>
-        <Text style={styles.blockHeading}>Global Stats</Text>
+        <Text style={styles.blockHeading}>Global Statistics</Text>
         <View style={styles.tileBlock}>
           {
             loadingSpinner === true ?

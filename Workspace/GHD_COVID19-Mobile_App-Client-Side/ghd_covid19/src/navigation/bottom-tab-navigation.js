@@ -98,7 +98,7 @@ const CovidStatsStackScreen = ({ navigation }) => {
         name="Home"
         component={ CovidStatsTabScreen } 
         options={{
-          title: "COVID STATS",
+          title: "COVID STATISTICS",
           headerTitleStyle: {
             color: "#ffffff"
           },
