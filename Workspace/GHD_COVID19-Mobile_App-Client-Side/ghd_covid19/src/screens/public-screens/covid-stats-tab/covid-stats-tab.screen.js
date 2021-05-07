@@ -37,7 +37,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      setCovid19Stats(null);
+      setCovid19Stats();
       setLoadingSpinner(true);
       setErrorMessageBox(false);
       retrieveLatestCovid19Stats().then(() => {

@@ -48,24 +48,15 @@ const styles =  StyleSheet.create({
   healthNewsCard: {
     width: 260
   },
-  loadErrorBlock: {
-    marginLeft: 30,
-    marginRight: 30,
-    borderRadius: 7,
+  loadingSpinnerBlock: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 3,
-    borderColor: "#FB3151",
-    backgroundColor: "#FFEBED"
+    justifyContent: "center"
   },
-  loadErrorText: {
-    fontSize: 15,
-    letterSpacing: 1,
-    fontWeight: "bold",
-    marginLeft: 10,
-    color: "#FB3151"
+  loadingSpinner: {
+    height: 100,
+    width: 100
   },
   blockShadow: {
     shadowColor: "#000",
