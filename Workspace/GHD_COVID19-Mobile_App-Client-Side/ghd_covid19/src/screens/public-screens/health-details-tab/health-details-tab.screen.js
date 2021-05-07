@@ -9,6 +9,7 @@ import MaterialIconsIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './health-details-tab.style';
 import HealthNewsService from '../../../services/public/health-news-service';
+import ErrorMessageBlock from '../../../components/error-message-block/error-message-block';
 
 
 const HealthDetailsTabScreen = ({ navigation }) => {
@@ -21,7 +22,7 @@ const HealthDetailsTabScreen = ({ navigation }) => {
       const responseHealthNewsDetails = await HealthNewsService
         .getHealthNewsDetails()
         .then(response => {
-          setHealthNewsStatus(response.data.status);
+          setHealthNewsStatus(response.status);
           setHealthNews(response.data.articles);
         });
     } catch (error) {
@@ -52,8 +53,8 @@ const HealthDetailsTabScreen = ({ navigation }) => {
           <Text style={styles.blockHeading}>
             Public Health News
           </Text>
-          { 
-            healthNewsStatus === "ok" ? 
+          {
+            healthNewsStatus === 200 ? 
               <ScrollView horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
@@ -79,17 +80,7 @@ const HealthDetailsTabScreen = ({ navigation }) => {
               </View>
             </ScrollView>
           : 
-            <View style={styles.loadErrorBlock}>
-              <MaterialIconsIcon 
-                  name="error-outline" 
-                  size={35} 
-                  color="#FB3151"
-                  onPress={() => navigation.openDrawer()}
-              ></MaterialIconsIcon>
-              <Text style={styles.loadErrorText}>
-                ERROR: Unable to load
-              </Text>
-            </View> 
+            <ErrorMessageBlock />
           }
         </View>
       </ScrollView>
