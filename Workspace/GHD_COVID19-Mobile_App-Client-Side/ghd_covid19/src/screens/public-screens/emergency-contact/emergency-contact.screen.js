@@ -13,9 +13,11 @@ import styles from './emergency-contact.style';
 const EmergencyContactScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ color: 'black' }}>
-        Emergency Contact Screen
-      </Text>
+      <View style={styles.comingSoonBlock}>
+        <Text style={styles.comingSoonText}>
+          COMING SOON
+        </Text>
+      </View>
     </View>
   );
 };

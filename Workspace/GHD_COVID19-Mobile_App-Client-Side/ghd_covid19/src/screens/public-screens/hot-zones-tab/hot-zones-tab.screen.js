@@ -13,9 +13,11 @@ import styles from './hot-zones-tab.style';
 const HotZonesTabScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ color: 'black' }}>
-        Hot Zones Tab Screen
-      </Text>
+      <View style={styles.comingSoonBlock}>
+        <Text style={styles.comingSoonText}>
+          COMING SOON
+        </Text>
+      </View>
     </View>
   );
 };
