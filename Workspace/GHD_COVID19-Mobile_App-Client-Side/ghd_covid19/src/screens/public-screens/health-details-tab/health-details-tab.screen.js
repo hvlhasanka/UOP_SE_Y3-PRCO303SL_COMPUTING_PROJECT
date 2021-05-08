@@ -58,6 +58,11 @@ const HealthDetailsTabScreen = ({ navigation }) => {
           <Text style={styles.blockHeading}>
             GHD Health Details
           </Text>
+          <View style={styles.noGhdHealthDetailsBlock}>
+            <Text style={styles.noGhdHealthDetailsText}>
+              NO HEALTH DETAILS AVAILABLE
+            </Text>
+          </View>
         </View>
         <View style={[styles.publicHealthNews, styles.blockShadow]}>
           <Text style={styles.blockHeading}>

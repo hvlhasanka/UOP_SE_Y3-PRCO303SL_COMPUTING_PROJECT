@@ -17,7 +17,24 @@ const styles =  StyleSheet.create({
     height: 310,
     width: "90%",
     backgroundColor: "#ffffff",
-    borderRadius: 10
+    borderRadius: 10,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  noGhdHealthDetailsBlock: {
+    marginTop: 20,
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#616161",
+    backgroundColor: "#D6D6D6"
+  },
+  noGhdHealthDetailsText: {
+    color: "#616161",
+    fontSize: 15,
+    letterSpacing: 1
   },
   publicHealthNews: {
     marginTop: 20,
