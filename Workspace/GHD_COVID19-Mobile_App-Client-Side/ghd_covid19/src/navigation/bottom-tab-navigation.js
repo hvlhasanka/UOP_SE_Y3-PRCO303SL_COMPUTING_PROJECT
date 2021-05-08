@@ -170,7 +170,7 @@ const HealthStatusReportsStackScreen = ({ navigation }) => {
         options={{
           title: "HEALTH STATUS REPORTS",
           headerTitleStyle: {
-            color: "#0B3359"
+            color: "#ffffff"
           },
           headerLeft: () => (
             <View>
@@ -178,7 +178,7 @@ const HealthStatusReportsStackScreen = ({ navigation }) => {
               <IoniconsIcon.Button 
                 name="menu" 
                 size={35} 
-                backgroundColor="#0B3359" 
+                backgroundColor="#3573E1" 
                 color="#ffffff"
                 onPress={() => navigation.openDrawer()}
               ></IoniconsIcon.Button>
