@@ -79,12 +79,10 @@ const styles =  StyleSheet.create({
   forgotPasswordBlock: {
     width: "55%",
     height: 30,
-    backgroundColor: "#5039D7",
+    backgroundColor: "#634CEC",
     borderRadius: 20,
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    top: 60
+    marginTop: 10,
+    marginLeft: "auto"
   },
   forgotPasswordText: {
     fontSize: 14,
@@ -97,14 +95,14 @@ const styles =  StyleSheet.create({
   loginButton: {
     backgroundColor: "#1F0F7F",
     borderRadius: 10,
-    marginTop: "30%"
+    marginTop: 10
   },
   signUpTextBlock: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-    marginTop: "10%"
+    marginTop: "5%"
   },
   signUpText: {
     color: "#fff",
@@ -114,7 +112,7 @@ const styles =  StyleSheet.create({
   },
   signUpButton: {
     padding: 10,
-    backgroundColor: "#5039D7",
+    backgroundColor: "#634CEC",
     borderRadius: 10
   },
   signUpButtonText: {

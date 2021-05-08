@@ -5,7 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 import { Button } from 'react-native-paper';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -39,56 +40,58 @@ const LoginScreen = () => {
         <Text style={styles.loginFooterHeading}>
           LOGIN
         </Text>
-        <Text style={styles.textBoxHeading}>
-          Email Address
-        </Text>
-        <View style={styles.formInputRow}>
-          <MaterialCommunityIconsIcon
-            name="email-outline"
-            color= "#fff"
-            size={20}
-            style={styles.inputLeftIcon}
-          />
-          <TextInput
-            style={styles.textInput}
-            autoCapitalize="none"
-            placeholder="Account Email"
-          />
-          {/* <FeatherIcon 
-            size={20}
-            name="check-circle"
-            color="#0FEEA5"
-            style={styles.inputRightIcon}
-          /> */}
-        </View>
-        <Text style={styles.textBoxHeading}>
-          Password
-        </Text>
-        <View style={styles.formInputRow}>
-          <FontAwesomeIcon
-            name="lock"
-            color= "#fff"
-            size={20}
-            style={styles.inputLeftIcon}
-          />
-          <TextInput
-            style={styles.textInput}
-            autoCapitalize="none"
-            placeholder="Account Password"
-            secureTextEntry={true}
-          />
-          <FeatherIcon 
-            size={20}
-            name="eye-off"
-            color="#02EEFF"
-            style={styles.inputRightIcon}
-          />
-          <TouchableOpacity style={styles.forgotPasswordBlock}>
-            <Text style={styles.forgotPasswordText}>
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <ScrollView>
+          <Text style={styles.textBoxHeading}>
+            Email Address
+          </Text>
+          <View style={styles.formInputRow}>
+            <MaterialCommunityIconsIcon
+              name="email-outline"
+              color= "#fff"
+              size={20}
+              style={styles.inputLeftIcon}
+            />
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize="none"
+              placeholder="Account Email"
+            />
+            {/* <FeatherIcon 
+              size={20}
+              name="check-circle"
+              color="#0FEEA5"
+              style={styles.inputRightIcon}
+            /> */}
+          </View>
+          <Text style={styles.textBoxHeading}>
+            Password
+          </Text>
+          <View style={styles.formInputRow}>
+            <FontAwesomeIcon
+              name="lock"
+              color= "#fff"
+              size={20}
+              style={styles.inputLeftIcon}
+            />
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize="none"
+              placeholder="Account Password"
+              secureTextEntry={true}
+            />
+            <FeatherIcon 
+              size={20}
+              name="eye-off"
+              color="#02EEFF"
+              style={styles.inputRightIcon}
+            />
+            <TouchableOpacity style={styles.forgotPasswordBlock}>
+              <Text style={styles.forgotPasswordText}>
+                Forgot Password?
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
         <Button mode="contained" style={styles.loginButton} onPress={() => {}}>
           LOGIN
         </Button>
