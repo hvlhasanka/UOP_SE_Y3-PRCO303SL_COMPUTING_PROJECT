@@ -7,6 +7,8 @@ import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';
 
 import SideDrawerNavigation from './src/navigation/side-drawer-navigation';
+import SignUpScreenOne from './src/screens/auth/sign-up/sign-up-screen-one/sign-up-screen-one.screen';
+import LoginScreen from './src/screens/auth/login/login.screen';
 
 const App = () => {
 
@@ -15,6 +17,8 @@ const App = () => {
   }, []);
 
   return (
+    // <SignUpScreenOne />
+    // <LoginScreen />
     <NavigationContainer>
       <SideDrawerNavigation />
     </NavigationContainer>

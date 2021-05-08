@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles =  StyleSheet.create({
   container: { 
-    flex: 1, 
+    flex: 1,
     backgroundColor: "#fff"
   },
   loginHeader: {
@@ -37,7 +37,7 @@ const styles =  StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20
   },
-  footerHeading: {
+  loginFooterHeading: {
     textAlign: "center",
     fontSize: 24,
     color: "#fff",

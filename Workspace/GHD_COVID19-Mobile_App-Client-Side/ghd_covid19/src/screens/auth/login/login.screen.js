@@ -11,6 +11,7 @@ import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommun
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { Button } from 'react-native-paper';
+
 import styles from './login.style';
 
 
@@ -35,7 +36,7 @@ const LoginScreen = () => {
         />
       </View>
       <View style={[styles.loginFooter, styles.blockShadow]}>
-        <Text style={styles.footerHeading}>
+        <Text style={styles.loginFooterHeading}>
           LOGIN
         </Text>
         <Text style={styles.textBoxHeading}>
