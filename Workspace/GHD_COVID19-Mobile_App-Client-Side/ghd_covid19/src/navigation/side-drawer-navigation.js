@@ -17,9 +17,12 @@ import AboutScreen from '../screens/public-screens/about/about.screen';
 import NotificationsScreen from '../screens/private-screens/notifications/notifications.screen';
 import ProfileScreen from '../screens/private-screens/profile/profile.screen';
 import SideDrawerContent from './side-drawer-content';
+import LoginScreen from '../screens/auth/login/login.screen';
+import SignUpStackNavigation from './sign-up-stack';
 
 
 const SideDrawerNav = createDrawerNavigator();
+const LoginStack = createStackNavigator();
 const NotificationsStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const EmergencyContactStack = createStackNavigator();
@@ -27,6 +30,27 @@ const ReportStack = createStackNavigator();
 const HelpStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
 const AboutStack = createStackNavigator();
+
+const LoginStackScreen = ({ navigation }) => {
+  return (
+    <LoginStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#0B3359"
+        }
+      }}
+    >
+      <LoginStack.Screen 
+        name="Login" 
+        component={ LoginScreen }
+        options={{ 
+          headerMode: 'none', 
+          headerShown : false
+        }}
+      />
+    </LoginStack.Navigator>
+  );
+};
 
 const NotificationsStackScreen = ({ navigation }) => {
   return (
@@ -263,6 +287,8 @@ const SideDrawerNavigation = () => {
   return (
     <SideDrawerNav.Navigator initialRouteName="Home" drawerContent={props => <SideDrawerContent {...props} />}>
       <SideDrawerNav.Screen name="BottomTabNavigation" component={ BottomTabNavigation } />
+      <SideDrawerNav.Screen name="Login" component={ LoginStackScreen } />
+      <SideDrawerNav.Screen name="SignUp" component={ SignUpStackNavigation } />
       <SideDrawerNav.Screen name="Notifications" component={ NotificationsStackScreen } />
       <SideDrawerNav.Screen name="Profile" component={ ProfileStackScreen } />
       <SideDrawerNav.Screen name="EmergencyContact" component={ EmergencyContactStackScreen } />

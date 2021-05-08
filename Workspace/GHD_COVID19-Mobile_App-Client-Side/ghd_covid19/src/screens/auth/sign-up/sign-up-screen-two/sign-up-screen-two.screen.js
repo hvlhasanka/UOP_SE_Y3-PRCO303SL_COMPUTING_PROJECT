@@ -12,7 +12,7 @@ import {
   Image,
   ScrollView
 } from 'react-native';
-import { Button, Checkbox } from 'react-native-paper';
+import { Button, Checkbox, Snackbar } from 'react-native-paper';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
@@ -20,15 +20,24 @@ import styles from './sign-up-screen-two.style';
 
 const signUpCoverImage = require("../../../../assets/images/sign-up-screen-two/cover-image.jpg");
 
-const SignUpScreenTwo = () => {
+const SignUpScreenTwo = ( props ) => {
 
   const [checkedTermsAndConditions, setCheckedTermsAndConditions] = useState(false);
+
+  // 'Coming Soon' Snackbar Implementation
+  const [snackBarVisible, setSnackBarVisible] = useState(false);
+  const onEnableSnackBar = () => {
+    setSnackBarVisible(!snackBarVisible);
+  }
+  const onCloseSnackBar = () => {
+    setSnackBarVisible(false);
+  }
 
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#1B31C3" />
       <View style={styles.signUpHeader}>
-        <TouchableOpacity style={styles.previousSignUpButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.previousSignUpButton} onPress={() => props.navigation.goBack()}>
           <IoniconsIcon
             name="chevron-back-outline"
             color= "#1B31C3"
@@ -104,15 +113,30 @@ const SignUpScreenTwo = () => {
           <Text style={styles.tAndCText}>
             Agree to
           </Text>
-          <TouchableOpacity style={styles.tAndCButton}>
+          <TouchableOpacity style={styles.tAndCButton} onPress={() => onEnableSnackBar()}>
             <Text style={styles.tAndCButtonText}>
               Terms & Conditions
             </Text>
           </TouchableOpacity>
         </View>
-        <Button mode="contained" style={styles.registerButton} onPress={() => {}}>
+        <Button mode="contained" style={styles.registerButton} onPress={() => onEnableSnackBar()}>
           REGISTER
         </Button>
+
+        <Snackbar
+          visible={snackBarVisible}
+          onDismiss={onCloseSnackBar}
+          duration={3000}
+          style={{ backgroundColor: "#0A6869" }}
+          action={{
+            label: 'CLOSE',
+            onPress: () => {
+              onCloseSnackBar()
+            },
+          }}>
+          Feature Coming Soon
+        </Snackbar>
+
       </View>
     </View>
   );

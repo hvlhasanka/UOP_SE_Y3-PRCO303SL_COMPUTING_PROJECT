@@ -2,14 +2,14 @@
  * GHD COVID19 - React Native Mobile App
  * SCREEN - Home Screen
  */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   TouchableOpacity,
   View,
-  ScrollView,
-  Alert
+  ScrollView
 } from 'react-native';
+import { Snackbar } from 'react-native-paper';
 import LottieView from 'lottie-react-native';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 
@@ -21,28 +21,20 @@ const proximityAlertRippleJSON = require("../../../assets/loading-spinner/home-s
 
 const HomeScreen = () => {
 
-  // 'Coming Soon' Alert Box Implementation
-  const comingSoonAlertBox = () =>
-    Alert.alert(
-      "ALERT",
-      "Feature Coming Soon",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { 
-          text: "OK", onPress: () => console.log("OK Pressed") 
-        }
-      ]
-    );
+  // 'Coming Soon' Snackbar Implementation
+  const [snackBarVisible, setSnackBarVisible] = useState(false);
+  const onEnableSnackBar = () => {
+    setSnackBarVisible(!snackBarVisible);
+  }
+  const onCloseSnackBar = () => {
+    setSnackBarVisible(false);
+  }
 
   return (
     <View style={styles.container}>
       
       <ScrollView>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => onEnableSnackBar()}>
           <Text style={[styles.submitEmergencyHealthReportButton, styles.blockShadow]}>
             SUBMIT EMERGENCY{"\n"}HEALTH STATUS REPORT
           </Text>
@@ -62,7 +54,7 @@ const HomeScreen = () => {
         </View>
 
         <View style={styles.floatingBlock}>
-          <TouchableOpacity onPress={() => comingSoonAlertBox()} style={[styles.floatingSection, styles.blockShadow]}>
+          <TouchableOpacity onPress={() => onEnableSnackBar()} style={[styles.floatingSection, styles.blockShadow]}>
             <View style={styles.floatingBlockHeader}>
               <Text style={styles.floatingText}>
                 CONTACT TRACING
@@ -72,7 +64,7 @@ const HomeScreen = () => {
               <LottieView source={ contactTracingRippleJSON } autoPlay loop style={styles.loadingSpinner} />
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => comingSoonAlertBox()} style={[styles.floatingSection, styles.blockShadow]}>
+          <TouchableOpacity onPress={() => onEnableSnackBar()} style={[styles.floatingSection, styles.blockShadow]}>
             <View style={styles.floatingBlockHeader}>
               <Text style={styles.floatingText}>
                 PROXIMITY ALERT
@@ -164,6 +156,20 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
       
+      <Snackbar
+        visible={snackBarVisible}
+        onDismiss={onCloseSnackBar}
+        duration={3000}
+        style={{ marginBottom: "30%", backgroundColor: "#0A6869" }}
+        action={{
+          label: 'CLOSE',
+          onPress: () => {
+            onCloseSnackBar()
+          },
+        }}>
+        Feature Coming Soon
+      </Snackbar>
+
     </View>
   );
 };

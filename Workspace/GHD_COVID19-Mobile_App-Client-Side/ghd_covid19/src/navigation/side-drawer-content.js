@@ -2,7 +2,7 @@
  * GHD COVID19 - React Native Mobile App
  * NAVIGATION CONTENT - Side Drawer Navigation Content
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import {
   DrawerContentScrollView,
@@ -24,25 +24,64 @@ import OcticonsIcon from 'react-native-vector-icons/Octicons';
 const ProfileIcon = require("../assets/images/side-drawer-navigation/profile-icon.png");
 
 const SideDrawerContent = (props) => {
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
   return (
     <View style={styles.sideDrawerContainer}>
 
-      <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
-        <View style={styles.userDetailsContainer}>
-          <Avatar.Image 
-            source={ProfileIcon}
-            size={55}
-          />
-          <View style={styles.userDetailsBlock}>
-            <Title style={styles.userName}>
-              Lucas Anderson
-            </Title>
-            <Caption style={styles.userEmailAddress}>
-              lucas.anderson@gmail.com
-            </Caption>
-          </View>
-        </View>
-      </TouchableOpacity>
+      {
+        userLoggedIn ?
+          <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
+            <View style={styles.userDetailsContainer}>
+              <Avatar.Image 
+                source={ProfileIcon}
+                size={55}
+              />
+              <View style={styles.userDetailsBlock}>
+                <Title style={styles.userName}>
+                  Lucas Anderson
+                </Title>
+                <Caption style={styles.userEmailAddress}>
+                  lucas.anderson@gmail.com
+                </Caption>
+              </View>
+            </View>
+          </TouchableOpacity>
+        :
+          <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+            <View style={[styles.userDetailsContainer, {
+              paddingTop: 20,
+              paddingBottom: 20,
+              backgroundColor: "#889AE0"
+            }]}>
+              <View style={{
+                marginTop: "1%",
+                marginLeft: "4%"
+              }}>
+                <SimpleLineIconsIcon 
+                  name="login"
+                  color="#14205A"
+                  size={30}
+                />
+              </View>
+              <View style={[styles.userDetailsBlock, {
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: 20
+              }]}>
+                <Title style={[styles.userName, {
+                  letterSpacing: 2,
+                  fontSize: 20,
+                  color: "#14205A"
+                }]}>
+                  LOGIN
+                </Title>
+              </View>
+            </View>
+          </TouchableOpacity>
+      }
+      
 
       <DrawerContentScrollView {...props}>
         <View style={styles.sideDrawerContent}>
@@ -77,62 +116,72 @@ const SideDrawerContent = (props) => {
                 style={{ borderRadius: 10 }}
                 onPress={() => props.navigation.navigate('Home')}
               />
-              <DrawerItem 
-                icon={({ color, size }) => {
-                  return (
-                    <IoniconsIcon 
-                      name="notifications-outline"
-                      color={ color }
-                      size={ size }
-                    />
-                  );
-                }}
-                label={({ color }) => {
-                  return (
-                    <Text style={{ 
-                      color: { color }, 
-                      textAlign: "center", 
-                      letterSpacing: 1.2, 
-                      fontSize: 16, 
-                      fontWeight: "bold" 
-                    }}>
-                      NOTIFICATIONS
-                    </Text>
-                  );
-                }}
-                inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#000000"
-                style={{ borderRadius: 10 }}
-                onPress={() => props.navigation.navigate('Notifications')}
-              />
-              <DrawerItem 
-                icon={({ color, size }) => {
-                  return (
-                    <IoniconsIcon 
-                      name="person-outline"
-                      color={ color }
-                      size={ size }
-                    />
-                  );
-                }}
-                label={({ color }) => {
-                  return (
-                    <Text style={{ 
-                      color: { color }, 
-                      textAlign: "center", 
-                      letterSpacing: 1.2, 
-                      fontSize: 16, 
-                      fontWeight: "bold" 
-                    }}>
-                      PROFILE
-                    </Text>
-                  );
-                }}
-                inactiveBackgroundColor="#D9E7FF"
-                inactiveTintColor="#000000"
-                style={{ borderRadius: 10 }}
-                onPress={() => props.navigation.navigate('Profile')}
-              />
+              {
+                userLoggedIn ?
+                  <DrawerItem 
+                    icon={({ color, size }) => {
+                      return (
+                        <IoniconsIcon 
+                          name="notifications-outline"
+                          color={ color }
+                          size={ size }
+                        />
+                      );
+                    }}
+                    label={({ color }) => {
+                      return (
+                        <Text style={{ 
+                          color: { color }, 
+                          textAlign: "center", 
+                          letterSpacing: 1.2, 
+                          fontSize: 16, 
+                          fontWeight: "bold" 
+                        }}>
+                          NOTIFICATIONS
+                        </Text>
+                      );
+                    }}
+                    inactiveBackgroundColor="#D9E7FF"
+                    inactiveTintColor="#000000"
+                    style={{ borderRadius: 10 }}
+                    onPress={() => props.navigation.navigate('Notifications')}
+                  />
+                :
+                  null
+              }
+              {
+                userLoggedIn ?
+                  <DrawerItem 
+                    icon={({ color, size }) => {
+                      return (
+                        <IoniconsIcon 
+                          name="person-outline"
+                          color={ color }
+                          size={ size }
+                        />
+                      );
+                    }}
+                    label={({ color }) => {
+                      return (
+                        <Text style={{ 
+                          color: { color }, 
+                          textAlign: "center", 
+                          letterSpacing: 1.2, 
+                          fontSize: 16, 
+                          fontWeight: "bold" 
+                        }}>
+                          PROFILE
+                        </Text>
+                      );
+                    }}
+                    inactiveBackgroundColor="#D9E7FF"
+                    inactiveTintColor="#000000"
+                    style={{ borderRadius: 10 }}
+                    onPress={() => props.navigation.navigate('Profile')}
+                  />
+                :
+                  null
+              }
               <DrawerItem 
                 icon={({ color, size }) => {
                   return (
@@ -279,34 +328,66 @@ const SideDrawerContent = (props) => {
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerButtonSection}>
-        <DrawerItem 
-          icon={({ color, size }) => {
-            return (
-              <SimpleLineIconsIcon 
-                name="logout"
-                color={ color }
-                size={ size }
-              />
-            );
-          }}
-          label={({ color }) => {
-            return (
-              <Text style={{ 
-                color: { color }, 
-                textAlign: "center", 
-                letterSpacing: 1.2, 
-                fontSize: 16, 
-                fontWeight: "bold" 
-              }}>
-                SIGN OUT
-              </Text>
-            );
-          }}
-          inactiveBackgroundColor="#FFD8D8"
-          inactiveTintColor="#000000"
-          style={{ borderRadius: 10 }}
-          onPress={() => {}}
-        />
+        {
+          userLoggedIn?
+            <DrawerItem 
+              icon={({ color, size }) => {
+                return (
+                  <SimpleLineIconsIcon 
+                    name="logout"
+                    color={ color }
+                    size={ size }
+                  />
+                );
+              }}
+              label={({ color }) => {
+                return (
+                  <Text style={{ 
+                    color: { color }, 
+                    textAlign: "center", 
+                    letterSpacing: 1.2, 
+                    fontSize: 16, 
+                    fontWeight: "bold" 
+                  }}>
+                    SIGN OUT
+                  </Text>
+                );
+              }}
+              inactiveBackgroundColor="#FFD8D8"
+              inactiveTintColor="#000000"
+              style={{ borderRadius: 10 }}
+              onPress={() => {}}
+            />
+          :
+            <DrawerItem 
+              icon={({ color, size }) => {
+                return (
+                  <IoniconsIcon 
+                    name="person-add-outline"
+                    color={ color }
+                    size={ size }
+                  />
+                );
+              }}
+              label={({ color }) => {
+                return (
+                  <Text style={{ 
+                    color: { color }, 
+                    textAlign: "center", 
+                    letterSpacing: 1.2, 
+                    fontSize: 16, 
+                    fontWeight: "bold" 
+                  }}>
+                    SIGN UP
+                  </Text>
+                );
+              }}
+              inactiveBackgroundColor="#AAB8EE"
+              inactiveTintColor="#000000"
+              style={{ borderRadius: 10 }}
+              onPress={() => props.navigation.navigate('SignUp')}
+            />
+        }
       </Drawer.Section>
     </View>
   );

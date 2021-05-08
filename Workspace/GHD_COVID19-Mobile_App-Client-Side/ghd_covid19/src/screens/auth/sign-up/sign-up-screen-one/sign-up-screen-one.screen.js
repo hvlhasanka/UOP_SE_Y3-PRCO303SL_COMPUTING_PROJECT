@@ -17,12 +17,12 @@ import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommun
 import styles from './sign-up-screen-one.style';
 
 
-const SignUpScreenOne = () => {
+const SignUpScreenOne = ( props ) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#1B31C3" />
       <View style={styles.signUpHeader}>
-        <TouchableOpacity style={styles.closeSignUpButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.closeSignUpButton} onPress={() => props.navigation.goBack()}>
           <MaterialCommunityIconsIcon
             name="close"
             color= "#1B31C3"
@@ -136,7 +136,7 @@ const SignUpScreenOne = () => {
           />
         </ScrollView>
 
-        <Button mode="contained" style={styles.continueButton} onPress={() => {}}>
+        <Button mode="contained" style={styles.continueButton} onPress={() => props.navigation.navigate('SignUpScreenTwo')}>
           CONTINUE
         </Button>
 
