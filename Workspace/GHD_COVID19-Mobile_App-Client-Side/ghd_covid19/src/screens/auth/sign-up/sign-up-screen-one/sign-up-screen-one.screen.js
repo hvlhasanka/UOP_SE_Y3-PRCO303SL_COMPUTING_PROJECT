@@ -7,8 +7,8 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
-import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-paper';
+import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './sign-up-screen-one.style';
 

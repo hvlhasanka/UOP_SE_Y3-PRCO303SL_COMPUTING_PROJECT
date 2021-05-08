@@ -7,10 +7,10 @@ import {
   StatusBar,
   Image
 } from 'react-native';
+import { Button } from 'react-native-paper';
 import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import { Button } from 'react-native-paper';
 
 import styles from './login.style';
 
