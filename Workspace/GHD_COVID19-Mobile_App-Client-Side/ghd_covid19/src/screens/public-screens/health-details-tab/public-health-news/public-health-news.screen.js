@@ -43,7 +43,7 @@ const PublicHealthNewsScreen = (props) => {
               <Paragraph>Source: { newsDetails.source.name }</Paragraph>
               <Paragraph>Published At:{" "}
                 {new Date(newsDetails.publishedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} {" | "}
-                {new Date(newsDetails.publishedAt).toLocaleString('default', { day: '2-digit', month: 'short', year: 'numeric' })}
+                {new Date(newsDetails.publishedAt).getDate()}{ " / " }{(new Date(newsDetails.publishedAt).getMonth() + 1)}{ " / " }{new Date(newsDetails.publishedAt).getFullYear()}
               </Paragraph>
               <Button icon="link" mode="contained" 
                 onPress={() => Linking.openURL( newsDetails.url )} 
