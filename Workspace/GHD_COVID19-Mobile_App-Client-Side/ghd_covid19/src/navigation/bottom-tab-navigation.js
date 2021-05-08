@@ -63,7 +63,7 @@ const HomeStackScreen = ({ navigation }) => {
                 ></IoniconsIcon.Button>
               </View>
               <View style={{ position: "absolute", right: 75, top: 5 }}>
-                <Badge>4</Badge>
+                <Badge>2</Badge>
               </View>
               <View>
                 <IoniconsIcon.Button
@@ -75,7 +75,7 @@ const HomeStackScreen = ({ navigation }) => {
                 ></IoniconsIcon.Button>
               </View>
               <View style={{ position: "absolute", right: 10, top: 5 }}>
-                <Badge>10</Badge>
+                <Badge>4</Badge>
               </View>
             </View>
           )

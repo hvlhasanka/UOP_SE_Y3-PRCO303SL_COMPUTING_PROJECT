@@ -56,7 +56,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
             <ErrorMessageBlock />
           :
           <Text style={styles.updatedPeriodText}>
-            UPDATED AT: {/*covid19Stats.data.update_date_time*/}
+            UPDATED AT: 2021-05-08 04:51:47 {/*covid19Stats.data.update_date_time*/}
           </Text>
         }
       </View>
@@ -78,7 +78,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#00a8cc" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            18811
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
@@ -90,7 +90,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#00a8cc" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            101763
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
@@ -104,7 +104,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#00a8cc" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            764
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
@@ -116,7 +116,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#00a8cc" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            121338
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
@@ -149,19 +149,19 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#0c7b93" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            830879
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
                           <Text style={styles.tileHeading}>
-                            ACTIVE CASES
+                            NEW CASES
                           </Text>
                         </View>
                       </View>
                       <View style={[styles.tile, { backgroundColor: "#0c7b93" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            127056527
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
@@ -175,7 +175,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#0c7b93" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            3150334
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>
@@ -187,7 +187,7 @@ const CovidStatsTabScreen = ({ navigation }) => {
                       <View style={[styles.tile, { backgroundColor: "#0c7b93" }]}>
                         <View style={styles.tileHeader}>
                           <Text style={styles.tileValue}>
-                            33
+                            149377480
                           </Text>
                         </View>
                         <View style={styles.tileFooter}>

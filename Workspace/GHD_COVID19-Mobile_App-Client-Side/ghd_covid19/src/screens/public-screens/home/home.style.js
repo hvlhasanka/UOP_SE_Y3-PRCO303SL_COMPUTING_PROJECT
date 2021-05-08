@@ -75,15 +75,20 @@ const styles =  StyleSheet.create({
     color: "#ffffff",
     textAlign: "center"
   },
-  floatingIcon: {
-    fontSize: 60,
-    height: 60,
-    width: 60,
-    color: '#ffffff'
-  },
-  rippleLoadingSpinner: {
+  floatingBlockHeader: {
     width: "100%",
-    height: "10%",
+    height: "35%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  floatingBlockFooter: {
+    width: "100%",
+    height: "65%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  loadingSpinner: {
+    height: 90
   },
   healthStatusReportBlock: {
     flexDirection: "row",
@@ -93,7 +98,29 @@ const styles =  StyleSheet.create({
     marginRight: "5%",
     marginTop: 15,
     backgroundColor: "#ffffff",
-    borderRadius: 10
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  healthStatusReportHeading: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+    fontSize: 15,
+    letterSpacing: 1.1
+  },
+  healthStatusReportStatusBlock: {
+    marginTop: 20,
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#616161",
+    backgroundColor: "#D6D6D6"
+  },
+  healthStatusReportStatusText: {
+    color: "#616161",
+    fontSize: 15,
+    letterSpacing: 1
   },
   blockText: {
     paddingTop: 10,

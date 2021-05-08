@@ -6,12 +6,13 @@ import {
   ScrollView,
   Alert
 } from 'react-native';
+import LottieView from 'lottie-react-native';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import styles from './home.style';
 
+const contactTracingRippleJSON = require("../../../assets/loading-spinner/home-screen/contact-tracing-ripple.json");
+const proximityAlertRippleJSON = require("../../../assets/loading-spinner/home-screen/proximity-alert-ripple.json");
 
 const HomeScreen = () => {
 
@@ -57,23 +58,36 @@ const HomeScreen = () => {
 
         <View style={styles.floatingBlock}>
           <TouchableOpacity onPress={() => comingSoonAlertBox()} style={[styles.floatingSection, styles.blockShadow]}>
-            <Text style={styles.floatingText}>CONTACT TRACING</Text>
-            <MaterialCommunityIconsIcon 
-              name="contactless-payment" style={styles.floatingIcon}>
-            </MaterialCommunityIconsIcon>
+            <View style={styles.floatingBlockHeader}>
+              <Text style={styles.floatingText}>
+                CONTACT TRACING
+              </Text>
+            </View>
+            <View style={styles.floatingBlockFooter}>
+              <LottieView source={ contactTracingRippleJSON } autoPlay loop style={styles.loadingSpinner} />
+            </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => comingSoonAlertBox()} style={[styles.floatingSection, styles.blockShadow]}>
-            <Text style={styles.floatingText}>PROXIMITY ALERT</Text>
-            <FeatherIcon 
-              name="check-circle" style={styles.floatingIcon}>
-            </FeatherIcon>
+            <View style={styles.floatingBlockHeader}>
+              <Text style={styles.floatingText}>
+                PROXIMITY ALERT
+              </Text>
+            </View>
+            <View style={styles.floatingBlockFooter}>
+              <LottieView source={ proximityAlertRippleJSON } autoPlay loop style={styles.loadingSpinner} />
+            </View>
           </TouchableOpacity>
         </View>
         
         <View style={[styles.healthStatusReportBlock, styles.blockShadow]}>
-          <Text style={styles.blockText}>
+          <Text style={styles.healthStatusReportHeading}>
             HEALTH STATUS REPORT
           </Text>
+          <View style={styles.healthStatusReportStatusBlock}>
+            <Text style={styles.healthStatusReportStatusText}>
+              NO REPORT SUBMITTED
+            </Text>
+          </View>
         </View>
 
         <View style={[styles.covidStatsBlock, styles.blockShadow]}>
@@ -89,7 +103,7 @@ const HomeScreen = () => {
               }]}>
                 <View style={styles.covidStatsTileHeader}>
                   <Text style={styles.covidStatsTileValue}>
-                    22
+                    18811
                   </Text>
                 </View>
                 <View style={styles.covidStatsTileFooter}>
@@ -103,7 +117,7 @@ const HomeScreen = () => {
               }]}>
                 <View style={styles.covidStatsTileHeader}>
                   <Text style={styles.covidStatsTileValue}>
-                    22
+                    101763
                   </Text>
                 </View>
                 <View style={styles.covidStatsTileFooter}>
@@ -117,7 +131,7 @@ const HomeScreen = () => {
               }]}>
                 <View style={styles.covidStatsTileHeader}>
                   <Text style={styles.covidStatsTileValue}>
-                    22
+                    764
                   </Text>
                 </View>
                 <View style={styles.covidStatsTileFooter}>
@@ -131,7 +145,7 @@ const HomeScreen = () => {
               }]}>
                 <View style={styles.covidStatsTileHeader}>
                   <Text style={styles.covidStatsTileValue}>
-                    22
+                    121338
                   </Text>
                 </View>
                 <View style={styles.covidStatsTileFooter}>
