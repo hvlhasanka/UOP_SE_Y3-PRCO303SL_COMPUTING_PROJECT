@@ -33,7 +33,7 @@ const NotificationsStackScreen = ({ navigation }) => {
     <NotificationsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -42,12 +42,15 @@ const NotificationsStackScreen = ({ navigation }) => {
         component={ NotificationsScreen } 
         options={{
           title: "NOTIFICATIONS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -97,7 +100,7 @@ const EmergencyContactStackScreen = ({ navigation }) => {
     <EmergencyContactStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -106,12 +109,15 @@ const EmergencyContactStackScreen = ({ navigation }) => {
         component={ EmergencyContactScreen } 
         options={{
           title: "EMERGENCY CONTACT",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -126,7 +132,7 @@ const ReportStackScreen = ({ navigation }) => {
     <ReportStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -135,12 +141,15 @@ const ReportStackScreen = ({ navigation }) => {
         component={ ReportScreen } 
         options={{
           title: "REPORT",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -155,7 +164,7 @@ const HelpStackScreen = ({ navigation }) => {
     <HelpStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -164,12 +173,15 @@ const HelpStackScreen = ({ navigation }) => {
         component={ HelpScreen } 
         options={{
           title: "HELP",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -184,7 +196,7 @@ const SettingsStackScreen = ({ navigation }) => {
     <SettingsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -193,12 +205,15 @@ const SettingsStackScreen = ({ navigation }) => {
         component={ SettingsScreen } 
         options={{
           title: "SETTINGS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
