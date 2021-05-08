@@ -4,16 +4,16 @@ import {
   View,
 } from 'react-native';
 
-import styles from './sign-up.style';
+import styles from './sign-up-screen-one.style';
 
-const SignUpScreen = () => {
+const SignUpScreenOne = () => {
   return (
     <View style={styles.container}>
       <Text style={{ color: 'black' }}>
-        SignUp Screen
+        SignUp Screen One
       </Text>
     </View>
   );
 };
 
-export default SignUpScreen;
+export default SignUpScreenOne;
