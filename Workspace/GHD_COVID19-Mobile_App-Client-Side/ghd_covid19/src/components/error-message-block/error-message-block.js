@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * COMPONENT - Error Message Block Component
+ */
 import React from 'react';
 import {
   Text,

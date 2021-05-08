@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Proximity Alert Screen
+ */
 import React from 'react';
 import {
   Text,

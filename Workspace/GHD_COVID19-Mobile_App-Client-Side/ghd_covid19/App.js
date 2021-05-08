@@ -1,7 +1,6 @@
 /**
  * GHD COVID19 - React Native Mobile App
  */
-
 import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen'
 import { NavigationContainer } from '@react-navigation/native';

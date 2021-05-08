@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Health Details Tab Screen
+ */
 import React, { useState, useEffect } from 'react';
 import {
   Text,

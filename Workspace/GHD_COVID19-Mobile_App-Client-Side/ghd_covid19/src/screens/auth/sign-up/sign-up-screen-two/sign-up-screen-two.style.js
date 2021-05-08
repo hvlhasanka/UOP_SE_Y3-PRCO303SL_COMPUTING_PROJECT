@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN STYLES - Sign Up Screen Two
+ */
 import { StyleSheet } from 'react-native';
 
 const styles =  StyleSheet.create({

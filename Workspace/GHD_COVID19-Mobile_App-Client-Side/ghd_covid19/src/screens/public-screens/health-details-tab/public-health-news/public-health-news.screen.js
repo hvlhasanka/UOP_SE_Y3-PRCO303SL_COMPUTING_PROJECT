@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Public Health News Screen
+ */
 import React from 'react';
 import {
   View,

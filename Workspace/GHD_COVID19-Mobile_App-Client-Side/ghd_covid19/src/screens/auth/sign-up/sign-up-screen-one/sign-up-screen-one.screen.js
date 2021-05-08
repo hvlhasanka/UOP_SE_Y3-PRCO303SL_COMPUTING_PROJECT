@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Sign Up Screen One
+ */
 import React from 'react';
 import {
   Text,

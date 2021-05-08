@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN STYLES - Emergency Contact Screen
+ */
 import { StyleSheet } from 'react-native';
 
 const styles =  StyleSheet.create({

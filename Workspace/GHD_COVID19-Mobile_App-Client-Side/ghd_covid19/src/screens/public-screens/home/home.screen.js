@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Home Screen
+ */
 import React from 'react';
 import {
   Text,
@@ -13,6 +17,7 @@ import styles from './home.style';
 
 const contactTracingRippleJSON = require("../../../assets/loading-spinner/home-screen/contact-tracing-ripple.json");
 const proximityAlertRippleJSON = require("../../../assets/loading-spinner/home-screen/proximity-alert-ripple.json");
+
 
 const HomeScreen = () => {
 

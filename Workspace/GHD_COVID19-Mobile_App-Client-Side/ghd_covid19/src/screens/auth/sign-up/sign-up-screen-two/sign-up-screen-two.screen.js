@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Sign Up Screen Two
+ */
 import React, { useState } from 'react';
 import {
   Text,

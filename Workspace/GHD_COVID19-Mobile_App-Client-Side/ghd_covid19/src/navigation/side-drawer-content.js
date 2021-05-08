@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * NAVIGATION CONTENT - Side Drawer Navigation Content
+ */
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import {

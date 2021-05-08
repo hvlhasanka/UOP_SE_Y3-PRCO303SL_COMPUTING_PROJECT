@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * COMPONENT STYLES - Error Message Block Component
+ */
 import { StyleSheet } from 'react-native';
 
 const styles =  StyleSheet.create({

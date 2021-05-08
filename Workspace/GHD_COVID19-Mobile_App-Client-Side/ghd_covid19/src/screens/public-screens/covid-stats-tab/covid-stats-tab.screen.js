@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - CovidStatsTab Screen
+ */
 import React, { useState, useEffect } from 'react';
 import {
   ScrollView,

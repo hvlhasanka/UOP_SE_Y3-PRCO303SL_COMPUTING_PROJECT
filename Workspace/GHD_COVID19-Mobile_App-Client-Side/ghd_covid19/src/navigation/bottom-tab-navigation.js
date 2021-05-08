@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * NAVIGATION - Bottom Tab Navigation
+ */
 import React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';

@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * NAVIGATION - Side Drawer Navigation
+ */
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
