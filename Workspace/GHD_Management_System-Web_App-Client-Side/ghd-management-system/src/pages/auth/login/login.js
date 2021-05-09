@@ -97,7 +97,7 @@ const Login = () => {
               <form className="login__form" onSubmit={handleSubmit(onLoginFormSubmit)}>
                 <Grid container justify="center" spacing={2}>
                   <Grid item xs={12}>
-                    <HeadingOne className="login__login-heading" headingTitle="Login" />
+                    <HeadingOne className="login__login-heading" headingTitle="Log in to your account" />
                   </Grid>
                   <Grid item xs={12}>
 
