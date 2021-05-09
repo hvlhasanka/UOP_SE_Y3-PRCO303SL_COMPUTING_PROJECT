@@ -1,12 +1,15 @@
-/* Style sheet for Dashboard Sub Page */
+/**
+ * GHD Management System - React Web App
+ * PAGE STYLES | END USER - OPERATOR | Settings Sub Page
+ */
 
-.dashboard-sub-page{
+.settingsSubPage{
   width: 100vw;
   height: 100vh;
   background-color: #070b26;
 }
 
-.dashboard-content-card{
+.settingsContentCard{
   height: 97%;
   width: 98%;
   background-color: #f1f1f1;

@@ -1,0 +1,23 @@
+/**
+ * GHD Management System - React Web App
+ * COMPONENT STYLES | END USERS - ADMINISTRATOR & OPERATOR | Coming Soon Block Component
+ */
+
+.coming-soon-block{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.coming-soon-text{
+  padding: 100px;
+  background-color: #ffffff;
+  font-size: 30px;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  color: #5a5a5a;
+  font-weight: 600;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0px 0px 30px #898989;
+}

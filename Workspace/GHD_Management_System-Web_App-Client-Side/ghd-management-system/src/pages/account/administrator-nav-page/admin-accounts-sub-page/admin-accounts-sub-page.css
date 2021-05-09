@@ -1,9 +1,12 @@
-/* Style sheet for Admin Accounts Sub Page */
+/**
+ * GHD Management System - React Web App
+ * PAGE STYLES | END USER - ADMINISTRATOR | Admin Accounts Sub Page
+ */
 
 .admin-accounts-sub-page{
   width: 100vw;
   height: 100vh;
-  background-color: #070b26;
+  background-color: #0B445A;
 }
 
 .admin-accounts-content-card{

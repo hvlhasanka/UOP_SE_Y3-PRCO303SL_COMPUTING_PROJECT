@@ -1,14 +1,18 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE | END USER - OPERATOR | Dashboard Sub Page
+ */
 import React from 'react';
 
-import './dashboard-sub-page.css';
+import styles from './dashboard-sub-page.module.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 
 const DashboardSubPage = () => {
 
   return(
-    <div className='dashboard-sub-page'>
+    <div className={styles.dashboardSubPage}>
       <NavPageSidebar sidebarRoleType="operator">
-        <div className="dashboard-content-card">
+        <div className={styles.dashboardContentCard}>
           Operator - Dashboard
         </div>
       </NavPageSidebar>

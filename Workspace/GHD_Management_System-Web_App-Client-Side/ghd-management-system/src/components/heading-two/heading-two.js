@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * COMPONENT | END USERS - ADMINISTRATOR & OPERATOR | Heading Two Component
+ */
 import React from 'react';
 
 import './heading-two.css';

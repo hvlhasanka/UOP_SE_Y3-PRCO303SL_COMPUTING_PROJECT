@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE | END USER - OPERATOR | Health Details Sub Page
+ */
 import React from 'react';
 
 import './health-details-sub-page.css';

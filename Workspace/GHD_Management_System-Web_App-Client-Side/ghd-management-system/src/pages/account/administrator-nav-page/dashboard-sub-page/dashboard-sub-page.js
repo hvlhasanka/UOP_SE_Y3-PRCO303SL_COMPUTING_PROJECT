@@ -1,17 +1,21 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE | END USER - ADMINISTRATOR | Dashboard Sub Page
+ */
 import React from 'react';
 
-import './dashboard-sub-page.css';
+import styles from './dashboard-sub-page.module.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
+import { ComingSoonBlock } from '../../../../components';
 
 const DashboardSubPage = () => {
 
   return(
-    <div className='dashboard-sub-page'>
+    <div className={styles.dashboardSubPage}>
       <NavPageSidebar sidebarRoleType="administrator">
-        <div className="dashboard-content-card">
-          <p>
-            ADMIN - Dashboard
-          </p>
+        <div className={styles.dashboardContentCard}>
+          {/* <TabMainTitle tabTitle="Dashboard" className="tab-heading-title" /> */}
+          <ComingSoonBlock className="coming-soon-component" pageTitle="Dashboard" />
         </div>
       </NavPageSidebar>
     </div>

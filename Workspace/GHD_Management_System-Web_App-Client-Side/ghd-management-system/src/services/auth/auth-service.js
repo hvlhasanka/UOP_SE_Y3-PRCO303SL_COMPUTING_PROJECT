@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * SERVICE | END USERS - ADMINISTRATOR & OPERATOR | Auth Service
+ */
 import authAxiosInstance from "./auth-axios";
 
 class AuthService {

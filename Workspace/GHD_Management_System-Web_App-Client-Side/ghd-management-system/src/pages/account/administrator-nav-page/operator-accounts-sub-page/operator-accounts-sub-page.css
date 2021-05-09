@@ -1,9 +1,12 @@
-/* Style sheet for Operator Accounts Sub Page */
+/**
+ * GHD Management System - React Web App
+ * PAGE STYLES | END USER - ADMINISTRATOR | Operator Accounts Sub Page
+ */
 
 .operator-accounts-sub-page{
   width: 100vw;
   height: 100vh;
-  background-color: #070b26;
+  background-color: #0B445A;
 }
 
 .operator-accounts-content-card{

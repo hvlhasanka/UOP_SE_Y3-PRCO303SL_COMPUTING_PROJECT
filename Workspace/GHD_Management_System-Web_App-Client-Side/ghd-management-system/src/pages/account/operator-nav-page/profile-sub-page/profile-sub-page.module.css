@@ -1,12 +1,15 @@
-/* Style sheet for Settings Sub Page */
+/**
+ * GHD Management System - React Web App
+ * PAGE STYLES | END USER - OPERATOR | Profile Sub Page
+ */
 
-.settings-sub-page{
+.profileSubPage{
   width: 100vw;
   height: 100vh;
   background-color: #070b26;
 }
 
-.settings-content-card{
+.profileContentCard{
   height: 97%;
   width: 98%;
   background-color: #f1f1f1;
