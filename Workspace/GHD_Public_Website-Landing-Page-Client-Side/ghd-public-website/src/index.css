@@ -1,13 +1,16 @@
-body {
+/**
+ * GHD Management System - React Web App | END USERS - PUBLIC
+ * STYLES - App
+ */
+
+/* Removing default paddings and margins */
+*{
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Adjusting width and height of the main component to the width and height of the screen */
+.GHD-Public-Website-App{
+  width: 100vw;
+  height: 100vh;
 }
