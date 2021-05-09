@@ -6,6 +6,7 @@ import React from 'react';
 
 import styles from './profile-sub-page.module.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
+import { ComingSoonBlock } from '../../../../components';
 
 const ProfileSubPage = () => {
 
@@ -13,7 +14,7 @@ const ProfileSubPage = () => {
     <div className={styles.profileSubPage}>
       <NavPageSidebar sidebarRoleType="operator">
         <div className={styles.profileContentCard}>
-          Operator - Profile
+          <ComingSoonBlock className="coming-soon-component" pageTitle="Profile" />
         </div>
       </NavPageSidebar>
     </div>

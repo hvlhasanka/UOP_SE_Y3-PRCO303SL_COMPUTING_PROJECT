@@ -6,6 +6,7 @@ import React from 'react';
 
 import styles from './settings-sub-page.module.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
+import { ComingSoonBlock } from '../../../../components';
 
 const SettingsSubPage = () => {
 
@@ -13,7 +14,7 @@ const SettingsSubPage = () => {
     <div className={styles.settingsSubPage}>
       <NavPageSidebar sidebarRoleType="operator">
         <div className={styles.settingsContentCard}>
-          Operator - Settings
+          <ComingSoonBlock className="coming-soon-component" pageTitle="Settings" />
         </div>
       </NavPageSidebar>
     </div>
