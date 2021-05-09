@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * COMPONENT - Coming Soon Block Component
+ */
 import React from 'react';
 
 import './coming-soon-block.css';

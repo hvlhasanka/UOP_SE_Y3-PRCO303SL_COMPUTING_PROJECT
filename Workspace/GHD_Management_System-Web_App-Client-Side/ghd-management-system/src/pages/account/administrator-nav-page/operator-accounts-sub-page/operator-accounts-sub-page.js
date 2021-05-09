@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Operator Accounts Sub Page
+ */
 import React from 'react';
 
 import './operator-accounts-sub-page.css';

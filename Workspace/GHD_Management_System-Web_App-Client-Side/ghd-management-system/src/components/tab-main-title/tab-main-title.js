@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * COMPONENT - Tab Main Title Component
+ */
 import React from 'react';
 
 import './tab-main-title.css';

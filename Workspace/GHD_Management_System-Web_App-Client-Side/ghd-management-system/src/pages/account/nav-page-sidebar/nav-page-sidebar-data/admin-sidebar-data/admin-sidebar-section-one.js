@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * NAVIGATION DATA - Nav Page Sidebar Navigation - Administrator - 1
+ */
 import React from 'react'
 
 import DashboardIcon from '@material-ui/icons/Dashboard';

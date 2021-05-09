@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * COMPONENT - Heading One Component
+ */
 import React from 'react';
 
 import './heading-one.css';

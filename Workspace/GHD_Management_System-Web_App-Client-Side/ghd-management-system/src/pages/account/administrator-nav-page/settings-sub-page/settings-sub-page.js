@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Settings Sub Page
+ */
 import React from 'react';
 
 import './settings-sub-page.css';

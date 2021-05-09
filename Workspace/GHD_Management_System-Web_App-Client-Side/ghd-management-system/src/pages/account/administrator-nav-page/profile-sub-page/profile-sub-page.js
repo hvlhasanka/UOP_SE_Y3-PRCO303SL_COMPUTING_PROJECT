@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Profile Sub Page
+ */
 import React from 'react';
 
 import './profile-sub-page.css';

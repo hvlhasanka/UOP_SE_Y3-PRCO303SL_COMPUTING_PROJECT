@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Page Not Found Page
+ */
 import React from 'react';
 
 import './page-not-found.css';

@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * NAVIGATION PAGE - Nav Page Sidebar Navigation
+ */
 import React, { 
   useEffect, 
   useState

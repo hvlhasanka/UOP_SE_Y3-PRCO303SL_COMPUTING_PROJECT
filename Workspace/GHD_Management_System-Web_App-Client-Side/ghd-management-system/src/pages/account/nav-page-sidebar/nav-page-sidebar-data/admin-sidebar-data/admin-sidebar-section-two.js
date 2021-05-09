@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * NAVIGATION DATA - Nav Page Sidebar Navigation - Administrator - 2
+ */
 import React from 'react'
 
 import PersonPinIcon from '@material-ui/icons/PersonPin';

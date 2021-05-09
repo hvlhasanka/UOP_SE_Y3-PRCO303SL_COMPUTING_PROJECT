@@ -1,3 +1,6 @@
+/**
+ * GHD Management System - React Web App
+ */
 import './App.css';
 
 import AuthenticationRouter from './router/authentication-router';

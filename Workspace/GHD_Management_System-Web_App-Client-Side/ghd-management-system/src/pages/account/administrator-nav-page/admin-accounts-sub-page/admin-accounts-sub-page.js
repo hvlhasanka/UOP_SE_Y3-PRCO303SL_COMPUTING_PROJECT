@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Admin Accounts Sub Page
+ */
 import React from 'react';
 
 import './admin-accounts-sub-page.css';

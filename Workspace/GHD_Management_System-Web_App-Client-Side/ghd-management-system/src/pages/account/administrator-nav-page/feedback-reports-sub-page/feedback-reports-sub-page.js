@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Feedback Reports Sub Page
+ */
 import React from 'react';
 
 import './feedback-reports-sub-page.css';

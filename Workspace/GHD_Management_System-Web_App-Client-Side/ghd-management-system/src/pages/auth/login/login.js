@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE - Login Page
+ */
 import React, {useEffect, useState} from 'react';
 import { 
   Grid, 
