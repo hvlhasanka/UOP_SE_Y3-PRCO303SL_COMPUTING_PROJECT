@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE | END USER - OPERATOR | Settings Sub Page
+ */
 import React from 'react';
 
 import './settings-sub-page.css';

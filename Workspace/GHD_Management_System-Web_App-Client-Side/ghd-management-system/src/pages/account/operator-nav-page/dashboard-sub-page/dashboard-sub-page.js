@@ -1,3 +1,7 @@
+/**
+ * GHD Management System - React Web App
+ * PAGE | END USER - OPERATOR | Dashboard Sub Page
+ */
 import React from 'react';
 
 import './dashboard-sub-page.css';
