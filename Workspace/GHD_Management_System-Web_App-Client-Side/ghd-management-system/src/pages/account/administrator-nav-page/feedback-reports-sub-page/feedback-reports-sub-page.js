@@ -2,6 +2,7 @@ import React from 'react';
 
 import './feedback-reports-sub-page.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
+import { ComingSoonBlock } from '../../../../components';
 
 const FeedbackReportsSubPage = () => {
 
@@ -9,7 +10,7 @@ const FeedbackReportsSubPage = () => {
     <div className='feedback-reports-sub-page'>
       <NavPageSidebar sidebarRoleType="administrator">
         <div className="feedback-reports-content-card">
-          ADMIN - Feedback Reports
+          <ComingSoonBlock className="coming-soon-component" pageTitle="Feedback Reports" />
         </div>
       </NavPageSidebar>
     </div>

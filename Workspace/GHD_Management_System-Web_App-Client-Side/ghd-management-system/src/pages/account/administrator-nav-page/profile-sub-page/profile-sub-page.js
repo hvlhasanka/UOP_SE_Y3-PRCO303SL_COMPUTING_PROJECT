@@ -2,6 +2,7 @@ import React from 'react';
 
 import './profile-sub-page.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
+import { ComingSoonBlock } from '../../../../components';
 
 const ProfileSubPage = () => {
 
@@ -9,7 +10,7 @@ const ProfileSubPage = () => {
     <div className='profile-sub-page'>
       <NavPageSidebar sidebarRoleType="administrator">
         <div className="profile-content-card">
-          Admin - Profile
+          <ComingSoonBlock className="coming-soon-component" pageTitle="Profile" />
         </div>
       </NavPageSidebar>
     </div>
