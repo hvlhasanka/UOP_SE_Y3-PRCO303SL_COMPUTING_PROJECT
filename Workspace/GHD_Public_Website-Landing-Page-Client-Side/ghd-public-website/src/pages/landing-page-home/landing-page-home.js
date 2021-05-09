@@ -52,7 +52,7 @@ const LandingPageHomePage = () => {
           <Grid container justify="center" spacing={2} className="left-grid-container">
             <Grid item xs={12}>
               <div className="text-heading-block">
-                <p className="text-heading">BE AWARE<br/>OF YOUR<br/>SURROUNDING</p>
+                <p className="text-heading">BE AWARE<br/>OF YOUR<br/>SURROUNDINGS</p>
               </div>
             </Grid>
             <Grid item xs={12}>
@@ -102,17 +102,17 @@ const LandingPageHomePage = () => {
               <Grid container justify="center" spacing={0}>
                 <Grid item xs={4}>
                   <div className="ui-image-tile-block tile-one">
-                    <img src={uiImageOne} alt="GHD COVID19 UI Image One" className="ui-image" />
+                    <img src={uiImageOne} alt="GHD COVID19 UI One" className="ui-image" />
                   </div>
                 </Grid>
                 <Grid item xs={4}>
                   <div className="ui-image-tile-block tile-two">
-                    <img src={uiImageTwo} alt="GHD COVID19 UI Image Two" className="ui-image" />
+                    <img src={uiImageTwo} alt="GHD COVID19 UI Two" className="ui-image" />
                   </div>
                 </Grid>
                 <Grid item xs={4}>
                   <div className="ui-image-tile-block tile-three">
-                    <img src={uiImageThree} alt="GHD COVID19 UI Image Three" className="ui-image" />
+                    <img src={uiImageThree} alt="GHD COVID19 UI Three" className="ui-image" />
                   </div>
                 </Grid>
               </Grid>
