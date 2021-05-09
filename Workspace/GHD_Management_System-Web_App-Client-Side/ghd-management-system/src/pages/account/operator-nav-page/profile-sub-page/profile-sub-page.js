@@ -13,7 +13,7 @@ const ProfileSubPage = () => {
   return(
     <div className={styles.profileSubPage}>
       <NavPageSidebar sidebarRoleType="operator">
-        <div className="profile-content-card">
+        <div className={styles.profileContentCard}>
           <ComingSoonBlock className="coming-soon-component" pageTitle="Profile" />
         </div>
       </NavPageSidebar>

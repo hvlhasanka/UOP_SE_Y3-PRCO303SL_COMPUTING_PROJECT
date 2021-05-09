@@ -13,7 +13,7 @@ const SettingsSubPage = () => {
   return(
     <div className={styles.settingsSubPage}>
       <NavPageSidebar sidebarRoleType="operator">
-        <div className="settings-content-card">
+        <div className={styles.settingsContentCard}>
           <ComingSoonBlock className="coming-soon-component" pageTitle="Settings" />
         </div>
       </NavPageSidebar>

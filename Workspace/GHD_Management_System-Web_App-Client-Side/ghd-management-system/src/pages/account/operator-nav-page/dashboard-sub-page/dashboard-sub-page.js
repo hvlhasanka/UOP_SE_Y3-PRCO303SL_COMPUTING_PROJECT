@@ -13,7 +13,7 @@ const DashboardSubPage = () => {
   return(
     <div className={styles.dashboardSubPage}>
       <NavPageSidebar sidebarRoleType="operator">
-        <div className="dashboard-content-card">
+        <div className={styles.dashboardContentCard}>
           <ComingSoonBlock className="coming-soon-component" pageTitle="Dashboard" />
         </div>
       </NavPageSidebar>
