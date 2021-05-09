@@ -6,6 +6,7 @@ import React from 'react';
 
 import './health-details-sub-page.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
+import { ComingSoonBlock } from '../../../../components';
 
 const HealthDetailsSubPage = () => {
 
@@ -13,7 +14,7 @@ const HealthDetailsSubPage = () => {
     <div className='health-details-sub-page'>
       <NavPageSidebar sidebarRoleType="operator">
         <div className="health-details-content-card">
-          Operator - Health Details
+          <ComingSoonBlock className="coming-soon-component" pageTitle="Health Details" />
         </div>
       </NavPageSidebar>
     </div>
