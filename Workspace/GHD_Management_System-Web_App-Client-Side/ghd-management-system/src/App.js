@@ -1,5 +1,5 @@
 /**
- * GHD Management System - React Web App
+ * GHD Management System - React Web App | END USERS - ADMINISTRATOR & OPERATOR
  */
 import './App.css';
 

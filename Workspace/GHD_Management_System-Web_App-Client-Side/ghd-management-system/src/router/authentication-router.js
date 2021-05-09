@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * ROUTING - Authentication Router
+ * ROUTING | END USERS - ADMINISTRATOR & OPERATOR | Authentication Router
  */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';

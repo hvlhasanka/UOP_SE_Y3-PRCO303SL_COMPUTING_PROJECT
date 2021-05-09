@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * COMPONENT - Coming Soon Block Component
+ * COMPONENT | END USERS - ADMINISTRATOR & OPERATOR | Coming Soon Block Component
  */
 import React from 'react';
 

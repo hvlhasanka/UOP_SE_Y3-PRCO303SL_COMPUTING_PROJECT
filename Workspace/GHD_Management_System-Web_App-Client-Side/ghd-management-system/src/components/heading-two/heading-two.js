@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * COMPONENT - Heading Two Component
+ * COMPONENT | END USERS - ADMINISTRATOR & OPERATOR | Heading Two Component
  */
 import React from 'react';
 

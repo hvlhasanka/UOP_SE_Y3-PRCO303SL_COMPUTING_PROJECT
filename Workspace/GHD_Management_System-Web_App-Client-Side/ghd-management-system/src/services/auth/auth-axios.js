@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * AXIOS SERVICE INSTANCE - Auth Axios Instance
+ * AXIOS SERVICE INSTANCE | END USERS - ADMINISTRATOR & OPERATOR | Auth Axios Instance
  */
 import axios from "axios";
 

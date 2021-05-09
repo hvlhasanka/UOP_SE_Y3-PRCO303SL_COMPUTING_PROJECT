@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * PAGE - Dashboard Sub Page
+ * PAGE | END USER - ADMINISTRATOR | Dashboard Sub Page
  */
 import React from 'react';
 

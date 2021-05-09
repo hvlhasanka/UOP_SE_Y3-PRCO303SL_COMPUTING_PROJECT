@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * EXPORTING COMPONENTS - Component Index
+ * EXPORTING COMPONENTS | END USERS - ADMINISTRATOR & OPERATOR | Component Index
  */
 import HeadingOne from './heading-one/heading-one';
 import HeadingTwo from './heading-two/heading-two';

@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * NAVIGATION DATA - Nav Page Sidebar Navigation - Administrator - 1
+ * NAVIGATION DATA | END USER - ADMINISTRATOR | Nav Page Sidebar Navigation - 1
  */
 import React from 'react'
 

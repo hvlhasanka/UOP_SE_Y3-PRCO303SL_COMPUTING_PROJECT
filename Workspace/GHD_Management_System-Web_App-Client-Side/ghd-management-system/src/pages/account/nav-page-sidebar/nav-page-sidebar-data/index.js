@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * EXPORTING NAVIGATION DATA - Nav Page Sidebar Navigation - Data Index
+ * EXPORTING NAVIGATION DATA | END USERS - ADMINISTRATOR & OPERATOR | Nav Page Sidebar Navigation - Data Index
  */
 import AdminSidebarSectionOne from './admin-sidebar-data/admin-sidebar-section-one';
 import AdminSidebarSectionTwo from './admin-sidebar-data/admin-sidebar-section-two';

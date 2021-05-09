@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * PAGE - Feedback Reports Sub Page
+ * PAGE | END USER - ADMINISTRATOR | Feedback Reports Sub Page
  */
 import React from 'react';
 

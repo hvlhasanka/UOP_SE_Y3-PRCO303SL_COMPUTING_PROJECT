@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * PAGE - Login Page
+ * PAGE | END USERS - ADMINISTRATOR & OPERATOR | Login Page
  */
 import React, {useEffect, useState} from 'react';
 import { 

@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * NAVIGATION PAGE - Nav Page Sidebar Navigation
+ * NAVIGATION PAGE | END USERS - ADMINISTRATOR & OPERATOR | Nav Page Sidebar Navigation
  */
 import React, { 
   useEffect, 

@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * PAGE - Settings Sub Page
+ * PAGE | END USER - ADMINISTRATOR | Settings Sub Page
  */
 import React from 'react';
 

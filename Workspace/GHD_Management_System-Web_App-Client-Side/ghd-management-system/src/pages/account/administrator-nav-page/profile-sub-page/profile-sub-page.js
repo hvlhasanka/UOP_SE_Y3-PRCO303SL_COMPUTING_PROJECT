@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * PAGE - Profile Sub Page
+ * PAGE | END USER - ADMINISTRATOR | Profile Sub Page
  */
 import React from 'react';
 

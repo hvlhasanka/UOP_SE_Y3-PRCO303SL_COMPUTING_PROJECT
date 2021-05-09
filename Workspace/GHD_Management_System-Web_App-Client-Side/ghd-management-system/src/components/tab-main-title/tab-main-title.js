@@ -1,6 +1,6 @@
 /**
  * GHD Management System - React Web App
- * COMPONENT - Tab Main Title Component
+ * COMPONENT | END USERS - ADMINISTRATOR & OPERATOR | Tab Main Title Component
  */
 import React from 'react';
 
