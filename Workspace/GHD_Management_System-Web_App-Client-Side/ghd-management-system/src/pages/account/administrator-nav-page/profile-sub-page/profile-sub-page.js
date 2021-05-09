@@ -4,16 +4,16 @@
  */
 import React from 'react';
 
-import './profile-sub-page.css';
+import styles from './profile-sub-page.module.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 import { ComingSoonBlock } from '../../../../components';
 
 const ProfileSubPage = () => {
 
   return(
-    <div className='profile-sub-page'>
+    <div className={styles.profileSubPage}>
       <NavPageSidebar sidebarRoleType="administrator">
-        <div className="profile-content-card">
+        <div className={styles.profileContentCard}>
           <ComingSoonBlock className="coming-soon-component" pageTitle="Profile" />
         </div>
       </NavPageSidebar>

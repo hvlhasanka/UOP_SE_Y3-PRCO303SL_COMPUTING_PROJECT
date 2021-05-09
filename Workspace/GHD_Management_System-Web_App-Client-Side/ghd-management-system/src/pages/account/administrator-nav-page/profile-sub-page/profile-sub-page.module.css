@@ -1,15 +1,15 @@
 /**
  * GHD Management System - React Web App
- * PAGE STYLES | END USER - OPERATOR | Profile Sub Page
+ * PAGE STYLES | END USER - ADMINISTRATOR | Profile Sub Page
  */
 
-.profile-sub-page{
+.profileSubPage{
   width: 100vw;
   height: 100vh;
-  background-color: #070b26;
+  background-color: #0B445A;
 }
 
-.profile-content-card{
+.profileContentCard{
   height: 97%;
   width: 98%;
   background-color: #f1f1f1;

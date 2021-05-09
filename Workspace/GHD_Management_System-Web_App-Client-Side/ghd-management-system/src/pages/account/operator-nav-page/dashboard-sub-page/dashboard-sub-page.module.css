@@ -1,15 +1,15 @@
 /**
  * GHD Management System - React Web App
- * PAGE STYLES | END USER - ADMINISTRATOR | Feedback Reports Sub Page
+ * PAGE STYLES | END USER - OPERATOR | Dashboard Sub Page
  */
 
-.feedback-reports-sub-page{
+.dashboardSubPage{
   width: 100vw;
   height: 100vh;
-  background-color: #0B445A;
+  background-color: #070b26;
 }
 
-.feedback-reports-content-card{
+.dashboardContentCard{
   height: 97%;
   width: 98%;
   background-color: #f1f1f1;

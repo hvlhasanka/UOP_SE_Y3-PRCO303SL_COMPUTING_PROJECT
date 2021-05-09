@@ -4,16 +4,16 @@
  */
 import React from 'react';
 
-import './dashboard-sub-page.css';
+import styles from './dashboard-sub-page.module.css';
 import NavPageSidebar from '../../nav-page-sidebar/nav-page-sidebar';
 import { ComingSoonBlock } from '../../../../components';
 
 const DashboardSubPage = () => {
 
   return(
-    <div className='dashboard-sub-page'>
+    <div className={styles.dashboardSubPage}>
       <NavPageSidebar sidebarRoleType="administrator">
-        <div className="dashboard-content-card">
+        <div className={styles.dashboardContentCard}>
           {/* <TabMainTitle tabTitle="Dashboard" className="tab-heading-title" /> */}
           <ComingSoonBlock className="coming-soon-component" pageTitle="Dashboard" />
         </div>

@@ -61,14 +61,32 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
 
   return(
     <div className='administrator-nav-page'>
-      <div className="page-sidebar">
+      <div className={
+          sidebarRoleType == "administrator" ? 
+          "page-sidebar administrator-side-nav-background-style" 
+          : 
+          "page-sidebar operator-side-nav-background-style" 
+        }
+      >
         <div className="page-sidebar-content">
-          <div className="page-sidebar-header">
+          <div className={
+            sidebarRoleType == "administrator" ? 
+            "page-sidebar-header administrator-side-nav-background-style" 
+            : 
+            "page-sidebar-header operator-side-nav-background-style" 
+            }
+          >
             <div className="page-sidebar-header-main">
               <img src={logo} alt="GHD Management System Logo" className="sidebar__ghd-management-system-logo" />
             </div>
             <div className="page-sidebar-header-sub">
-              <div className="header-sub-top-row">
+              <div className={
+                  sidebarRoleType == "administrator" ? 
+                  "header-sub-top-row administrator-side-nav-header-sub-border-bottom-style" 
+                  : 
+                  "header-sub-top-row operator-side-nav-header-sub-border-bottom-style" 
+                }
+              >
                 <div className="top-row-left-column">
                   <p className="account-role-text">
                     {sidebarRoleType == "administrator" ? `ADMINISTRATOR` : `OPERATOR` }
@@ -98,7 +116,12 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
                         <li 
                           id={ window.location.pathname == val.url ? "page-sidebar-sub-page-active" : ""}
                           key={ key } 
-                          className="page-sidebar-sub-page-button"
+                          className={
+                            sidebarRoleType == "administrator" ? 
+                            "page-sidebar-sub-page-button administrator-side-nav-button-background-style" 
+                            : 
+                            "page-sidebar-sub-page-button operator-side-nav-button-background-style" 
+                          }
                         >
                           <div id="page-sidebar-icon">{ val.icon }</div>
                           <div id="page-sidebar-title">{ val.title }</div>
@@ -118,7 +141,12 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
                         <li 
                           id={ window.location.pathname == val.url ? "page-sidebar-sub-page-active" : ""}
                           key={ key } 
-                          className="page-sidebar-sub-page-button"
+                          className={
+                            sidebarRoleType == "administrator" ? 
+                            "page-sidebar-sub-page-button administrator-side-nav-button-background-style" 
+                            : 
+                            "page-sidebar-sub-page-button operator-side-nav-button-background-style" 
+                          }
                         >
                           <div id="page-sidebar-icon">{ val.icon }</div>
                           <div id="page-sidebar-title">{ val.title }</div>
@@ -134,7 +162,12 @@ const NavPageSidebar = ({ sidebarRoleType, children }) => {
                 <div onClick={() => handleLogoutModal()} className="page-sidebar-sub-page-link">
                   <li 
                     id="page-sidebar-logout"
-                    className="page-sidebar-sub-page-button page-sidebar-logout-button"
+                    className={
+                      sidebarRoleType == "administrator" ? 
+                      "page-sidebar-sub-page-button page-sidebar-logout-button administrator-side-nav-button-background-style" 
+                      : 
+                      "page-sidebar-sub-page-button page-sidebar-logout-button operator-side-nav-button-background-style" 
+                    }
                   >
                     <div id="page-sidebar-icon">
                       <div className="page-sidebar-title-logout-icon">
