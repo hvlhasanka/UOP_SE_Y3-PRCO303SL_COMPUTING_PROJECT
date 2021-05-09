@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Settings Screen
+ */
 import React from 'react';
 import {
   Text,
@@ -9,10 +13,17 @@ import styles from './settings.style';
 const SettingsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ color: 'black' }}>
-        Settings Screen {"\n"}
-        Toggle Proximity Alert
+      {/* 
+        TODO: Toggle Proximity Alert Feature
+      */}
+      <Text style={{ color: '#fff' }}>
+        Toggle Proximity Alert Feature
       </Text>
+      <View style={styles.comingSoonBlock}>
+        <Text style={styles.comingSoonText}>
+          COMING SOON
+        </Text>
+      </View>
     </View>
   );
 };

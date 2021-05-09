@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN STYLES - Health Details Tab Screen
+ */
 import { StyleSheet } from 'react-native';
 
 const styles =  StyleSheet.create({
@@ -13,7 +17,24 @@ const styles =  StyleSheet.create({
     height: 310,
     width: "90%",
     backgroundColor: "#ffffff",
-    borderRadius: 10
+    borderRadius: 10,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  noGhdHealthDetailsBlock: {
+    marginTop: 20,
+    padding: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#616161",
+    backgroundColor: "#D6D6D6"
+  },
+  noGhdHealthDetailsText: {
+    color: "#616161",
+    fontSize: 15,
+    letterSpacing: 1
   },
   publicHealthNews: {
     marginTop: 20,
@@ -24,7 +45,8 @@ const styles =  StyleSheet.create({
     paddingBottom: 10,
     width: "90%",
     backgroundColor: "#ffffff",
-    borderRadius: 10
+    borderRadius: 10,
+    minHeight: 190
   },
   healthNewsBlock: {
     flexDirection: "row",
@@ -46,6 +68,16 @@ const styles =  StyleSheet.create({
   },
   healthNewsCard: {
     width: 260
+  },
+  loadingSpinnerBlock: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  loadingSpinner: {
+    height: 100,
+    width: 100
   },
   blockShadow: {
     shadowColor: "#000",

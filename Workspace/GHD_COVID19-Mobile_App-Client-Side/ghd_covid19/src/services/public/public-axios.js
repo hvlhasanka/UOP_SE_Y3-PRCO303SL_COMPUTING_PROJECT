@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * AXIOS SERVICE INSTANCE - Public Axios Instance
+ */
 import axios from "axios";
 
 const publicAxiosInstance = axios.create({

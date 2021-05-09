@@ -1,6 +1,6 @@
 /**
  * GHD COVID19 - React Native Mobile App
- * SCREEN STYLES - Login Screen
+ * SCREEN STYLES - Sign Up Screen Two
  */
 import { StyleSheet } from 'react-native';
 
@@ -9,14 +9,14 @@ const styles =  StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-  loginHeader: {
+  signUpHeader: {
     flex: 1,
     paddingTop: 30,
     paddingBottom: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  closeLoginButton: {
+  previousSignUpButton: {
     width: 50,
     height: 50,
     borderRadius: 23,
@@ -27,21 +27,21 @@ const styles =  StyleSheet.create({
     top: 15,
     left: 10,
     borderWidth: 2,
-    borderColor: "#4E3AC2"
+    borderColor: "#1B31C3"
   },
-  loginCoverImage: {
+  signUpCoverImage: {
     width: "60%",
     resizeMode: "contain"
   },
-  loginFooter: {
+  signUpFooter: {
     flex: 3,
-    backgroundColor: "#4E3AC2",
+    backgroundColor: "#1B31C3",
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
     paddingVertical: 20,
     paddingHorizontal: 20
   },
-  loginFooterHeading: {
+  signUpFooterHeading: {
     textAlign: "center",
     fontSize: 24,
     color: "#fff",
@@ -49,6 +49,14 @@ const styles =  StyleSheet.create({
     letterSpacing: 1,
     marginBottom: 10,
     letterSpacing: 2
+  },
+  formHeading: {
+    fontSize: 20,
+    color: "#fff",
+    letterSpacing: 1.5,
+    marginTop: 10,
+    fontWeight: "bold",
+    marginBottom: 10
   },
   textBoxHeading: {
     fontSize: 20,
@@ -63,16 +71,11 @@ const styles =  StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  inputLeftIcon: {
-    position: "absolute",
-    top: 15,
-    left: 10
-  },
   textInput: {
     borderWidth: 2,
     borderColor: "#5F44F6",
     borderRadius: 10,
-    paddingLeft: 40,
+    paddingLeft: 10,
     paddingRight: 40
   },
   inputRightIcon: {
@@ -80,46 +83,30 @@ const styles =  StyleSheet.create({
     right: 10,
     top:15
   },
-  forgotPasswordBlock: {
-    width: "55%",
-    height: 30,
-    backgroundColor: "#634CEC",
-    borderRadius: 20,
-    marginTop: 10,
-    marginLeft: "auto"
-  },
-  forgotPasswordText: {
-    fontSize: 14,
-    letterSpacing: 1,
-    color: "#fff",
-    textAlign: "center",
-    paddingTop: 5,
-    fontWeight: "bold"
-  },
-  loginButton: {
-    backgroundColor: "#1F0F7F",
+  registerButton: {
+    backgroundColor: "#3092FD",
     borderRadius: 10,
-    marginTop: 10
+    marginTop: "5%"
   },
-  signUpTextBlock: {
+  tAndCTextBlock: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
     marginTop: "5%"
   },
-  signUpText: {
+  tAndCText: {
     color: "#fff",
     paddingRight: 5,
     fontSize: 15,
     letterSpacing: 0.8
   },
-  signUpButton: {
+  tAndCButton: {
     padding: 10,
-    backgroundColor: "#634CEC",
+    backgroundColor: "#3F55EC",
     borderRadius: 10
   },
-  signUpButtonText: {
+  tAndCButtonText: {
     letterSpacing: 1,
     fontWeight: "bold",
     color: "#fff"

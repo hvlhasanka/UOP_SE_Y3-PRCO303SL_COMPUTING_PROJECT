@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * NAVIGATION - Public Health News Stack Navigation
+ */
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 

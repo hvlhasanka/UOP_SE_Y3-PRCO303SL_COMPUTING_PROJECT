@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * NAVIGATION - Side Drawer Navigation
+ */
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -13,9 +17,12 @@ import AboutScreen from '../screens/public-screens/about/about.screen';
 import NotificationsScreen from '../screens/private-screens/notifications/notifications.screen';
 import ProfileScreen from '../screens/private-screens/profile/profile.screen';
 import SideDrawerContent from './side-drawer-content';
+import LoginScreen from '../screens/auth/login/login.screen';
+import SignUpStackNavigation from './sign-up-stack';
 
 
 const SideDrawerNav = createDrawerNavigator();
+const LoginStack = createStackNavigator();
 const NotificationsStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const EmergencyContactStack = createStackNavigator();
@@ -24,12 +31,33 @@ const HelpStack = createStackNavigator();
 const SettingsStack = createStackNavigator();
 const AboutStack = createStackNavigator();
 
+const LoginStackScreen = ({ navigation }) => {
+  return (
+    <LoginStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#0B3359"
+        }
+      }}
+    >
+      <LoginStack.Screen 
+        name="Login" 
+        component={ LoginScreen }
+        options={{ 
+          headerMode: 'none', 
+          headerShown : false
+        }}
+      />
+    </LoginStack.Navigator>
+  );
+};
+
 const NotificationsStackScreen = ({ navigation }) => {
   return (
     <NotificationsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -38,12 +66,15 @@ const NotificationsStackScreen = ({ navigation }) => {
         component={ NotificationsScreen } 
         options={{
           title: "NOTIFICATIONS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -93,7 +124,7 @@ const EmergencyContactStackScreen = ({ navigation }) => {
     <EmergencyContactStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -102,12 +133,15 @@ const EmergencyContactStackScreen = ({ navigation }) => {
         component={ EmergencyContactScreen } 
         options={{
           title: "EMERGENCY CONTACT",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -122,7 +156,7 @@ const ReportStackScreen = ({ navigation }) => {
     <ReportStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -131,12 +165,15 @@ const ReportStackScreen = ({ navigation }) => {
         component={ ReportScreen } 
         options={{
           title: "REPORT",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -151,7 +188,7 @@ const HelpStackScreen = ({ navigation }) => {
     <HelpStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -160,12 +197,15 @@ const HelpStackScreen = ({ navigation }) => {
         component={ HelpScreen } 
         options={{
           title: "HELP",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -180,7 +220,7 @@ const SettingsStackScreen = ({ navigation }) => {
     <SettingsStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#ededed"
+          backgroundColor: "#0B3359"
         }
       }}
     >
@@ -189,12 +229,15 @@ const SettingsStackScreen = ({ navigation }) => {
         component={ SettingsScreen } 
         options={{
           title: "SETTINGS",
+          headerTitleStyle: {
+            color: "#ffffff"
+          },
           headerLeft: () => (
             <IoniconsIcon.Button 
               name="menu" 
               size={35} 
-              backgroundColor="#ededed" 
-              color="#000000"
+              backgroundColor="#0B3359" 
+              color="#ffffff"
               onPress={() => navigation.openDrawer()}
             ></IoniconsIcon.Button>
           )
@@ -244,6 +287,8 @@ const SideDrawerNavigation = () => {
   return (
     <SideDrawerNav.Navigator initialRouteName="Home" drawerContent={props => <SideDrawerContent {...props} />}>
       <SideDrawerNav.Screen name="BottomTabNavigation" component={ BottomTabNavigation } />
+      <SideDrawerNav.Screen name="Login" component={ LoginStackScreen } />
+      <SideDrawerNav.Screen name="SignUp" component={ SignUpStackNavigation } />
       <SideDrawerNav.Screen name="Notifications" component={ NotificationsStackScreen } />
       <SideDrawerNav.Screen name="Profile" component={ ProfileStackScreen } />
       <SideDrawerNav.Screen name="EmergencyContact" component={ EmergencyContactStackScreen } />

@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SCREEN - Hot Zones Tab Screen
+ */
 import React from 'react';
 import {
   Text,
@@ -9,9 +13,11 @@ import styles from './hot-zones-tab.style';
 const HotZonesTabScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ color: 'black' }}>
-        Hot Zones Tab Screen
-      </Text>
+      <View style={styles.comingSoonBlock}>
+        <Text style={styles.comingSoonText}>
+          COMING SOON
+        </Text>
+      </View>
     </View>
   );
 };

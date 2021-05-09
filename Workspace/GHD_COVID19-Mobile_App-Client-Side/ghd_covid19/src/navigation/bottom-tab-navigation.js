@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * NAVIGATION - Bottom Tab Navigation
+ */
 import React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -63,7 +67,7 @@ const HomeStackScreen = ({ navigation }) => {
                 ></IoniconsIcon.Button>
               </View>
               <View style={{ position: "absolute", right: 75, top: 5 }}>
-                <Badge>4</Badge>
+                <Badge>2</Badge>
               </View>
               <View>
                 <IoniconsIcon.Button
@@ -75,7 +79,7 @@ const HomeStackScreen = ({ navigation }) => {
                 ></IoniconsIcon.Button>
               </View>
               <View style={{ position: "absolute", right: 10, top: 5 }}>
-                <Badge>10</Badge>
+                <Badge>4</Badge>
               </View>
             </View>
           )
@@ -98,7 +102,7 @@ const CovidStatsStackScreen = ({ navigation }) => {
         name="Home"
         component={ CovidStatsTabScreen } 
         options={{
-          title: "COVID STATS",
+          title: "COVID STATISTICS",
           headerTitleStyle: {
             color: "#ffffff"
           },
@@ -170,7 +174,7 @@ const HealthStatusReportsStackScreen = ({ navigation }) => {
         options={{
           title: "HEALTH STATUS REPORTS",
           headerTitleStyle: {
-            color: "#0B3359"
+            color: "#ffffff"
           },
           headerLeft: () => (
             <View>
@@ -178,7 +182,7 @@ const HealthStatusReportsStackScreen = ({ navigation }) => {
               <IoniconsIcon.Button 
                 name="menu" 
                 size={35} 
-                backgroundColor="#0B3359" 
+                backgroundColor="#3573E1" 
                 color="#ffffff"
                 onPress={() => navigation.openDrawer()}
               ></IoniconsIcon.Button>

@@ -1,3 +1,7 @@
+/**
+ * GHD COVID19 - React Native Mobile App
+ * SERVICE - Health News Service Service
+ */
 import publicAxiosInstance from "./public-axios";
 
 class HealthNewsService {
