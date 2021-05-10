@@ -17,6 +17,8 @@ import LockIcon from '@material-ui/icons/Lock';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import CloseIcon from '@material-ui/icons/Close';
+import jwt from 'jwt-decode';
+import { useHistory } from "react-router"
 
 import './login.css';
 import logo from '../../../assets/logo/GHD-Management-System-Logo.png';
@@ -28,8 +30,7 @@ import {
   HeadingTwo
 } from '../../../components';
 import authService from '../../../services/auth/auth-service';
-import jwt from 'jwt-decode';
-import { useHistory } from "react-router"
+
 
 const Login = () => {
 
