@@ -62,5 +62,4 @@ jobs:
           env:
             PROJECT_PATH: ./Workspace/GHD_Management_System-Web_App-Client-Side/ghd-management-system
             FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-            PROJECT_ID: qa-ghd-management-system
             
