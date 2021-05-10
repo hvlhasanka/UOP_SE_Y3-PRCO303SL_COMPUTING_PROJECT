@@ -49,11 +49,12 @@ const LandingPageHomePage = () => {
     setDownloadSnackbarEnabled(false);
   };
 
+  // Function - Creating the element to download the app APK file
   function downloadAndroidAPK() {
     enableDownloadSnackBar();
     var downloadElement = document.createElement("a");
-    downloadElement.href = "https://firebasestorage.googleapis.com/v0/b/ghd-covid19.appspot.com/o/deployments%2Fghd-covid19-android-app-apk%2Fapp-debug.apk?alt=media&token=da720a86-df1e-4f51-bcdb-f13977bbccaa";
-    downloadElement.setAttribute("download", "app-debug.apk");
+    downloadElement.href = "https://firebasestorage.googleapis.com/v0/b/ghd-covid19.appspot.com/o/deployments%2Fghd-covid19-android-app-apk%2Fghd-covid19-v1.0.0.apk?alt=media&token=ab6721a7-477c-4d1e-8e6a-51875e30346d";
+    downloadElement.setAttribute("download", "ghd-covid19-v1.0.0.apk");
     downloadElement.click();
   }
 
