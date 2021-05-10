@@ -23,18 +23,39 @@ function Alert(props) {
 
 const LandingPageHomePage = () => {
 
-  const [snackbarEnabled, setSnackbarEnabled] = useState(false);
+  const [comingSoonSnackbarEnabled, setComingSoonSnackbarEnabled] = useState(false);
 
-  const enableSnackBar = () => {
-    setSnackbarEnabled(true);
+  const enableComingSoonSnackBar = () => {
+    setComingSoonSnackbarEnabled(true);
   };
 
-  const closeSnackBar = (event, reason) => {
+  const closeComingSoonSnackBar = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    setSnackbarEnabled(false);
+    setComingSoonSnackbarEnabled(false);
   };
+
+  const [downloadSnackbarEnabled, setDownloadSnackbarEnabled] = useState(false);
+
+  const enableDownloadSnackBar = () => {
+    setDownloadSnackbarEnabled(true);
+  };
+
+  const closeDownloadSnackBar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setDownloadSnackbarEnabled(false);
+  };
+
+  function downloadAndroidAPK() {
+    enableDownloadSnackBar();
+    var downloadElement = document.createElement("a");
+    downloadElement.href = "https://firebasestorage.googleapis.com/v0/b/ghd-covid19.appspot.com/o/deployments%2Fghd-covid19-android-app-apk%2Fapp-debug.apk?alt=media&token=da720a86-df1e-4f51-bcdb-f13977bbccaa";
+    downloadElement.setAttribute("download", "app-debug.apk");
+    downloadElement.click();
+  }
 
   return(
   <div className="landing-page-home">
@@ -72,7 +93,7 @@ const LandingPageHomePage = () => {
                   borderRadius: 10,
                   borderColor: '#236C9C',
                   color: '#205476'
-                }} className="button" onClick={enableSnackBar}>
+                }} className="button" onClick={() => downloadAndroidAPK()}>
                   Download App | GOOGLE ANDROID
                 </Button>
               </div>
@@ -84,13 +105,18 @@ const LandingPageHomePage = () => {
                   borderRadius: 10,
                   borderColor: '#236C9C',
                   color: '#205476'
-                }} className="button" onClick={enableSnackBar}>
+                }} className="button" onClick={enableComingSoonSnackBar}>
                   Download App | APPLE iOS
                 </Button>
               </div>
-              <Snackbar open={snackbarEnabled} autoHideDuration={2000} onClose={closeSnackBar}>
-                <Alert onClose={closeSnackBar} severity="info">
+              <Snackbar open={comingSoonSnackbarEnabled} autoHideDuration={2000} onClose={closeComingSoonSnackBar}>
+                <Alert onClose={closeComingSoonSnackBar} severity="info">
                   Coming Soon
+                </Alert>
+              </Snackbar>
+              <Snackbar open={downloadSnackbarEnabled} autoHideDuration={2000} onClose={closeDownloadSnackBar}>
+                <Alert onClose={closeDownloadSnackBar} severity="info">
+                  Please wait... File Downloading
                 </Alert>
               </Snackbar>
             </Grid>
