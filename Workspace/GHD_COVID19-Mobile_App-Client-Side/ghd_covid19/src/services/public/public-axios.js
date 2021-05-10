@@ -5,7 +5,10 @@
 import axios from "axios";
 
 const publicAxiosInstance = axios.create({
-  baseURL: "http://0.0.0.0:8082/ghd/api-v1",
+  // DEVELOPMENT USE
+  //baseURL: "http://0.0.0.0:8082/ghd/api-v1",
+  // PRODUCTION USE
+  baseURL: "https://ghd-server-application.herokuapp.com/ghd/api-v1",
   headers: {
     "Content-type": "application/json"
   }
