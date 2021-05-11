@@ -106,6 +106,7 @@
 .account-role-text{
   font-size: 18px;
   font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   top: 50%;
   left: 28%;
@@ -149,7 +150,9 @@
 
 .current-date-time-text{
   font-size: 20px;
+  font-weight: 400;
   letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   left: 12%;
 }
