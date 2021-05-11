@@ -245,7 +245,10 @@ const Login = () => {
                           <Grid item xs={12}>
                             <Button 
                               className="login__forgot-password-button" 
-                              style={{textTransform: 'none'}}
+                              style={{
+                                textTransform: 'none',
+                                backgroundColor: '#E5ECFC'
+                              }}
                               onClick={() => handleShowChangePasswordEmailAddressForm()}
                             >
                               <b>Forgot password?</b>
@@ -284,7 +287,7 @@ const Login = () => {
               <Grid item xs={12}>
                 
                 <div className="login__no-account">
-                  <p>Don't have an account?
+                  <p>Don't have an account? &nbsp;&nbsp;
                     <Button 
                       variant="outlined" 
                       className="login__forgot-password-button" 
@@ -433,7 +436,7 @@ const Login = () => {
                     
                     <Grid container justify="center" spacing={2}>
                       <Grid item xs={12}>  
-                        <p className="report__item-heading">Subject</p>
+                        <p className="report__item-heading">Subject:</p>
                       </Grid>
                       <Grid item xs={12}>  
                         <TextField 
@@ -451,7 +454,7 @@ const Login = () => {
                     
                     <Grid container justify="center" spacing={2}>
                       <Grid item xs={12}>  
-                        <p className="report__item-heading">Feedback</p>
+                        <p className="report__item-heading">Feedback:</p>
                       </Grid>
                       <Grid item xs={12}>  
                         <TextField 
@@ -471,7 +474,7 @@ const Login = () => {
                     
                     <Grid container justify="center" spacing={2}>
                       <Grid item xs={12}>  
-                        <p className="report__item-heading">Reachable Email Address</p>
+                        <p className="report__item-heading">Reachable Email Address:</p>
                       </Grid>
                       <Grid item xs={12}>  
                         <TextField 
@@ -531,7 +534,7 @@ const Login = () => {
                     <Grid container justify="center" spacing={2}>
                       <Grid item xs={12}>  
                         <div>
-                          Provide account email address to change password. A verification pin code will be send.
+                          <p className="change__password-text">Provide account email address to change password. A verification pin code will be sent.</p>
                         </div>
                       </Grid>
                     </Grid> 
@@ -541,7 +544,7 @@ const Login = () => {
                     
                     <Grid container justify="center" spacing={2}>
                       <Grid item xs={12}>  
-                        <p className="report__item-heading">Account Email Address</p>
+                        <p className="report__item-heading">Account Email Address:</p>
                       </Grid>
                       <Grid item xs={12}>  
                         <TextField 
