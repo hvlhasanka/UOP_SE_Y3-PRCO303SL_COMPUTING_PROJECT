@@ -117,7 +117,7 @@ const LandingPageHomePage = () => {
               </Snackbar>
               <Snackbar open={downloadSnackbarEnabled} autoHideDuration={2000} onClose={closeDownloadSnackBar}>
                 <Alert onClose={closeDownloadSnackBar} severity="info">
-                  Please wait... File Downloading
+                  Please wait... Downloading File
                 </Alert>
               </Snackbar>
             </Grid>
