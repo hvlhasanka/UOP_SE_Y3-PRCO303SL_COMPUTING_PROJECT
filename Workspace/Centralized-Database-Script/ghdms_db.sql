@@ -4,15 +4,15 @@
 -- All timestamps should be queried using, convert_tz(UTC_TIMESTAMP,'+00:00','+05:30') timezone
 
 -- Deletes if a database named ghdms_db already exists
-  DROP DATABASE IF EXISTS ghdms_db;
+--  DROP DATABASE IF EXISTS ghdms_db;
 
 -- Creating database
-  CREATE DATABASE ghdms_db;
+--  CREATE DATABASE ghdms_db;
 
 -- |------------------------------------------------------------------------------------------------|
 
 -- Accessing newly created database
-  USE ghdms_db;
+  USE freedbtech_ghdmsdb;
 
 -- |------------------------------------------------------------------------------------------------|
 
@@ -525,7 +525,7 @@
     created_date_time DATETIME DEFAULT current_timestamp,
     l_login_id INT NOT NULL,
     CONSTRAINT pk_forgot_password PRIMARY KEY (recovery_id),
-    CONSTRAINT fk_l_lp_login_id FOREIGN KEY (l_login_id) REFERENCES Logins(login_id) 
+    CONSTRAINT fk_l_lp_login_id FOREIGN KEY (l_login_id) REFERENCES logins(login_id) 
   )ENGINE=INNODB;
 
 -- AUTO INCREMENT STARTING POINT: TABLE 23 - forgot_passwords

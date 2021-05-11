@@ -5,7 +5,10 @@
 import axios from "axios";
 
 const authAxiosInstance = axios.create({
-  baseURL: "http://localhost:8080/ghd/api-v1",
+  // DEVELOPMENT USE
+  //baseURL: "http://localhost:8082/ghd/api-v1",
+  // PRODUCTION USE
+  baseURL: "https://ghd-server-application.herokuapp.com/ghd/api-v1",
   headers: {
     "Content-type": "application/json"
   }

@@ -1,0 +1,61 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: (QA) GHD COVID19 Public Website Web App Firebase CI
+
+on:
+  push:
+    branches: [ develop ]
+    paths:
+      - Workspace/GHD_Public_Website-Landing-Page-Client-Side/**
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    
+    defaults:
+      run:
+        working-directory: ./Workspace/GHD_Public_Website-Landing-Page-Client-Side/ghd-public-website
+
+    steps:
+    - uses: actions/checkout@v2 # Checkout the repository
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install -g
+    - name: npm install, build and test
+      run: |
+        npm install
+        npm run build
+    - name: Archive Build # Archiving the artifact to use in the next job (deploy)
+      uses: actions/upload-artifact@v2
+      with: 
+        name: build
+        path: ${{ github.workspace }}/Workspace/GHD_Public_Website-Landing-Page-Client-Side/ghd-public-website/build
+        
+  deploy:
+      name: Deploy
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2 # Checkout the repository
+        - name: Download Build # Extracting the build from the previous job
+          uses: actions/download-artifact@v2
+          with: 
+            name: build
+            path: ${{ github.workspace }}/Workspace/GHD_Public_Website-Landing-Page-Client-Side/ghd-public-website/build
+        - name: Deploy to Firebase
+          uses: w9jds/firebase-action@master
+          with:
+            args: deploy --only hosting --project qa-ghd-covid19
+          env:
+            PROJECT_PATH: ./Workspace/GHD_Public_Website-Landing-Page-Client-Side/ghd-public-website
+            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+            
