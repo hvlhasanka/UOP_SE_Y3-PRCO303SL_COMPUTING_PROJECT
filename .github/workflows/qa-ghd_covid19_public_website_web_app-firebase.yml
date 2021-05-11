@@ -8,10 +8,6 @@ on:
     branches: [ develop ]
     paths:
       - Workspace/GHD_Public_Website-Landing-Page-Client-Side/**
-  pull_request:
-    branches: [ develop ]
-    paths:
-      - Workspace/GHD_Public_Website-Landing-Page-Client-Side/**
 
 jobs:
   build:
