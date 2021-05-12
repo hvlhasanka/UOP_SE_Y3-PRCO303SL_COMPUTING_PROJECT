@@ -1,9 +1,12 @@
-  
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# GitHub Action Workflow - 
+# Branch: MAIN
+# Environment: PRODUCTION
+# Web Application: GHD COVID19 Public Website Web App
+# Purpose: Web app build check upon pull requests towards main branch
 
 name: (PROD) GHD COVID19 Public Website Web App Build Check
 
+# Action trigger configuration
 on:
   pull_request:
     branches: [ main ]
@@ -11,19 +14,22 @@ on:
       - Workspace/GHD_Public_Website-Landing-Page-Client-Side/**
 
 jobs:
+  # Generate web app build source files
   build:
 
+    # Operating system to run build
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [14.x] # Node.js version to run build
     
+    # Default working sub directory to run build
     defaults:
       run:
         working-directory: ./Workspace/GHD_Public_Website-Landing-Page-Client-Side/ghd-public-website
 
+    # Steps executed within the job
     steps:
     - uses: actions/checkout@v2 # Checkout the repository
     - name: Use Node.js ${{ matrix.node-version }}
@@ -36,4 +42,3 @@ jobs:
         npm install
         npm run build
 
-        
