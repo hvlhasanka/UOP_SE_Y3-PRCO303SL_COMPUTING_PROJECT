@@ -1,8 +1,12 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# GitHub Action Workflow - 
+# Branch: MAIN
+# Environment: PRODUCTION
+# Web Application: GHD Management System Web App
+# Purpose: Web app continuous integration / continuous deployment to firebase hosting using firebase CI
 
 name: (PROD) GHD Management System Web App Firebase CI
 
+# Action trigger configuration
 on:
   push:
     branches: [ main ]
@@ -10,19 +14,22 @@ on:
       - Workspace/GHD_Management_System-Web_App-Client-Side/**
 
 jobs:
+  # Generate web app build source files
   build:
 
+    # Operating system to run build
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [14.x] # Node.js version to run build
     
+    # Default working sub directory to run build
     defaults:
       run:
         working-directory: ./Workspace/GHD_Management_System-Web_App-Client-Side/ghd-management-system
 
+    # Steps executed within the job
     steps:
     - uses: actions/checkout@v2 # Checkout the repository
     - name: Use Node.js ${{ matrix.node-version }}
@@ -39,14 +46,15 @@ jobs:
       with: 
         name: build
         path: ${{ github.workspace }}/Workspace/GHD_Management_System-Web_App-Client-Side/ghd-management-system/build
-        
+  
+  # Deployment to firebase hosting
   deploy:
       name: Deploy
       needs: build
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2 # Checkout the repository
-        - name: Download Build # Extracting the build from the previous job
+        - name: Download Build # Downloading the build from the previous job
           uses: actions/download-artifact@v2
           with: 
             name: build
